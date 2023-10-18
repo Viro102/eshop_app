@@ -3,13 +3,14 @@ import Text from "./Text.jsx";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+require("dotenv").config();
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDu5JpvqxrR557AQ81Gi-8bdA64qyWsYsA",
+  apiKey: process.env.GOOGLE_API_KEY,
   authDomain: "eshop-vaii.firebaseapp.com",
   projectId: "eshop-vaii",
   storageBucket: "eshop-vaii.appspot.com",
