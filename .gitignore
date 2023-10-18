@@ -12,8 +12,9 @@ dist
 dist-ssr
 *.local
 
-# firebase
 .env
+
+# firebase
 .firebase/
 .firebaserc
 
