@@ -1,8 +1,11 @@
-# React + Vite
+# Eshop_app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple e-commerce web app made in React + Vite combination with tailwindcss and firebase.
 
-Currently, two official plugins are available:
+# WIP Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* User dashboard
+* Product list
+* Search function
+* Better navigation
+* Product categories
