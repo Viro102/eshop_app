@@ -1,4 +1,4 @@
-function Text() {
+export default function Text() {
   return (
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pretium ornare est eget
@@ -120,5 +120,3 @@ function Text() {
     </p>
   );
 }
-
-export default Text;
