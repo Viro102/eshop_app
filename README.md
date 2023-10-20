@@ -1,6 +1,6 @@
 # Eshop_app
 
-This is a simple e-commerce web app made in React + Vite combination with tailwindcss and firebase.
+This is a simple e-commerce web app made in React + Vite combination with tailwindcss and firebase hosting.
 
 # WIP Features
 
