@@ -1,18 +1,17 @@
 import React, { useState } from "react";
-import { signUp } from "./services/auth";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const onButtonClick = () => {
-    signUp(email, password);
+    // TODO: add sign up logic here
   };
 
   return (
     <div>
       <div>
-        <div>Login</div>
+        <div>Sign Up</div>
       </div>
       <div>
         <input
