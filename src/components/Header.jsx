@@ -9,7 +9,9 @@ export default function Header() {
             <Link to={"/"}>
               <img className="mr-3 h-3 sm:h-9" src="/vite.svg" alt="vite logo" />
             </Link>
-            <span className="self-center text-xl font-semibold dark:text-white">E-SHOP</span>
+            <span className="self-center text-xl font-semibold text-gray-900 dark:text-white">
+              E-SHOP
+            </span>
           </div>
 
           <form>
