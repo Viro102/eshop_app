@@ -57,13 +57,13 @@ export default function Footer() {
             &copy; 2023 Adam Virostek. All Rights Reserved.
           </div>
           <div className="flex justify-center items-center py-1">
-            <a href="#" className="px-1">
+            <a href="https://discord.gg/eq9fhgW988" className="px-1">
               <img src="/discord.svg" alt="Discord community" className="w-4 h-4" />
             </a>
-            <a href="#" className="px-1">
+            <a href="https://twitter.com/Viro102" className="px-1">
               <img src="/X.svg" alt="X page" className="w-4 h-4" />
             </a>
-            <a href="#" className="px-1">
+            <a href="https://github.com/Viro102" className="px-1">
               <img src="/github.svg" alt="Github" className="w-4 h-4" />
             </a>
           </div>
