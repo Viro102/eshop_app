@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="bg-white dark:bg-gray-900">
       <div className="mx-auto w-full">
-        <div className="flex justify-between px-9 py-6 max-w-5xl items-center text-center ml-auto mr-auto">
+        <div className="flex justify-between px-9 py-6 max-w-5xl items-center text-center mx-auto">
           <div>
             <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
               Company
@@ -40,12 +40,12 @@ export default function Footer() {
             </h2>
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
               <li className="mb-4">
-                <a href="#" className="hover:underline">
+                <a href="/privacy-policy" className="hover:underline">
                   Privacy Policy
                 </a>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:underline">
+                <a href="/terms-conditions" className="hover:underline">
                   Terms &amp; Conditions
                 </a>
               </li>
