@@ -1,21 +1,28 @@
 import PropTypes from "prop-types";
 
-export default function Button({ text, iconSrc, alt, onClick }) {
+export default function Button({
+  text,
+  iconSrc,
+  alt,
+  onClick,
+  className = "",
+}) {
   return (
     <button
-      className="bg-gray-900 active:bg-gray-600 text-gray-100 px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs transition-all text-center"
+      className={`inline-flex items-center rounded bg-blue-400   text-center text-xs font-bold uppercase text-gray-100 shadow outline-none transition-all hover:shadow-md focus:outline-none active:bg-gray-600 dark:bg-gray-900 ${className}`}
       type="button"
       onClick={onClick}
     >
-      {iconSrc && <img alt={alt} className="w-5 mr-1" src={iconSrc} />}
+      {iconSrc && <img alt={alt} className="mr-1 w-5" src={iconSrc} />}
       {text}
     </button>
   );
 }
 
 Button.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
   iconSrc: PropTypes.string,
   alt: PropTypes.string,
   onClick: PropTypes.func,
+  className: PropTypes.string,
 };
