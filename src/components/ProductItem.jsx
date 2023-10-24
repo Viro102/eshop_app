@@ -1,14 +1,7 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-export default function ProductItem({
-  src,
-  alt,
-  title,
-  price,
-  discount,
-  productPage,
-}) {
+export default function ProductItem({ src, alt, title, price, discount, productPage }) {
   return (
     <div className="relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg bg-white shadow-md dark:bg-gray-500">
       <Link

@@ -14,9 +14,7 @@ export default function Login() {
                 <div className="relative mb-6 flex w-full min-w-0 flex-col break-words rounded-lg border-0 bg-gray-800 shadow-lg">
                   <div className="mb-0 rounded-t px-6 py-6">
                     <div className="mb-3 text-center">
-                      <h6 className="text-sm font-bold text-gray-100">
-                        Sign in with
-                      </h6>
+                      <h6 className="text-sm font-bold text-gray-100">Sign in with</h6>
                     </div>
                     <div className="btn-wrapper text-center">
                       <Button
@@ -92,20 +90,12 @@ export default function Login() {
                 </div>
                 <div className="mt-6 flex flex-wrap">
                   <div className="w-1/2">
-                    <a
-                      href="#pablo"
-                      onClick={(e) => e.preventDefault()}
-                      className="text-gray-300"
-                    >
+                    <a href="#pablo" onClick={(e) => e.preventDefault()} className="text-gray-300">
                       <small>Forgot password?</small>
                     </a>
                   </div>
                   <div className="w-1/2 text-right">
-                    <a
-                      href="#pablo"
-                      onClick={(e) => e.preventDefault()}
-                      className="text-gray-300"
-                    >
+                    <a href="#pablo" onClick={(e) => e.preventDefault()} className="text-gray-300">
                       <small>Create new account</small>
                     </a>
                   </div>

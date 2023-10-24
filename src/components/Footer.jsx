@@ -58,25 +58,13 @@ export default function Footer() {
           </div>
           <div className="flex items-center justify-center py-1">
             <a href="https://discord.gg/eq9fhgW988" className="px-1">
-              <img
-                src="/discord.svg"
-                alt="Discord community"
-                className="filter-invert h-4 w-4"
-              />
+              <img src="/discord.svg" alt="Discord community" className="filter-invert h-4 w-4" />
             </a>
             <a href="https://twitter.com/Viro102" className="px-1">
-              <img
-                src="/X.svg"
-                alt="X page"
-                className="filter-invert h-4 w-4"
-              />
+              <img src="/X.svg" alt="X page" className="filter-invert h-4 w-4" />
             </a>
             <a href="https://github.com/Viro102" className="px-1">
-              <img
-                src="/github.svg"
-                alt="Github"
-                className="filter-invert h-4 w-4"
-              />
+              <img src="/github.svg" alt="Github" className="filter-invert h-4 w-4" />
             </a>
           </div>
         </div>

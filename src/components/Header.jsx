@@ -9,11 +9,7 @@ export default function Header() {
         <div className="mx-auto flex max-w-screen-xl items-center justify-between">
           <div className="flex items-center">
             <Link to={"/"}>
-              <img
-                className="mr-3 h-9 hover:animate-spin"
-                src="/vite.svg"
-                alt="vite logo"
-              />
+              <img className="mr-3 h-9 hover:animate-spin" src="/vite.svg" alt="vite logo" />
             </Link>
             <span className="self-center whitespace-nowrap text-xl font-semibold text-gray-900 dark:text-white">
               E-SHOP
@@ -52,10 +48,7 @@ export default function Header() {
                   placeholder="Search"
                   required
                 />
-                <Button
-                  text={"Search"}
-                  className="absolute bottom-0 right-0 top-0"
-                />
+                <Button text={"Search"} className="absolute bottom-0 right-0 top-0" />
               </div>
             </form>
           </div>

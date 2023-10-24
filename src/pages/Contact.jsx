@@ -105,15 +105,9 @@ export default function Contact() {
                     </div>
                   </div>
                   <div className="ml-6 grow">
-                    <p className="mb-2 font-bold dark:text-white">
-                      Technical support
-                    </p>
-                    <p className="text-neutral-500 dark:text-neutral-200">
-                      support@example.com
-                    </p>
-                    <p className="text-neutral-500 dark:text-neutral-200">
-                      +1 234-567-89
-                    </p>
+                    <p className="mb-2 font-bold dark:text-white">Technical support</p>
+                    <p className="text-neutral-500 dark:text-neutral-200">support@example.com</p>
+                    <p className="text-neutral-500 dark:text-neutral-200">+1 234-567-89</p>
                   </div>
                 </div>
               </div>
@@ -138,15 +132,9 @@ export default function Contact() {
                     </div>
                   </div>
                   <div className="ml-6 grow">
-                    <p className="mb-2 font-bold dark:text-white">
-                      Sales questions
-                    </p>
-                    <p className="text-neutral-500 dark:text-neutral-200">
-                      sales@example.com
-                    </p>
-                    <p className="text-neutral-500 dark:text-neutral-200">
-                      +1 234-567-89
-                    </p>
+                    <p className="mb-2 font-bold dark:text-white">Sales questions</p>
+                    <p className="text-neutral-500 dark:text-neutral-200">sales@example.com</p>
+                    <p className="text-neutral-500 dark:text-neutral-200">+1 234-567-89</p>
                   </div>
                 </div>
               </div>
@@ -172,12 +160,8 @@ export default function Contact() {
                   </div>
                   <div className="ml-6 grow">
                     <p className="mb-2 font-bold dark:text-white">Press</p>
-                    <p className="text-neutral-500 dark:text-neutral-200">
-                      press@example.com
-                    </p>
-                    <p className="text-neutral-500 dark:text-neutral-200">
-                      +1 234-567-89
-                    </p>
+                    <p className="text-neutral-500 dark:text-neutral-200">press@example.com</p>
+                    <p className="text-neutral-500 dark:text-neutral-200">+1 234-567-89</p>
                   </div>
                 </div>
               </div>
@@ -203,12 +187,8 @@ export default function Contact() {
                   </div>
                   <div className="ml-6 grow">
                     <p className="mb-2 font-bold dark:text-white">Bug report</p>
-                    <p className="text-neutral-500 dark:text-neutral-200">
-                      bugs@example.com
-                    </p>
-                    <p className="text-neutral-500 dark:text-neutral-200">
-                      +1 234-567-89
-                    </p>
+                    <p className="text-neutral-500 dark:text-neutral-200">bugs@example.com</p>
+                    <p className="text-neutral-500 dark:text-neutral-200">+1 234-567-89</p>
                   </div>
                 </div>
               </div>

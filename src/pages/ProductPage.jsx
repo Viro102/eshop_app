@@ -11,10 +11,7 @@ export default function ProductPage() {
             <div className="mb-8 w-full px-4 md:mb-0 md:w-1/2">
               <div className="sticky top-0 overflow-hidden ">
                 <div className="relative mb-6 lg:mb-10 lg:h-96">
-                  <a
-                    className="translate-1/2 absolute left-0 top-1/2 transform lg:ml-2"
-                    href="#"
-                  >
+                  <a className="translate-1/2 absolute left-0 top-1/2 transform lg:ml-2" href="#">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -34,10 +31,7 @@ export default function ProductPage() {
                     src="https://i.postimg.cc/0jwyVgqz/Microprocessor1-removebg-preview.png"
                     alt=""
                   />
-                  <a
-                    className="translate-1/2 absolute right-0 top-1/2 transform lg:mr-2"
-                    href="#"
-                  >
+                  <a className="translate-1/2 absolute right-0 top-1/2 transform lg:mr-2" href="#">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -112,8 +106,7 @@ export default function ProductPage() {
                     New Arrival
                   </span>
                   <h2 className="mb-6 mt-6 max-w-xl text-xl font-semibold leading-loose tracking-wide text-gray-700 dark:text-gray-300 md:text-2xl">
-                    Intel® Core™ i5-12600HX Processor (18M Cache, up to 4.60
-                    GHz)
+                    Intel® Core™ i5-12600HX Processor (18M Cache, up to 4.60 GHz)
                   </h2>
                   <div className="mb-6 flex flex-wrap items-center">
                     <ul className="mb-4 mr-2 flex lg:mb-0">
@@ -305,9 +298,7 @@ export default function ProductPage() {
                   </div>
                 </div>
                 <div className="mb-6 border-b border-t border-gray-200 py-6 dark:border-gray-700">
-                  <span className="text-base text-gray-600 dark:text-gray-400">
-                    In Stock
-                  </span>
+                  <span className="text-base text-gray-600 dark:text-gray-400">In Stock</span>
                   <p className="mt-2 text-sm text-blue-500 dark:text-blue-200">
                     Ships from china.
                     <span className="text-gray-600 dark:text-gray-400">
