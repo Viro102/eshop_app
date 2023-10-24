@@ -57,8 +57,18 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-.product-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+.filter-invert {
+  filter: invert(1);
+}
+
+.sidebar-open {
+  transform: translateX(0);
+}
+
+.sidebar-close {
+  transform: translateX(-100%);
+}
+
+.sidebar {
+  z-index: 10;
 }
