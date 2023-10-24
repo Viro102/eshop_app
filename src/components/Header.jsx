@@ -1,16 +1,21 @@
 import { Link } from "react-router-dom";
 import ThemeSwitch from "./ThemeSwitch";
+import Button from "./Button";
 
 export default function Header() {
   return (
     <header>
-      <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800 sticky top-0">
-        <div className="flex justify-between items-center mx-auto max-w-screen-xl">
+      <nav className="sticky top-0 border-gray-200 bg-white px-4 py-2.5 dark:bg-gray-800 lg:px-6">
+        <div className="mx-auto flex max-w-screen-xl items-center justify-between">
           <div className="flex items-center">
             <Link to={"/"}>
-              <img className="mr-3 h-9" src="/vite.svg" alt="vite logo" />
+              <img
+                className="mr-3 h-9 hover:animate-spin"
+                src="/vite.svg"
+                alt="vite logo"
+              />
             </Link>
-            <span className="self-center text-xl font-semibold text-gray-900 dark:text-white whitespace-nowrap">
+            <span className="self-center whitespace-nowrap text-xl font-semibold text-gray-900 dark:text-white">
               E-SHOP
             </span>
           </div>
@@ -19,13 +24,13 @@ export default function Header() {
             <form>
               <label
                 htmlFor="default-search"
-                className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+                className="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Search
               </label>
               <div className="relative">
                 <svg
-                  className="w-4 h-4 text-gray-500 dark:text-gray-400 absolute left-4 top-5"
+                  className="absolute left-4 top-5 h-4 w-4 text-gray-500 dark:text-gray-400"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -43,16 +48,14 @@ export default function Header() {
                 <input
                   type="search"
                   id="default-search"
-                  className="w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="w-full rounded-lg border border-gray-300 bg-gray-50 p-4 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                   placeholder="Search"
                   required
                 />
-                <button
-                  type="submit"
-                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 absolute inset-y-0 right-0"
-                >
-                  Search
-                </button>
+                <Button
+                  text={"Search"}
+                  className="absolute bottom-0 right-0 top-0"
+                />
               </div>
             </form>
           </div>
@@ -60,13 +63,13 @@ export default function Header() {
           <div className="flex items-center">
             <Link
               to={"/login"}
-              className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+              className="mr-2 rounded-lg px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-800 lg:px-5 lg:py-2.5"
             >
               Account
             </Link>
             <button
               type="button"
-              className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+              className="ml-1 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 lg:hidden"
             ></button>
           </div>
           <div className="flex items-center">
