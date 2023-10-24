@@ -1,6 +1,6 @@
 // TODO: not implemented yet
 
-import React, { useState } from "react";
+import { useState } from "react";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -33,7 +33,7 @@ const SignUp = () => {
       </div>
       <div>
         <input
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded"
+          className="rounded bg-blue-500 px-3 py-2 font-bold text-white hover:bg-blue-700"
           type="button"
           onClick={onButtonClick}
           value="Sign Up"

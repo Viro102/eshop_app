@@ -4,12 +4,12 @@ export default function Footer() {
   return (
     <footer className="bg-white dark:bg-gray-900">
       <div className="mx-auto w-full">
-        <div className="flex justify-between px-9 py-6 max-w-5xl items-center text-center mx-auto">
+        <div className="mx-auto flex max-w-5xl justify-between px-9 py-6 text-center">
           <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+            <h2 className="mb-6 text-sm font-semibold uppercase text-gray-900 dark:text-white">
               Company
             </h2>
-            <ul className="text-gray-500 dark:text-gray-400 font-medium">
+            <ul className="font-medium text-gray-500 dark:text-gray-400">
               <li className="mb-4">
                 <Link to={"/about"} className="hover:underline">
                   About
@@ -23,10 +23,10 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+            <h2 className="mb-6 text-sm font-semibold uppercase text-gray-900 dark:text-white">
               Help center
             </h2>
-            <ul className="text-gray-500 dark:text-gray-400 font-medium">
+            <ul className="font-medium text-gray-500 dark:text-gray-400">
               <li className="mb-4">
                 <Link to={"/contact"} href="#" className="hover:underline">
                   Contact Us
@@ -35,10 +35,10 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+            <h2 className="mb-6 text-sm font-semibold uppercase text-gray-900 dark:text-white">
               Legal
             </h2>
-            <ul className="text-gray-500 dark:text-gray-400 font-medium">
+            <ul className="font-medium text-gray-500 dark:text-gray-400">
               <li className="mb-4">
                 <a href="/privacy-policy" className="hover:underline">
                   Privacy Policy
@@ -52,19 +52,31 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <div className="px-4 py-5 bg-gray-100 dark:bg-gray-700 items-center justify-between">
-          <div className="flex py-1 mt-0 space-x-5 justify-center text-sm text-gray-500 dark:text-gray-100 text-center">
+        <div className="items-center justify-between bg-blue-400 px-4 py-5 dark:bg-gray-700">
+          <div className="mt-0 flex justify-center space-x-5 py-1 text-center text-sm text-gray-100">
             &copy; 2023 Adam Virostek. All Rights Reserved.
           </div>
-          <div className="flex justify-center items-center py-1">
+          <div className="flex items-center justify-center py-1">
             <a href="https://discord.gg/eq9fhgW988" className="px-1">
-              <img src="/discord.svg" alt="Discord community" className="w-4 h-4" />
+              <img
+                src="/discord.svg"
+                alt="Discord community"
+                className="filter-invert h-4 w-4"
+              />
             </a>
             <a href="https://twitter.com/Viro102" className="px-1">
-              <img src="/X.svg" alt="X page" className="w-4 h-4" />
+              <img
+                src="/X.svg"
+                alt="X page"
+                className="filter-invert h-4 w-4"
+              />
             </a>
             <a href="https://github.com/Viro102" className="px-1">
-              <img src="/github.svg" alt="Github" className="w-4 h-4" />
+              <img
+                src="/github.svg"
+                alt="Github"
+                className="filter-invert h-4 w-4"
+              />
             </a>
           </div>
         </div>

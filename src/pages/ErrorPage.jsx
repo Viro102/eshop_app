@@ -6,7 +6,7 @@ export default function ErrorPage() {
 
   return (
     <div id="error-page" className="flex justify-center">
-      <div className="text-center py-3">
+      <div className="py-3 text-center">
         <h1>Oops!</h1>
         <div className="py-3">
           <p>Sorry, an unexpected error has occurred.</p>

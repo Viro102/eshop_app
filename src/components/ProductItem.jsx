@@ -1,9 +1,16 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-export default function ProductItem({ src, alt, title, price, discount, productPage }) {
+export default function ProductItem({
+  src,
+  alt,
+  title,
+  price,
+  discount,
+  productPage,
+}) {
   return (
-    <div className="relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg bg-white dark:bg-gray-500 shadow-md">
+    <div className="relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg bg-white shadow-md dark:bg-gray-500">
       <Link
         className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
         to={productPage || "/testProduct"}
@@ -13,7 +20,7 @@ export default function ProductItem({ src, alt, title, price, discount, productP
           src={src || "https://dummyimage.com/300x240"}
           alt={alt || "product image"}
         />
-        <span className="absolute top-0 left-0 m-2 rounded-full bg-red-600 px-2 text-center text-sm font-medium text-white">
+        <span className="absolute left-0 top-0 m-2 rounded-full bg-red-600 px-2 text-center text-sm font-medium text-white">
           {discount || "testDiscount"}
         </span>
       </Link>
@@ -23,12 +30,12 @@ export default function ProductItem({ src, alt, title, price, discount, productP
             {title || "testTitle"}
           </h5>
         </Link>
-        <div className="mt-2 mb-5 flex items-center justify-between">
+        <div className="mb-5 mt-2 flex items-center justify-between">
           <p>
             <span className="text-3xl font-bold text-slate-900 dark:text-white">
               {price || "0$"}
             </span>
-            <span className="text-sm text-slate-900 dark:text-white line-through pl-2">
+            <span className="pl-2 text-sm text-slate-900 line-through dark:text-white">
               {price - price * discount || "100$"}
             </span>
           </p>
@@ -78,7 +85,7 @@ export default function ProductItem({ src, alt, title, price, discount, productP
             >
               <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
             </svg>
-            <span className="mr-2 ml-3 rounded bg-yellow-200 px-2.5 py-0.5 text-xs font-semibold text-black">
+            <span className="ml-3 mr-2 rounded bg-yellow-200 px-2.5 py-0.5 text-xs font-semibold text-black">
               5.0
             </span>
           </div>
