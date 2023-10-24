@@ -5,6 +5,7 @@ export default function UserDashboard() {
   return (
     <>
       <Header />
+      {/* TODO User Dashboard */}
       <Footer />
     </>
   );
