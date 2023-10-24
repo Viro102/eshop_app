@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 export default function Button({ text, iconSrc, alt, onClick, className = "" }) {
   return (
     <button
-      className={`inline-flex items-center rounded bg-blue-400   text-center text-xs font-bold uppercase text-gray-100 shadow outline-none transition-all hover:shadow-md focus:outline-none active:bg-gray-600 dark:bg-gray-900 ${className}`}
+      className={`inline-flex items-center rounded bg-blue-400 text-center text-xs font-bold uppercase text-gray-100 shadow outline-none transition-all hover:shadow-md focus:outline-none active:bg-gray-600 dark:bg-gray-900 ${className}`}
       type="button"
       onClick={onClick}
     >
