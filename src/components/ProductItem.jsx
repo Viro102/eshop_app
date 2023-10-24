@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-export default function ProductItem({ src, alt, title, price, discount }) {
+export default function ProductItem({ src, alt, title, price, discount, productPage }) {
   return (
     <div className="relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg bg-white dark:bg-gray-500 shadow-md">
-      <Link className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" to="#">
+      <Link
+        className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
+        to={productPage || "/testProduct"}
+      >
         <img
           className="object-cover"
           src={src || "https://dummyimage.com/300x240"}
@@ -15,7 +18,7 @@ export default function ProductItem({ src, alt, title, price, discount }) {
         </span>
       </Link>
       <div className="mt-4 px-5 pb-5">
-        <Link to="#">
+        <Link to={productPage || "/testProduct"}>
           <h5 className="text-xl tracking-tight text-slate-900 dark:text-white">
             {title || "testTitle"}
           </h5>
@@ -81,7 +84,7 @@ export default function ProductItem({ src, alt, title, price, discount }) {
           </div>
         </div>
         <Link
-          to="#"
+          to={productPage || "/testProduct"}
           className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
         >
           <svg
@@ -111,4 +114,5 @@ ProductItem.propTypes = {
   title: PropTypes.string,
   price: PropTypes.number,
   discount: PropTypes.number,
+  productPage: PropTypes.string,
 };
