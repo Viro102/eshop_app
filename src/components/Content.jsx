@@ -8,14 +8,14 @@ function ProductList(pocet) {
     productItems.push(<ProductItem key={i} />);
   }
 
-  console.log(productItems);
+  // console.log(productItems);
 
-  return <div className="product-list">{productItems}</div>;
+  return <div className="flex flex-wrap justify-center">{productItems}</div>;
 }
 
 export default function Content() {
   return (
-    <main className="w-full h-full p-3 overflow-auto dark:bg-gray-700 bg-gray-200 text-black dark:text-white">
+    <main className="h-full w-full overflow-auto bg-gray-200 p-3 text-black dark:bg-gray-700 dark:text-white">
       {ProductList(10)}
       {/* TODO: Generate products from db */}
     </main>
