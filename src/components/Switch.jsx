@@ -10,6 +10,6 @@ export default function Switch({ text, onChange }) {
   );
 }
 Switch.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
   onChange: PropTypes.func,
 };
