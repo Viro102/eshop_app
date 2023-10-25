@@ -72,3 +72,8 @@ button:focus-visible {
 .sidebar {
   z-index: 10;
 }
+
+.sidebar-content {
+  padding-left: 1rem;
+  padding-top: 1rem;
+}
