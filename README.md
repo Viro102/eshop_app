@@ -8,6 +8,8 @@ Hosting is done through firebase.
 
 <https://eshop-vaii.web.app/>
 
+# All functional pages are in the sidebar
+
 # To run it yourself
 Clone the repo:
 
