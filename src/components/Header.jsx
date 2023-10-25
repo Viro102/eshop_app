@@ -5,7 +5,7 @@ import Button from "./Button";
 export default function Header() {
   return (
     <header>
-      <nav className="sticky top-0 border-gray-200 bg-white px-4 py-2.5 dark:bg-gray-800 lg:px-6">
+      <nav className="fixed top-0 z-10 w-full border-gray-200 bg-white px-4 py-2.5 dark:bg-gray-800 lg:px-6">
         <div className="mx-auto flex max-w-screen-xl items-center justify-between">
           <div className="flex items-center">
             <Link to={"/"}>

@@ -10,7 +10,7 @@ function ProductList(pocet) {
 
   // console.log(productItems);
 
-  return <div className="flex flex-wrap justify-center">{productItems}</div>;
+  return <div className="my-10 flex flex-wrap justify-center">{productItems}</div>;
 }
 
 export default function Content() {
