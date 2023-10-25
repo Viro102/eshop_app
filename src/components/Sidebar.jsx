@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Button from "./Button.jsx";
+import { Link } from "react-router-dom";
 
 export default function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -20,10 +21,24 @@ export default function Sidebar() {
       <div className={`sidebar-content ${sidebarOpen ? "block" : "hidden"}`}>
         <ul>
           <li>
-            <Button text={"Account"} iconSrc={""} />
+            <Link to={"/login"}>
+              <Button text={"Login"} iconSrc={""} />
+            </Link>
           </li>
           <li>
-            <Button text={"Cart"} iconSrc={""} />
+            <Link to={"/sign-up"}>
+              <Button text={"Sign up"} iconSrc={""} />
+            </Link>
+          </li>
+          <li>
+            <Link to={"/contact"}>
+              <Button text={"Contact"} iconSrc={""} />
+            </Link>
+          </li>
+          <li>
+            <Link to={"/testProduct"}>
+              <Button text={"Product page"} iconSrc={""} />
+            </Link>
           </li>
         </ul>
       </div>
