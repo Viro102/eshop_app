@@ -1,4 +1,4 @@
-# Eshop_app
+# Introduction
 
 This is a simple e-commerce web app made in React + Vite.
 
@@ -24,6 +24,13 @@ And to run the dev server do:
 npm run dev
 ```
 
+**All in one**
+```
+git clone https://github.com/Viro102/eshop_app.git
+cd ./eshop_app
+npm ci
+npm run dev
+```
 # Current Features
 
 * Front page with products
