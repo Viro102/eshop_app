@@ -9,25 +9,25 @@ export default function LoginPage() {
     <>
       <Header />
       <div className="h-full w-full">
-        <div className="my-20 flex h-full content-center items-center justify-center">
+        <div className="my-24 flex h-full content-center items-center justify-center">
           <div className="w-full px-4 lg:w-4/12">
-            <div className="relative mb-6 flex w-full min-w-0 flex-col break-words rounded-lg border-0 bg-white shadow-lg dark:bg-gray-800">
+            <div className="relative mb-2 flex w-full min-w-0 flex-col break-words rounded-lg border-0 bg-white shadow-lg dark:bg-gray-800">
               <div className="mb-0 rounded-t px-6 py-6">
                 <div className="mb-3 text-center">
                   <h6 className="text-sm font-bold text-gray-900 dark:text-white">Sign in with</h6>
                 </div>
-                <div className="flex justify-center text-center">
+                <div className="flex min-h-fit justify-center text-center">
                   <Button
                     text={"Github"}
                     iconSrc={"/github.svg"}
                     alt={"Sign in using github"}
-                    className="ml-10 mr-5"
+                    className="ml-10 mr-3"
                   />
                   <Button
                     text={"Google"}
                     iconSrc={"/google.svg"}
                     alt={"Sign in using google"}
-                    className="ml-5 mr-10"
+                    className="ml-3 mr-10"
                   />
                 </div>
               </div>

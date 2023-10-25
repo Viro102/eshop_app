@@ -1,9 +1,6 @@
 import { useState } from "react";
 import Button from "./Button.jsx";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
-
 export default function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -18,16 +15,16 @@ export default function Sidebar() {
       }`}
     >
       <div className="relative left-full">
-        <Button onClick={handleToggleSidebar} className="absolute top-4">
-          <FontAwesomeIcon icon={faBars} />
-        </Button>
+        <Button onClick={handleToggleSidebar} iconSrc={"/menu.svg"} className="absolute top-20" />
       </div>
-      <div className="sidebar-content">
+      <div className={`sidebar-content ${sidebarOpen ? "block" : "hidden"}`}>
         <ul>
           <li>
-            <Button text={"test"} iconSrc={""}></Button>
+            <Button text={"Account"} iconSrc={""} />
           </li>
-          <li>testing...</li>
+          <li>
+            <Button text={"Cart"} iconSrc={""} />
+          </li>
         </ul>
       </div>
     </div>

@@ -1,22 +1,23 @@
 import { Link } from "react-router-dom";
 import ThemeSwitch from "./ThemeSwitch";
 import Button from "./Button";
+// TODO: refactor Header to be sticky not fixed
 
 export default function Header() {
   return (
     <header>
-      <nav className="fixed top-0 z-10 w-full border-gray-200 bg-white px-4 py-2.5 dark:bg-gray-800 lg:px-6">
+      <nav className="fixed top-0 z-10 w-full  bg-white px-4 py-3 dark:bg-gray-800 lg:px-6">
         <div className="mx-auto flex max-w-screen-xl items-center justify-between">
           <div className="flex items-center">
             <Link to={"/"}>
-              <img className="mr-3 h-9 hover:animate-spin" src="/vite.svg" alt="vite logo" />
+              <img className="w-17 h-9 pr-4 hover:animate-spin" src="/vite.svg" alt="vite logo" />
             </Link>
-            <span className="self-center whitespace-nowrap text-xl font-semibold text-gray-900 dark:text-white">
+            <span className="hidden self-center whitespace-nowrap text-xl font-semibold text-gray-900 dark:text-white sm:block">
               E-SHOP
             </span>
           </div>
 
-          <div className="flex-1 px-20">
+          <div className="flex-1 px-1 sm:px-4 lg:px-20">
             <form>
               <label
                 htmlFor="default-search"
@@ -56,14 +57,10 @@ export default function Header() {
           <div className="flex items-center">
             <Link
               to={"/login"}
-              className="mr-2 rounded-lg px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-800 lg:px-5 lg:py-2.5"
+              className="hidden rounded-lg px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-800 sm:flex"
             >
               Account
             </Link>
-            <button
-              type="button"
-              className="ml-1 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 lg:hidden"
-            ></button>
           </div>
           <div className="flex items-center">
             <ThemeSwitch />

@@ -6,7 +6,7 @@ export default function ProductPage() {
   return (
     <>
       <Header />
-      <section className="py-10 dark:bg-gray-800">
+      <section className="py-20 dark:bg-gray-800">
         <div className="mx-auto max-w-6xl px-4">
           <div className="-mx-4 mb-24 flex flex-wrap">
             <div className="mb-8 w-full px-4 md:mb-0 md:w-1/2">

@@ -7,16 +7,11 @@ export default function SignUpPage() {
     <>
       <Header />
       <div className="flex justify-center self-center">
-        <div className="my-20 flex w-1/3 flex-col">
-          <div className="mb-2 mt-10 flex justify-center font-bold">Sign Up</div>
+        <div className="my-24 flex w-full flex-col rounded-xl px-6 py-3 dark:bg-gray-800 sm:w-6/12 lg:w-4/12">
+          <div className="mb-2 mt-2 flex justify-center whitespace-nowrap font-bold">Sign Up</div>
           <form>
             <div className="relative mb-3 w-full">
-              <label
-                className="mb-2 block text-xs font-bold uppercase text-gray-100"
-                htmlFor="grid-password"
-              >
-                Email
-              </label>
+              <label className="mb-2 block text-xs font-bold uppercase text-gray-100">Email</label>
               <input
                 type="email"
                 className="w-full rounded border-0 bg-white px-3 py-3 text-sm text-black placeholder-gray-400 shadow transition-all focus:outline-none focus:ring"
@@ -25,10 +20,7 @@ export default function SignUpPage() {
             </div>
 
             <div className="relative mb-3 w-full">
-              <label
-                className="mb-2 block text-xs font-bold uppercase text-gray-100"
-                htmlFor="grid-password"
-              >
+              <label className="mb-2 block text-xs font-bold uppercase text-gray-100">
                 Password
               </label>
               <input
@@ -38,6 +30,7 @@ export default function SignUpPage() {
               />
             </div>
           </form>
+
           <div className="flex justify-center">
             <Button text={"Sign Up"} />
           </div>
