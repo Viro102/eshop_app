@@ -25,9 +25,9 @@ export default function Rating({ count }) {
 
   for (let i = 0; i < 5; i++) {
     if (i >= count) {
-      icons.push(emptyStar);
+      icons.push(<span key={i}>{emptyStar}</span>);
     } else {
-      icons.push(filledStar);
+      icons.push(<span key={i}>{filledStar}</span>);
     }
   }
 
