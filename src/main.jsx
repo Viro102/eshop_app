@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Route, BrowserRouter, Routes } from "react-router-dom";
 
+import Layout from "./components/Layout.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
@@ -10,32 +11,19 @@ import ProductPage from "./pages/ProductPage.jsx";
 import SignUpPage from "./pages/SignUpPage.jsx";
 import "./index.css";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <HomePage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/testProduct",
-    element: <ProductPage />,
-  },
-  {
-    path: "/login",
-    element: <LoginPage />,
-  },
-  {
-    path: "/contact",
-    element: <ContactPage />,
-  },
-  {
-    path: "/sign-up",
-    element: <SignUpPage />,
-  },
-]);
-
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="testProduct" element={<ProductPage />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="sign-up" element={<SignUpPage />} />
+          <Route path="contact" element={<ContactPage />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>,
 );
