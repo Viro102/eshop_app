@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
 import ThemeSwitch from "./ThemeSwitch";
 import Button from "./Button";
-// TODO: refactor Header to be sticky not fixed
 
 export default function Header() {
   return (
-    <header>
-      <nav className="fixed top-0 z-10 w-full  bg-white px-4 py-3 dark:bg-gray-800 lg:px-6">
+    <header className="sticky top-0 z-10">
+      <nav className="w-full bg-white px-4 py-3 dark:bg-gray-800 lg:px-6">
         <div className="mx-auto flex max-w-screen-xl items-center justify-between">
           <div className="flex items-center">
             <Link to={"/"}>
@@ -57,12 +56,10 @@ export default function Header() {
           <div className="flex items-center">
             <Link
               to={"/login"}
-              className="hidden rounded-lg px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-800 sm:flex"
+              className="mr-5 hidden rounded-lg px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-800 sm:flex"
             >
               Account
             </Link>
-          </div>
-          <div className="flex items-center">
             <ThemeSwitch />
           </div>
         </div>
