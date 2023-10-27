@@ -3,9 +3,6 @@
 @tailwind utilities;
 
 :root {
-  position: relative;
-  min-height: 100vh;
-
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.4;
   font-weight: 400;
