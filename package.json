@@ -1,0 +1,16 @@
+{
+  "name": "e-commerce-app",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "backend": "1.0.0",
+    "frontend": "1.0.0"
+  }
+}
