@@ -1,9 +1,9 @@
 # Introduction
 ### Link: https://eshop-vaii.web.app/
 
-This is a e-commerce web app, utilizing ReactJS FE and ExpressJS BE with MySQL Database
+This is a e-commerce web app, utilizing ReactJS FE and ExpressJS BE with MySQL
 
-This app follows MVC and SPA architecture, which means delegating routing and rendering to client-side and only using backend as an API for fetching data
+This app follows **MVC** and **SPA** architecture, which means delegating routing and rendering to client-side and only using backend as an API for fetching data
 
 <p>
 <img src="https://user-images.githubusercontent.com/25181517/117447155-6a868a00-af3d-11eb-9cfe-245df15c9f3f.png" alt="JavaScript Icon Icon" width="40"/>
