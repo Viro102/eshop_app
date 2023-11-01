@@ -1,4 +1,4 @@
-export class Product {
+export default class Product {
   title: string;
   name: string;
   price: number;

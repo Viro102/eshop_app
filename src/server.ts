@@ -1,33 +1,26 @@
 import express from "express";
 import ViteExpress from "vite-express";
-import mysql from "mysql2";
-
-import { Product } from "./models/productModel.ts";
+import mysql from "mysql2/promise";
+import { createTable } from "./controllers/productController";
 
 const app = express();
 const port = 3000;
 
-const server = ViteExpress.listen(app, port, () => {
+app.use(express.json());
+
+ViteExpress.listen(app, port, () => {
   console.log(`Server is 🔥 at http://localhost:${port}`);
 });
 
-// TODO: .env integeraiton
-const dbConnection = mysql.createConnection({
+// TODO: .env integration
+const dbConnection = mysql.createPool({
   host: "localhost",
   user: "root",
   password: "admin",
   database: "eshop",
+  connectionLimit: 10,
 });
 
-const products = [];
-const pr = new Product(
-  "i7-14500K",
-  "Intel Core i7-14500K",
-  200,
-  "CPU",
-  "Desktop CPU with bozo cores and immeasureable strength 😘"
-);
+createTable();
 
-products.push(pr);
-
-export {dbConnection, app};
+export { dbConnection, app };

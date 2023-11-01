@@ -1,18 +1,29 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
 import ProductItem, { Product } from "./ProductItem";
 
 const Content = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]); // Initialize state for products
 
   useEffect(() => {
-    fetch("/api/products")
-      .then((response) => response.json())
-      .then((data) => setProducts(data))
-      .catch((error) => {
-        console.error("Error fetching products:", error);
-      });
-  });
+    // Fetch products when the component mounts
+    const fetchProducts = async () => {
+      const response = await fetch("/api/products");
+      if (response.ok) {
+        const contentType = response.headers.get("content-type");
+        if (contentType?.includes("application/json")) {
+          const data = await response.json();
+          setProducts(data);
+        } else {
+          console.error("Response is not in JSON format");
+        }
+      } else {
+        console.error("Failed to fetch products. Status code: " + response.status);
+      }
+    };
+
+    fetchProducts(); // Call the fetchProducts function
+  }, []);
 
   return (
     <main className="h-full w-full overflow-auto bg-gray-200 text-black dark:bg-gray-700 dark:text-white">
