@@ -11,3 +11,15 @@ services:
     volumes:
       - ./mysql-data:/var/lib/mysql
     restart: always
+  # vite_docker:
+  #   image: node:latest
+  #   container_name: vite_docker
+  #   entrypoint: /bin/sh
+  #   ports:
+  #     - 8000:8000
+  #   working_dir: /srv/app
+  #   volumes:
+  #     - type: bind
+  #       source: ./../.
+  #       target: /srv/app
+  #   tty: true
