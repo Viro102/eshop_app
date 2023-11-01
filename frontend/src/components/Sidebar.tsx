@@ -1,6 +1,7 @@
 import { useState } from "react";
-import Button from "./Button.jsx";
 import { Link } from "react-router-dom";
+
+import Button from "./Button";
 
 export default function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -16,28 +17,33 @@ export default function Sidebar() {
       }`}
     >
       <div className="relative left-full">
-        <Button onClick={handleToggleSidebar} iconSrc={"/menu.svg"} className="absolute top-20" />
+        <Button
+          onClick={handleToggleSidebar}
+          alt="Toggle sidebar"
+          iconSrc={"/menu.svg"}
+          className="absolute top-20"
+        />
       </div>
       <div className={`sidebar-content ${sidebarOpen ? "block" : "hidden"}`}>
         <ul>
           <li>
             <Link to={"/login"}>
-              <Button text={"Login"} iconSrc={""} />
+              <Button text={"Login"} alt="Login" onClick={() => {}} />
             </Link>
           </li>
           <li>
             <Link to={"/sign-up"}>
-              <Button text={"Sign up"} iconSrc={""} />
+              <Button text={"Sign up"} alt="Sign up" onClick={() => {}} />
             </Link>
           </li>
           <li>
             <Link to={"/contact"}>
-              <Button text={"Contact"} iconSrc={""} />
+              <Button text={"Contact"} alt="Contact" onClick={() => {}} />
             </Link>
           </li>
           <li>
             <Link to={"/testProduct"}>
-              <Button text={"Product page"} iconSrc={""} />
+              <Button text={"Product page"} alt="Product" onClick={() => {}} />
             </Link>
           </li>
         </ul>

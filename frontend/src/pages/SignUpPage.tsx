@@ -32,7 +32,7 @@ export default function SignUpPage() {
         </form>
 
         <div className="flex justify-center">
-          <Button text={"Sign Up"} />
+          <Button text={"Sign up"} alt="Sign up" onClick={() => {}} />
         </div>
       </div>
     </div>

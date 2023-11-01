@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import ProductItem from "./ProductItem";
 
-function Content() {
+import ProductItem, { Product } from "./ProductItem";
+
+const Content = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -19,22 +19,14 @@ function Content() {
       <ProductList products={products} />
     </main>
   );
-}
+};
 
-function ProductList({ products }) {
-  const productItems = products.map((product, index) => (
+function ProductList({ products }: Readonly<{ products: Product[] }>) {
+  const productItems = products.map((product, index: number) => (
     <ProductItem key={index} product={product} />
   ));
 
   return <div className="flex flex-wrap justify-center">{productItems}</div>;
 }
-
-ProductList.propTypes = {
-  products: PropTypes.array.isRequired,
-};
-
-Content.propTypes = {
-  pocet: PropTypes.number,
-};
 
 export default Content;

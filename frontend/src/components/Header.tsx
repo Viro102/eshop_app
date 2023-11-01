@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 import ThemeSwitch from "./ThemeSwitch";
 import Button from "./Button";
 
@@ -48,7 +49,12 @@ export default function Header() {
                   placeholder="Search"
                   required
                 />
-                <Button text={"Search"} className="absolute bottom-0 right-0 top-0" />
+                <Button
+                  text={"Search"}
+                  alt="Search"
+                  onClick={() => console.log("clicked search")}
+                  className="absolute bottom-0 right-0 top-0"
+                />
               </div>
             </form>
           </div>

@@ -28,7 +28,7 @@ export default function Footer() {
           </h2>
           <ul className="font-medium text-gray-500 dark:text-gray-400">
             <li className="mb-4">
-              <Link to={"/contact"} href="#" className="hover:underline">
+              <Link to={"/contact"} className="hover:underline">
                 Contact Us
               </Link>
             </li>

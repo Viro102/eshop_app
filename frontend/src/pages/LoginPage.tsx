@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import Button from "../components/Button.jsx";
+import Button from "../components/Button";
 
 export default function LoginPage() {
   return (
@@ -17,12 +17,14 @@ export default function LoginPage() {
                   text={"Github"}
                   iconSrc={"/github.svg"}
                   alt={"Sign in using github"}
+                  onClick={() => {}}
                   className="ml-10 mr-3"
                 />
                 <Button
                   text={"Google"}
                   iconSrc={"/google.svg"}
                   alt={"Sign in using google"}
+                  onClick={() => {}}
                   className="ml-3 mr-10"
                 />
               </div>
@@ -72,7 +74,12 @@ export default function LoginPage() {
                 </div>
 
                 <div className="mt-6 text-center">
-                  <Button text={"Sign In"} className="w-full justify-center" />
+                  <Button
+                    text={"Sign in"}
+                    alt="Sign in"
+                    onClick={() => {}}
+                    className="w-full justify-center"
+                  />
                 </div>
               </form>
             </div>

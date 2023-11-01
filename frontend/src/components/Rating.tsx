@@ -20,7 +20,7 @@ const emptyStar = (
   </svg>
 );
 
-export default function Rating({ count }) {
+const Rating = ({ count }: { count: number }) => {
   const icons = [];
 
   for (let i = 0; i < 5; i++) {
@@ -32,4 +32,6 @@ export default function Rating({ count }) {
   }
 
   return icons;
-}
+};
+
+export default Rating;

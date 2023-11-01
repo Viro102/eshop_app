@@ -1,48 +1,51 @@
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 
-import Rating from "./Rating.jsx";
+import Rating from "./Rating";
 
-export default function ProductItem({ src, alt, title, price, discount, productPage }) {
+interface Product {
+  src: string;
+  alt: string;
+  title: string;
+  price: number;
+  discount: number;
+  productPage: string;
+}
+
+type ProductItemProps = {
+  product: Product;
+};
+
+const ProductItem = ({ product }: ProductItemProps) => {
+  const { src, alt, title, price, discount, productPage } = product;
+
   return (
     <div className="relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg bg-white shadow-md dark:bg-gray-800">
-      <Link
-        className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
-        to={productPage || "/testProduct"}
-      >
-        <img
-          className="object-cover"
-          src={src || "https://dummyimage.com/300x240"}
-          alt={alt || "product image"}
-        />
+      <Link className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" to={productPage}>
+        <img className="object-cover" src={src} alt={alt} />
         <span className="absolute left-0 top-0 m-2 rounded-full bg-red-600 px-2 text-center text-sm font-medium text-white">
-          {discount || "testDiscount"}
+          {discount}
         </span>
       </Link>
       <div className="w-full px-5 py-5">
-        <Link to={productPage || "/testProduct"}>
-          <h5 className="text-xl tracking-tight text-slate-900 dark:text-white">
-            {title || "testTitle"}
-          </h5>
+        <Link to={productPage}>
+          <h5 className="text-xl tracking-tight text-slate-900 dark:text-white">{title}</h5>
         </Link>
         <div className="mb-5 mt-2 flex items-center justify-between">
           <p>
-            <span className="text-3xl font-bold text-slate-900 dark:text-white">
-              {price || "0$"}
-            </span>
+            <span className="text-3xl font-bold text-slate-900 dark:text-white">{price}</span>
             <span className="pl-2 text-sm text-slate-900 line-through dark:text-white">
-              {price - price * discount || "100$"}
+              {price - price * discount}
             </span>
           </p>
           <div className="flex items-center px-1">
-            <Rating rating={5} />
+            <Rating count={5} />
             <span className="ml-3 mr-2 hidden rounded bg-yellow-200 px-2.5 py-0.5 text-xs font-semibold text-black sm:block">
               5.0
             </span>
           </div>
         </div>
         <Link
-          to={productPage || "/testProduct"}
+          to={productPage}
           className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
         >
           <svg
@@ -64,13 +67,7 @@ export default function ProductItem({ src, alt, title, price, discount, productP
       </div>
     </div>
   );
-}
-
-ProductItem.propTypes = {
-  src: PropTypes.string,
-  alt: PropTypes.string,
-  title: PropTypes.string,
-  price: PropTypes.number,
-  discount: PropTypes.number,
-  productPage: PropTypes.string,
 };
+
+export type { Product };
+export default ProductItem;

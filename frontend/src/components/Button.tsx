@@ -1,6 +1,12 @@
-import PropTypes from "prop-types";
+type ButtonProps = {
+  text?: string;
+  iconSrc?: string;
+  alt: string;
+  onClick: () => void;
+  className?: string;
+};
 
-export default function Button({ text, iconSrc, alt, onClick, className = "" }) {
+const Button = ({ text, iconSrc, alt, onClick, className = "" }: ButtonProps) => {
   return (
     <button
       className={`inline-flex items-center whitespace-nowrap rounded bg-blue-400 text-center text-xs font-bold uppercase text-gray-100 shadow outline-none transition-all hover:shadow-md focus:outline-none active:bg-gray-600 dark:bg-gray-900 ${className}`}
@@ -11,12 +17,6 @@ export default function Button({ text, iconSrc, alt, onClick, className = "" }) 
       {text}
     </button>
   );
-}
-
-Button.propTypes = {
-  text: PropTypes.string,
-  iconSrc: PropTypes.string,
-  alt: PropTypes.string,
-  onClick: PropTypes.func,
-  className: PropTypes.string,
 };
+
+export default Button;

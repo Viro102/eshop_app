@@ -1,5 +1,5 @@
-import Button from "../components/Button.jsx";
-import InputForm from "../components/InputForm.jsx";
+import Button from "../components/Button";
+import InputForm from "../components/InputForm";
 
 export default function ContactPage() {
   return (
@@ -30,12 +30,12 @@ export default function ContactPage() {
             </label>
             <textarea
               id="message"
-              rows="4"
+              rows={4}
               className="w-full rounded border-0 bg-white px-3 py-3 text-sm text-black placeholder-gray-400 shadow transition-all focus:outline-none focus:ring"
               placeholder="Write your thoughts here..."
             />
             <div className="mb-6 inline-block min-h-[1.5rem] justify-center pl-[1.5rem] md:flex"></div>
-            <Button text={"Send"} className="w-full" />
+            <Button text={"Send"} alt="Send message" onClick={() => {}} className="w-full" />
           </form>
         </div>
         <div className="w-full shrink-0 grow-0 basis-auto lg:w-7/12">
