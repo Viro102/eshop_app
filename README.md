@@ -6,7 +6,7 @@ This is a e-commerce web app, utilizing ReactJS FE and ExpressJS BE with MySQL
 This app follows **MVC** and **SPA** architecture, which means delegating routing and rendering to client-side and only using backend as an API for fetching data
 
 <p>
-<img src="https://user-images.githubusercontent.com/25181517/117447155-6a868a00-af3d-11eb-9cfe-245df15c9f3f.png" alt="JavaScript Icon Icon" width="40"/>
+<img src="https://user-images.githubusercontent.com/25181517/183890598-19a0ac2d-e88a-4005-a8df-1ee36782fde1.png" alt="TypeScript Icon" width="40"/>
 <img src="https://user-images.githubusercontent.com/25181517/183859966-a3462d8d-1bc7-4880-b353-e2cbed900ed6.png" alt="ExpressJS Icon" width="40"/>
 <img src="https://user-images.githubusercontent.com/25181517/183897015-94a058a6-b86e-4e42-a37f-bf92061753e5.png" alt="ReactJS Icon" width="40"/>
 <img src="https://user-images.githubusercontent.com/62091613/261395532-b40892ef-efb8-4b0e-a6b5-d1cfc2f3fc35.png" alt="Vite Icon" width="40"/>
