@@ -14,7 +14,7 @@ const createTableSQL = `
         )`;
 
 function createTable() {
-  dbConnection.query(createTableSQL);
+  dbConnection.execute(createTableSQL);
 }
 
 const createProduct = async (req: Request, res: Response) => {
@@ -26,7 +26,7 @@ const createProduct = async (req: Request, res: Response) => {
     const product = new Product(title, name, price, category, description);
 
     // Perform the actual database insertion (if you're using a database)
-    await dbConnection.query("INSERT INTO products SET ?", product);
+    await dbConnection.execute("INSERT INTO products SET ?", product);
 
     // Return a success response with the created product or result
     res.status(201).json({ message: "Product created successfully", product });
@@ -39,7 +39,7 @@ const createProduct = async (req: Request, res: Response) => {
 const getAllProducts = async (req: Request, res: Response) => {
   try {
     // Perform the database query to fetch all products
-    const products: RowDataPacket[] = (await dbConnection.query(
+    const products: RowDataPacket[] = (await dbConnection.execute(
       "SELECT * FROM products",
     )) as RowDataPacket[];
 
@@ -56,7 +56,7 @@ const getProductById = async (req: Request, res: Response): Promise<void> => {
     const productId: string = req.params.id; // Extract the product ID from the URL
 
     // Perform the database query to fetch a product by its ID
-    const product: RowDataPacket[] = (await dbConnection.query(
+    const product: RowDataPacket[] = (await dbConnection.execute(
       "SELECT * FROM products WHERE id = ?",
       productId,
     )) as RowDataPacket[];
@@ -81,7 +81,10 @@ const updateProduct = async (req: Request, res: Response) => {
     const updatedProductData = req.body; // New product data
 
     // Perform the database update query
-    await dbConnection.query("UPDATE products SET ? WHERE id = ?", [updatedProductData, productId]);
+    await dbConnection.execute("UPDATE products SET ? WHERE id = ?", [
+      updatedProductData,
+      productId,
+    ]);
 
     // Return a success response with the updated product
     res.status(200).json({ message: "Product updated successfully", product: updatedProductData });
@@ -96,7 +99,7 @@ const deleteProduct = async (req: Request, res: Response): Promise<void> => {
     const productId: string = req.params.id; // Extract the product ID from the URL
 
     // Perform the database deletion query
-    await dbConnection.query("DELETE FROM products WHERE id = ?", productId);
+    await dbConnection.execute("DELETE FROM products WHERE id = ?", productId);
 
     // Return a success response
     res.status(200).json({ message: "Product deleted successfully" });
