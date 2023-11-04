@@ -1,14 +1,14 @@
-export default class Product {
+interface Product {
   title: string;
-  name: string;
-  price: number;
   category: string;
+  image: string;
+  price: number;
   description: string;
-  constructor(title: string, name: string, price: number, category: string, description: string) {
-    this.title = title;
-    this.name = name;
-    this.price = price;
-    this.category = category;
-    this.description = description;
-  }
+  rating: number;
 }
+
+type ProductWhole = {
+  product: Product;
+};
+
+export type { Product, ProductWhole };
