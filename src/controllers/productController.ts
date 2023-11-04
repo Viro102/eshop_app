@@ -1,5 +1,5 @@
 import { dbConnection } from "../server";
-import Product from "../models/productModel";
+import type { Product } from "../models/productModel";
 import { Request, Response } from "express";
 import { RowDataPacket } from "mysql2/promise";
 
@@ -7,7 +7,6 @@ const createTableSQL = `
   CREATE TABLE IF NOT EXISTS products (
         id INT AUTO_INCREMENT PRIMARY KEY,
         title VARCHAR(255) NOT NULL,
-        name VARCHAR(255) NOT NULL,
         price DECIMAL(10, 2) NOT NULL,
         category VARCHAR(50) NOT NULL,
         description TEXT NOT NULL
@@ -19,19 +18,12 @@ function createTable() {
 
 const createProduct = async (req: Request, res: Response) => {
   try {
-    // Extract product details from the request body
-    const { title, name, price, category, description } = req.body;
+    const product: Product = req.body;
 
-    // Create a new Product instance using the data model
-    const product = new Product(title, name, price, category, description);
-
-    // Perform the actual database insertion (if you're using a database)
     await dbConnection.execute("INSERT INTO products SET ?", product);
 
-    // Return a success response with the created product or result
     res.status(201).json({ message: "Product created successfully", product });
   } catch (error) {
-    // Handle errors (e.g., validation, database errors)
     res.status(500).json({ message: "Error creating the product", error });
   }
 };
@@ -51,7 +43,7 @@ const getAllProducts = async (req: Request, res: Response) => {
   }
 };
 
-const getProductById = async (req: Request, res: Response): Promise<void> => {
+const getProductById = async (req: Request, res: Response) => {
   try {
     const productId: string = req.params.id; // Extract the product ID from the URL
 
@@ -94,7 +86,7 @@ const updateProduct = async (req: Request, res: Response) => {
   }
 };
 
-const deleteProduct = async (req: Request, res: Response): Promise<void> => {
+const deleteProduct = async (req: Request, res: Response) => {
   try {
     const productId: string = req.params.id; // Extract the product ID from the URL
 

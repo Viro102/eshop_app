@@ -1,51 +1,35 @@
 import { Link } from "react-router-dom";
 
 import Rating from "./Rating";
+import type { Product, ProductWhole } from "../models/productModel";
 
-interface Product {
-  src: string;
-  alt: string;
-  title: string;
-  price: number;
-  discount: number;
-  productPage: string;
-}
-
-type ProductItemProps = {
-  product: Product;
-};
-
-const ProductItem = ({ product }: ProductItemProps) => {
-  const { src, alt, title, price, discount, productPage } = product;
-
+const ProductItem = ({ product }: ProductWhole) => {
   return (
     <div className="relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg bg-white shadow-md dark:bg-gray-800">
-      <Link className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" to={productPage}>
-        <img className="object-cover" src={src} alt={alt} />
-        <span className="absolute left-0 top-0 m-2 rounded-full bg-red-600 px-2 text-center text-sm font-medium text-white">
-          {discount}
-        </span>
+      <Link className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" to={"/testProduct"}>
+        <img className="object-cover" src={product["image"]} />
       </Link>
       <div className="w-full px-5 py-5">
-        <Link to={productPage}>
-          <h5 className="text-xl tracking-tight text-slate-900 dark:text-white">{title}</h5>
+        <Link to={"/testProduct"}>
+          <h5 className="text-xl tracking-tight text-slate-900 dark:text-white">
+            {product["title"]}
+          </h5>
         </Link>
         <div className="mb-5 mt-2 flex items-center justify-between">
           <p>
-            <span className="text-3xl font-bold text-slate-900 dark:text-white">{price}</span>
-            <span className="pl-2 text-sm text-slate-900 line-through dark:text-white">
-              {price - price * discount}
+            <span className="text-3xl font-bold text-slate-900 dark:text-white">
+              {product["price"]}€
             </span>
           </p>
           <div className="flex items-center px-1">
-            <Rating count={5} />
+            <Rating count={product["rating"]} />
             <span className="ml-3 mr-2 hidden rounded bg-yellow-200 px-2.5 py-0.5 text-xs font-semibold text-black sm:block">
               5.0
             </span>
           </div>
         </div>
         <Link
-          to={productPage}
+          to={"/testProduct"}
           className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
         >
           <svg

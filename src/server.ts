@@ -1,7 +1,6 @@
 import express from "express";
 import ViteExpress from "vite-express";
 import mysql from "mysql2/promise";
-import { createTable } from "./controllers/productController";
 
 const app = express();
 const port = 3000;
@@ -20,7 +19,5 @@ const dbConnection = mysql.createPool({
   database: "eshop",
   connectionLimit: 10,
 });
-
-createTable();
 
 export { dbConnection, app };
