@@ -28,18 +28,12 @@ const createProduct = async (req: Request, res: Response) => {
   }
 };
 
-const getAllProducts = async (req: Request, res: Response) => {
+const getAllProducts = async () => {
   try {
-    // Perform the database query to fetch all products
-    const products: RowDataPacket[] = (await dbConnection.execute(
-      "SELECT * FROM products",
-    )) as RowDataPacket[];
-
-    // Return the list of products in the response
-    res.status(200).json(products);
+    const products = await dbConnection.execute("SELECT * FROM products");
+    return products;
   } catch (error) {
-    // Handle errors (e.g., database errors)
-    res.status(500).json({ message: "Error fetching products", error });
+    console.log(error);
   }
 };
 

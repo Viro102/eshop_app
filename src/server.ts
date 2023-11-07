@@ -1,11 +1,21 @@
 import express from "express";
 import ViteExpress from "vite-express";
 import mysql from "mysql2/promise";
+import { getAllProducts } from "./controllers/productController";
 
 const app = express();
 const port = 3000;
 
-app.use(express.json());
+app.get("/bozo", (_req, res) => {
+  res.send("Hello from /bozo");
+});
+
+app.get("/products", (_req, res) => {
+  console.log("GET /products");
+  getAllProducts().then((products) => {
+    res.send(products);
+  });
+});
 
 ViteExpress.listen(app, port, () => {
   console.log(`Server is 🔥 at http://localhost:${port}`);

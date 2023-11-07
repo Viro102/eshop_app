@@ -5,9 +5,10 @@ import ProductItem from "./ProductItem";
 
 const Content = () => {
   const fetchProducts = async (): Promise<Product[]> => {
-    const response = await fetch("https://fakestoreapi.com/products");
-    const products: Product[] = await response.json();
-    return products;
+    const response = await fetch("/products");
+    const products: Product[][] = await response.json();
+    console.log(products);
+    return products[0];
   };
 
   const [products, setProducts] = useState<Product[]>([]);
