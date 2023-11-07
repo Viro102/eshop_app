@@ -10,7 +10,6 @@ import ContactPage from "./pages/ContactPage";
 import ProductPage from "./pages/ProductPage";
 import SignUpPage from "./pages/SignUpPage";
 import "./index.css";
-import AdminPage from "./pages/AdminPage";
 
 const router = createBrowserRouter([
   {
@@ -37,10 +36,6 @@ const router = createBrowserRouter([
       {
         path: "contact",
         element: <ContactPage />,
-      },
-      {
-        path: "admin",
-        element: <AdminPage />,
       },
     ],
   },
