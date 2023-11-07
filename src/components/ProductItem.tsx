@@ -1,16 +1,19 @@
 import { Link } from "react-router-dom";
 
 import Rating from "./Rating";
-import type { Product, ProductWhole } from "../models/productModel";
+import type { ProductCombined } from "../models/productModel";
 
-const ProductItem = ({ product }: ProductWhole) => {
+const ProductItem = ({ product }: ProductCombined) => {
   return (
     <div className="relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg bg-white shadow-md dark:bg-gray-800">
-      <Link className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" to={"/testProduct"}>
+      <Link
+        className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
+        to={"/product/" + product["id"]}
+      >
         <img className="object-cover" src={product["image"]} />
       </Link>
       <div className="w-full px-5 py-5">
-        <Link to={"/testProduct"}>
+        <Link to={"/product/" + product["id"]}>
           <h5 className="text-xl tracking-tight text-slate-900 dark:text-white">
             {product["title"]}
           </h5>
@@ -24,12 +27,12 @@ const ProductItem = ({ product }: ProductWhole) => {
           <div className="flex items-center px-1">
             <Rating count={product["rating"]} />
             <span className="ml-3 mr-2 hidden rounded bg-yellow-200 px-2.5 py-0.5 text-xs font-semibold text-black sm:block">
-              5.0
+              {product["rating"]}
             </span>
           </div>
         </div>
         <Link
-          to={"/testProduct"}
+          to={"/product/" + product["id"]}
           className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
         >
           <svg
@@ -53,5 +56,4 @@ const ProductItem = ({ product }: ProductWhole) => {
   );
 };
 
-export type { Product };
 export default ProductItem;

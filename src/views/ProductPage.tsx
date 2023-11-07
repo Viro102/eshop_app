@@ -1,6 +1,22 @@
+import { useEffect, useState } from "react";
+import type { Product } from "../models/productModel";
 import Rating from "../components/Rating";
 
 export default function ProductPage() {
+  const [product, setProduct] = useState<Product>();
+
+  const fetchProduct = async () => {
+    const response = await fetch(window.location.href);
+    console.log(window.location.href);
+    const product = await response.json();
+    console.log(product[0]);
+    return product[0];
+  };
+
+  useEffect(() => {
+    fetchProduct().then(setProduct);
+  }, []);
+
   return (
     <section className="py-20 dark:bg-gray-800">
       <div className="mx-auto max-w-6xl px-4">
@@ -103,7 +119,7 @@ export default function ProductPage() {
                   New Arrival
                 </span>
                 <h2 className="mb-6 mt-6 max-w-xl text-xl font-semibold leading-loose tracking-wide text-gray-700 dark:text-gray-300 md:text-2xl">
-                  Intel® Core™ i5-12600HX Processor (18M Cache, up to 4.60 GHz)
+                  {product?.title}
                 </h2>
                 <div className="mb-6 flex flex-wrap items-center">
                   <ul className="mb-4 mr-2 flex lg:mb-0">
@@ -117,10 +133,7 @@ export default function ProductPage() {
                   </a>
                 </div>
                 <p className="inline-block text-2xl font-semibold text-gray-700 dark:text-gray-400 ">
-                  <span>284.00$</span>
-                  <span className="ml-3 text-base font-normal text-gray-500 line-through dark:text-gray-400">
-                    300.00$
-                  </span>
+                  {product?.price}€
                 </p>
               </div>
               <div className="mb-6">
