@@ -1,15 +1,16 @@
 import { dbConnection } from "../server";
 import type { Product } from "../models/productModel";
 import { Request, Response } from "express";
-import { RowDataPacket } from "mysql2/promise";
 
 const createTableSQL = `
   CREATE TABLE IF NOT EXISTS products (
         id INT AUTO_INCREMENT PRIMARY KEY,
         title VARCHAR(255) NOT NULL,
-        price DECIMAL(10, 2) NOT NULL,
         category VARCHAR(50) NOT NULL,
-        description TEXT NOT NULL
+        image VARCHAR(255) NOT NULL,
+        price DECIMAL(10, 2) NOT NULL,
+        description TEXT NOT NULL,
+        rating DECIMAL(2, 1) NOT NULL
         )`;
 
 function createTable() {
@@ -28,35 +29,30 @@ const createProduct = async (req: Request, res: Response) => {
   }
 };
 
-const getAllProducts = async () => {
+const getAllProducts = async (_req: Request, res: Response) => {
   try {
     const products = await dbConnection.execute("SELECT * FROM products");
-    return products;
+
+    res.status(200).json(products[0]);
   } catch (error) {
-    console.log(error);
+    res.status(500).json({ message: "Error fetching products", error });
   }
 };
 
 const getProductById = async (req: Request, res: Response) => {
   try {
-    const productId: string = req.params.id; // Extract the product ID from the URL
+    const productId: string = req.params.id;
+    console.log(productId);
 
-    // Perform the database query to fetch a product by its ID
-    const product: RowDataPacket[] = (await dbConnection.execute(
-      "SELECT * FROM products WHERE id = ?",
-      productId,
-    )) as RowDataPacket[];
+    const product = await dbConnection.execute("SELECT * FROM products WHERE id = ?", [productId]);
 
-    // Check if the product exists
-    if (!product || product.length === 0) {
+    if (!product) {
       res.status(404).json({ message: "Product not found" });
       return;
     }
 
-    // Return the specific product in the response
     res.status(200).json(product[0]);
   } catch (error) {
-    // Handle errors (e.g., database errors)
     res.status(500).json({ message: "Error fetching the product", error });
   }
 };
