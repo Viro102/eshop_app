@@ -1,4 +1,5 @@
 interface Product {
+  id: number;
   title: string;
   category: string;
   image: string;
@@ -7,8 +8,8 @@ interface Product {
   rating: number;
 }
 
-type ProductWhole = {
+type ProductCombined = {
   product: Product;
 };
 
-export type { Product, ProductWhole };
+export type { Product, ProductCombined };
