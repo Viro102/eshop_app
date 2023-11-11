@@ -1,23 +1,19 @@
 import express from "express";
 import ViteExpress from "vite-express";
 import mysql from "mysql2/promise";
-import { getAllProducts, getProductById } from "./controllers/productController";
+import { getAllRecords, getRecordById } from "./controllers/databaseController";
 
 const app = express();
 const port = 3000;
 
-app.get("/bozo", (_req, res) => {
-  res.send("Hello from /bozo");
-});
-
 app.get("/products", (_req, res) => {
   console.log("GET /products");
-  getAllProducts(_req, res);
+  getAllRecords(_req, res, "products");
 });
 
 app.get("/product/:id", (req, res) => {
   console.log("GET /product/" + req.params.id);
-  getProductById(req, res);
+  getRecordById(req, res, "products");
 });
 
 ViteExpress.listen(app, port, () => {
