@@ -16,6 +16,12 @@ app.get("/product/:id", (req, res) => {
   getRecordById(req, res, "products");
 });
 
+app.post("/login", (req, res) => {
+  console.log("POST /login");
+  console.log(req.body);
+  // TODO: implement login
+});
+
 ViteExpress.listen(app, port, () => {
   console.log(`Server is 🔥 at http://localhost:${port}`);
 });

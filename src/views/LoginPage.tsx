@@ -1,8 +1,29 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 import Button from "../components/Button";
 
 export default function LoginPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async () => {
+    try {
+      await fetch("/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className="h-full w-full">
       <div className="my-24 flex h-full content-center items-center justify-center">
@@ -45,6 +66,7 @@ export default function LoginPage() {
                     type="email"
                     className="w-full rounded border-0 bg-white px-3 py-3 text-sm text-black placeholder-gray-400 shadow transition-all focus:outline-none focus:ring"
                     placeholder="Email"
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
 
@@ -59,6 +81,7 @@ export default function LoginPage() {
                     type="password"
                     className="w-full rounded border-0 bg-white px-3 py-3 text-sm text-black placeholder-gray-400 shadow transition-all focus:outline-none focus:ring"
                     placeholder="Password"
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                 <div>
@@ -77,7 +100,7 @@ export default function LoginPage() {
                   <Button
                     text={"Sign in"}
                     alt="Sign in"
-                    onClick={() => {}}
+                    onClick={handleLogin}
                     className="w-full justify-center"
                   />
                 </div>
