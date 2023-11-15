@@ -2,7 +2,7 @@ type ButtonProps = {
   text?: string;
   iconSrc?: string;
   alt: string;
-  onClick: () => void;
+  onClick: (e: React.SyntheticEvent) => void;
   className?: string;
 };
 
