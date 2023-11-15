@@ -76,3 +76,10 @@ button:focus-visible {
   padding-left: 0.5rem;
   padding-top: 0.5rem;
 }
+
+/* hide arrows in input number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
