@@ -1,26 +1,34 @@
-import { Link } from "react-router-dom";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import Button from "../components/Button";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [inputs, setInputs] = useState({ email: "", password: "" });
 
-  const handleLogin = async () => {
+  const handleChange = (event: React.SyntheticEvent) => {
+    const target = event.target as HTMLInputElement;
+    const name = target.name;
+    const value = target.value;
+    setInputs((values) => ({ ...values, [name]: value }));
+  };
+
+  const handleSubmit = async (event: React.SyntheticEvent) => {
+    console.log(inputs);
     try {
+      event.preventDefault();
       await fetch("/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email,
-          password,
+          email: inputs.email,
+          password: inputs.password,
         }),
       });
     } catch (error) {
-      console.error(error);
+      console.error("Error:", error);
     }
   };
 
@@ -29,61 +37,38 @@ export default function LoginPage() {
       <div className="my-24 flex h-full content-center items-center justify-center">
         <div className="w-full px-4 lg:w-4/12">
           <div className="relative mb-2 flex w-full min-w-0 flex-col break-words rounded-lg border-0 bg-white shadow-lg dark:bg-gray-800">
-            <div className="mb-0 rounded-t px-6 py-6">
-              <div className="mb-3 text-center">
-                <h6 className="text-sm font-bold text-gray-900 dark:text-white">Sign in with</h6>
-              </div>
-              <div className="flex min-h-fit justify-center text-center">
-                <Button
-                  text={"Github"}
-                  iconSrc={"/github.svg"}
-                  alt={"Sign in using github"}
-                  onClick={() => {}}
-                  className="ml-10 mr-3"
-                />
-                <Button
-                  text={"Google"}
-                  iconSrc={"/google.svg"}
-                  alt={"Sign in using google"}
-                  onClick={() => {}}
-                  className="ml-3 mr-10"
-                />
-              </div>
-            </div>
             <div className="flex-auto px-4 py-10 pt-0 lg:px-10">
-              <div className="mb-3 text-center font-bold text-gray-900 dark:text-white">
-                <small>Or sign in with credentials</small>
+              <div className="mb-3 mt-5 text-center font-bold text-gray-900 dark:text-white">
+                Log in
               </div>
+
               <form>
                 <div className="relative mb-3 w-full">
-                  <label
-                    className="mb-2 block text-xs font-bold uppercase text-gray-900 dark:text-white"
-                    htmlFor="grid-password"
-                  >
+                  <label className="mb-2 block text-xs font-bold uppercase text-gray-900 dark:text-white">
                     Email
                   </label>
                   <input
                     type="email"
+                    name="email"
                     className="w-full rounded border-0 bg-white px-3 py-3 text-sm text-black placeholder-gray-400 shadow transition-all focus:outline-none focus:ring"
                     placeholder="Email"
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={handleChange}
                   />
                 </div>
 
                 <div className="relative mb-3 w-full">
-                  <label
-                    className="mb-2 block text-xs font-bold uppercase text-gray-900 dark:text-white"
-                    htmlFor="grid-password"
-                  >
+                  <label className="mb-2 block text-xs font-bold uppercase text-gray-900 dark:text-white">
                     Password
                   </label>
                   <input
                     type="password"
+                    name="password"
                     className="w-full rounded border-0 bg-white px-3 py-3 text-sm text-black placeholder-gray-400 shadow transition-all focus:outline-none focus:ring"
                     placeholder="Password"
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={handleChange}
                   />
                 </div>
+
                 <div>
                   <label className="inline-flex cursor-pointer items-center">
                     <input
@@ -96,27 +81,14 @@ export default function LoginPage() {
                   </label>
                 </div>
 
-                <div className="mt-6 text-center">
-                  <Button
-                    text={"Sign in"}
-                    alt="Sign in"
-                    onClick={handleLogin}
-                    className="w-full justify-center"
-                  />
+                <div className="mt-6 flex h-12 justify-around text-center">
+                  <Button text={"Log in"} alt="Log in" onClick={handleSubmit} className="w-1/3" />
+                  <p className="flex items-center">OR</p>
+                  <Link to="/sign-up">
+                    <Button text={"Sign up"} alt="Sign up" onClick={() => {}} className="w-1/3" />
+                  </Link>
                 </div>
               </form>
-            </div>
-          </div>
-          <div className="mt-6 flex flex-wrap">
-            <div className="w-1/2">
-              <a href="#" className="text-gray-900 dark:text-white">
-                <small>Forgot password?</small>
-              </a>
-            </div>
-            <div className="w-1/2 text-right">
-              <Link to={"/sign-up"} className="text-gray-900 dark:text-white">
-                <small>Create new account</small>
-              </Link>
             </div>
           </div>
         </div>

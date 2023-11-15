@@ -1,6 +1,35 @@
+import { useState } from "react";
 import Button from "../components/Button";
 
 export default function SignUpPage() {
+  const [inputs, setInputs] = useState({ email: "", password: "" });
+
+  const handleChange = (event: React.SyntheticEvent) => {
+    const target = event.target as HTMLInputElement;
+    const name = target.name;
+    const value = target.value;
+    setInputs((values) => ({ ...values, [name]: value }));
+  };
+
+  const handleSubmit = async (event: React.SyntheticEvent) => {
+    console.log(inputs);
+    try {
+      event.preventDefault();
+      await fetch("/sign-up", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: inputs.email,
+          password: inputs.password,
+        }),
+      });
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   return (
     <div className="flex justify-center self-center">
       <div className="my-24 flex w-full flex-col rounded-xl px-6 py-3 dark:bg-gray-800 sm:w-6/12 lg:w-4/12">
@@ -14,8 +43,10 @@ export default function SignUpPage() {
             </label>
             <input
               type="email"
+              name="email"
               className="w-full rounded border-0 bg-white px-3 py-3 text-sm text-black placeholder-gray-400 shadow transition-all focus:outline-none focus:ring"
               placeholder="Email"
+              onChange={handleChange}
             />
           </div>
 
@@ -25,14 +56,16 @@ export default function SignUpPage() {
             </label>
             <input
               type="password"
+              name="password"
               className="mb-3 w-full rounded border-0 bg-white px-3 py-3 text-sm text-black placeholder-gray-400 shadow transition-all focus:outline-none focus:ring"
               placeholder="Password"
+              onChange={handleChange}
             />
           </div>
         </form>
 
         <div className="flex justify-center">
-          <Button text={"Sign up"} alt="Sign up" onClick={() => {}} />
+          <Button text={"Sign up"} alt="Sign up" onClick={handleSubmit} />
         </div>
       </div>
     </div>
