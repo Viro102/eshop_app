@@ -2,9 +2,12 @@ import express from "express";
 import ViteExpress from "vite-express";
 import mysql from "mysql2/promise";
 import { getAllRecords, getRecordById } from "./controllers/databaseController";
+import { loginUser, signUpUser } from "./controllers/userController";
 
 const app = express();
 const port = 3000;
+
+app.use(express.json());
 
 app.get("/products", (_req, res) => {
   console.log("GET /products");
@@ -18,8 +21,14 @@ app.get("/product/:id", (req, res) => {
 
 app.post("/login", (req, res) => {
   console.log("POST /login");
-  console.log(req.body);
-  // TODO: implement login
+  console.log("Request", req.body);
+  loginUser(req, res);
+});
+
+app.post("/sign-up", (req, res) => {
+  console.log("POST /sign-up");
+  console.log("Request", req.body);
+  signUpUser(req, res);
 });
 
 ViteExpress.listen(app, port, () => {
