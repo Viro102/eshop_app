@@ -9,6 +9,7 @@ import LoginPage from "./views/LoginPage";
 import ContactPage from "./views/ContactPage";
 import ProductPage from "./views/ProductPage";
 import SignUpPage from "./views/SignUpPage";
+import CartPage from "./views/CartPage";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "product/:id",
         element: <ProductPage />,
+      },
+      {
+        path: "cart",
+        element: <CartPage />,
       },
     ],
   },
