@@ -1,6 +1,7 @@
 import express from "express";
 import ViteExpress from "vite-express";
 import mysql from "mysql2/promise";
+
 import { getAllRecords, getRecordById } from "./controllers/databaseController";
 import { loginUser, signUpUser } from "./controllers/userController";
 

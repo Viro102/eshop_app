@@ -82,10 +82,20 @@ export default function LoginPage() {
                 </div>
 
                 <div className="mt-6 flex h-12 justify-around text-center">
-                  <Button text={"Log in"} alt="Log in" onClick={handleSubmit} className="w-1/3" />
+                  <Button
+                    text={"Log in"}
+                    alt="Log in"
+                    onClick={handleSubmit}
+                    className="w-1/3 justify-center"
+                  />
                   <p className="flex items-center">OR</p>
                   <Link to="/sign-up">
-                    <Button text={"Sign up"} alt="Sign up" onClick={() => {}} className="w-1/3" />
+                    <Button
+                      text={"Sign up"}
+                      alt="Sign up"
+                      onClick={() => {}}
+                      className="w-1/3 justify-center"
+                    />
                   </Link>
                 </div>
               </form>
