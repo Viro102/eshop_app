@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import type { Product } from "../models/productModel";
 import Rating from "../components/Rating";
+import Review from "../components/ReviewItem";
+import ReviewForm from "../components/ReviewForm";
+import Button from "../components/Button";
+import AddToFavoritesButton from "../components/AddToFavoritesButton";
+import ReviewCard from "../components/ReviewCard";
 
 export default function ProductPage() {
   const [product, setProduct] = useState<Product>();
@@ -115,10 +120,7 @@ export default function ProductPage() {
           <div className="w-full px-4 md:w-1/2">
             <div className="lg:pl-20">
               <div className="mb-6 ">
-                <span className="rounded-xl bg-blue-100 px-2.5 py-0.5 text-xs text-blue-600 dark:bg-gray-700 dark:text-gray-200">
-                  New Arrival
-                </span>
-                <h2 className="mb-6 mt-6 max-w-xl text-xl font-semibold leading-loose tracking-wide text-gray-700 dark:text-gray-300 md:text-2xl">
+                <h2 className="mb-6 max-w-xl text-xl font-semibold leading-loose tracking-wide text-gray-700 dark:text-gray-300 md:text-2xl">
                   {product?.title}
                 </h2>
                 <div className="mb-6 flex flex-wrap items-center">
@@ -126,8 +128,8 @@ export default function ProductPage() {
                     <Rating count={2} />
                   </ul>
                   <a
-                    className="mb-4 text-xs underline hover:text-blue-600 dark:text-gray-400 dark:hover:text-gray-300 lg:mb-0"
-                    href="#"
+                    className="mb-4 text-xs underline hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-600 lg:mb-0"
+                    href="#reviews"
                   >
                     Reviews
                   </a>
@@ -144,32 +146,33 @@ export default function ProductPage() {
               </div>
               <div className="mb-6 border-b border-t border-gray-200 py-6 dark:border-gray-700">
                 <p className="text-base text-green-300 dark:text-green-300">In Stock</p>
-                <span className="text-gray-600 dark:text-gray-400">
-                  Ships from china. Most customers receive within 3-31 days.
-                </span>
               </div>
               <div className="mb-6 flex gap-4">
-                <button className="mr-4 flex h-10 w-full items-center justify-center border border-gray-300 p-2 text-gray-700 hover:border-blue-600 hover:bg-blue-600 hover:text-gray-50 dark:border-blue-600 dark:bg-blue-600 dark:text-gray-200 dark:hover:border-blue-500 dark:hover:bg-blue-500 dark:hover:text-gray-100 lg:w-11">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                  </svg>
-                </button>
-                <a
-                  href="#"
-                  className="w-full rounded-xl border border-transparent bg-blue-600 px-4 py-3 text-center text-gray-100 hover:border-blue-500 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-900"
-                >
-                  Add to cart
-                </a>
+                <AddToFavoritesButton />
+                <Button
+                  className="w-full items-center rounded-xl p-4"
+                  text="Add to cart"
+                  alt="Add to cart"
+                  onClick={() => {
+                    console.log("Clicked addToCart");
+                  }}
+                />
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <div className="mx-auto max-w-6xl">
+        <p
+          className="rounded-lg bg-blue-400 p-3 text-center text-xl text-white  dark:bg-gray-900"
+          id="reviews"
+        >
+          Reviews
+        </p>
+        <ReviewCard />
+        <ReviewForm />
+        <Review />
+        <Review />
       </div>
     </section>
   );
