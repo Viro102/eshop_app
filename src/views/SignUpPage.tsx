@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "../components/Button";
 
 export default function SignUpPage() {
-  const [inputs, setInputs] = useState({ email: "", password: "" });
+  const [inputs, setInputs] = useState({});
 
   const handleChange = (event: React.SyntheticEvent) => {
     const target = event.target as HTMLInputElement;
@@ -20,10 +20,7 @@ export default function SignUpPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          email: inputs.email,
-          password: inputs.password,
-        }),
+        body: JSON.stringify({ ...inputs }),
       });
     } catch (error) {
       console.error("Error:", error);

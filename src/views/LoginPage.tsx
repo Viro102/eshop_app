@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Button from "../components/Button";
 
 export default function LoginPage() {
-  const [inputs, setInputs] = useState({ email: "", password: "" });
+  const [inputs, setInputs] = useState({});
 
   const handleChange = (event: React.SyntheticEvent) => {
     const target = event.target as HTMLInputElement;
@@ -22,10 +22,7 @@ export default function LoginPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          email: inputs.email,
-          password: inputs.password,
-        }),
+        body: JSON.stringify({ ...inputs }),
       });
     } catch (error) {
       console.error("Error:", error);
