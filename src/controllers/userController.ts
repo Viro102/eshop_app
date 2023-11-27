@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
 import { dbConnection } from "../server";
 import bcrypt from "bcrypt";
-import { RowDataPacket } from "mysql2";
+import { User } from "../models/userModel";
 
+//  TODO: rewrite to use Promise
 const signUpUser = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
@@ -26,23 +27,23 @@ const signUpUser = async (req: Request, res: Response) => {
 const loginUser = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
-    const [user] = await dbConnection.execute(`SELECT * FROM users WHERE email = ?`, [email]);
+    const users = await dbConnection.execute<User[]>(`SELECT * FROM users WHERE email = ?`, [
+      email,
+    ]);
 
-    if ((user as RowDataPacket[]).length === 0) {
+    if (users[0].length === 0) {
       console.error("User not found");
 
       return res.status(401).json({ error: { message: "Invalid email or password" } });
     }
 
-    const hashedPassword = (user as RowDataPacket)[0].password;
+    const hashedPassword = users[0][0].password;
     const passwordMatch = await bcrypt.compare(password, hashedPassword);
 
     if (passwordMatch) {
       console.log("Login successful");
 
-      res
-        .status(200)
-        .json({ data: { message: "Login successful", user: (user as RowDataPacket)[0] } });
+      res.status(200).json({ data: { message: "Login successful", user: users[0][0] } });
     } else {
       console.error("Invalid email or password");
 
