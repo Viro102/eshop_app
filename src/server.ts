@@ -2,7 +2,7 @@ import express from "express";
 import ViteExpress from "vite-express";
 import mysql from "mysql2/promise";
 
-import { getAllRecords, getRecordById } from "./controllers/databaseController";
+import { getAllProducts, getProductById } from "./controllers/productController";
 import { loginUser, signUpUser } from "./controllers/userController";
 
 const app = express();
@@ -12,12 +12,12 @@ app.use(express.json());
 
 app.get("/products", (_req, res) => {
   console.log("GET /products");
-  getAllRecords(_req, res, "products");
+  getAllProducts(res);
 });
 
 app.get("/product/:id", (req, res) => {
   console.log("GET /product/" + req.params.id);
-  getRecordById(req, res, "products");
+  getProductById(req, res);
 });
 
 app.post("/login", (req, res) => {
