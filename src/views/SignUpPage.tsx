@@ -1,20 +1,25 @@
 import { useState } from "react";
 import Button from "../components/Button";
+import InputForm from "../components/InputForm";
 
 export default function SignUpPage() {
   const [inputs, setInputs] = useState({});
 
   const handleChange = (event: React.SyntheticEvent) => {
     const target = event.target as HTMLInputElement;
-    const name = target.name;
+    const id = target.id;
     const value = target.value;
-    setInputs((values) => ({ ...values, [name]: value }));
+    setInputs((values) => ({ ...values, [id]: value }));
   };
 
   const handleSubmit = async (event: React.SyntheticEvent) => {
     console.log(inputs);
     try {
       event.preventDefault();
+      if (Object.keys(inputs).length === 0) {
+        console.error("Error: Inputs are empty");
+        return;
+      }
       await fetch("/sign-up", {
         method: "POST",
         headers: {
@@ -34,36 +39,25 @@ export default function SignUpPage() {
           Sign Up
         </div>
         <form>
-          <div className="relative mb-3 w-full">
-            <label className="mb-2 block text-xs font-bold uppercase text-gray-900 dark:text-white">
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
-              className="w-full rounded border-0 bg-white px-3 py-3 text-sm text-black placeholder-gray-400 shadow transition-all focus:outline-none focus:ring"
-              placeholder="Email"
-              onChange={handleChange}
-            />
-          </div>
+          <InputForm
+            type="email"
+            placeholder="Email"
+            onChange={handleChange}
+            label="Email"
+            htmlFor="email"
+          />
 
-          <div className="relative mb-3 w-full">
-            <label className="mb-2 block text-xs font-bold uppercase text-gray-900 dark:text-white">
-              Password
-            </label>
-            <input
-              type="password"
-              name="password"
-              className="mb-3 w-full rounded border-0 bg-white px-3 py-3 text-sm text-black placeholder-gray-400 shadow transition-all focus:outline-none focus:ring"
-              placeholder="Password"
-              onChange={handleChange}
-            />
+          <InputForm
+            type="password"
+            placeholder="Password"
+            onChange={handleChange}
+            label="Password"
+            htmlFor="password"
+          />
+          <div className="flex justify-center">
+            <Button text={"Sign up"} alt="Sign up" onClick={handleSubmit} />
           </div>
         </form>
-
-        <div className="flex justify-center">
-          <Button text={"Sign up"} alt="Sign up" onClick={handleSubmit} />
-        </div>
       </div>
     </div>
   );

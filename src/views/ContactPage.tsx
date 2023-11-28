@@ -16,10 +16,22 @@ export default function ContactPage() {
         <div className="mb-12 w-full shrink-0 grow-0 basis-auto md:px-3 lg:mb-0 lg:w-5/12 lg:px-6">
           <form>
             <div className="relative mb-6" data-te-input-wrapper-init>
-              <InputForm name={"Name"} type={"text"} placeholder={"Name"} />
+              <InputForm
+                label="Name"
+                type="text"
+                placeholder="Name"
+                htmlFor="name"
+                onChange={() => {}}
+              />
             </div>
             <div className="relative mb-6" data-te-input-wrapper-init>
-              <InputForm name={"Email"} type={"email"} placeholder={"Email"} />
+              <InputForm
+                label="Email"
+                type="email"
+                placeholder="Email"
+                htmlFor="email"
+                onChange={() => {}}
+              />
             </div>
 
             <label
@@ -35,7 +47,7 @@ export default function ContactPage() {
               placeholder="Write your thoughts here..."
             />
             <div className="mb-6 inline-block min-h-[1.5rem] justify-center pl-[1.5rem] md:flex"></div>
-            <Button text={"Send"} alt="Send message" onClick={() => {}} className="w-full" />
+            <Button text="Send" alt="Send message" onClick={() => {}} className="w-full" />
           </form>
         </div>
         <div className="w-full shrink-0 grow-0 basis-auto lg:w-7/12">
