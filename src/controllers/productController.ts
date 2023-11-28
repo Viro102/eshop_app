@@ -47,7 +47,9 @@ const getProductById = async (req: Request, res: Response) => {
     const recordID: string = req.params.id;
     console.log(recordID);
 
-    const record = await dbConnection.execute(`SELECT * FROM products WHERE id = ?`, [recordID]);
+    const record = await dbConnection.execute<Product[]>(`SELECT * FROM products WHERE id = ?`, [
+      recordID,
+    ]);
 
     if (!record) {
       res.status(404).json({ message: "Record not found" });
