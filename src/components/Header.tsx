@@ -9,8 +9,12 @@ export default function Header() {
       <nav className="w-full bg-white px-4 py-3 dark:bg-gray-800 lg:px-6">
         <div className="mx-auto flex max-w-screen-xl items-center justify-between">
           <div className="flex items-center">
-            <Link to={"/"}>
-              <img className="w-17 h-9 pr-4 hover:animate-spin" src="/vite.svg" alt="vite logo" />
+            <Link to="/">
+              <img
+                className="mr-4 w-16 origin-center hover:animate-spin"
+                src="/my-logo2.svg"
+                alt="website logo"
+              />
             </Link>
             <span className="hidden self-center whitespace-nowrap text-xl font-semibold text-gray-900 dark:text-white sm:block">
               E-SHOP
