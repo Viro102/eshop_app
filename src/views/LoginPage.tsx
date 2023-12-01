@@ -17,7 +17,7 @@ export default function LoginPage() {
     console.log(inputs);
     try {
       event.preventDefault();
-      await fetch("/login", {
+      await fetch("/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

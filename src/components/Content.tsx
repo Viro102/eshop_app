@@ -7,7 +7,7 @@ const Content = () => {
   const [products, setProducts] = useState<Product[]>([]);
 
   const fetchProducts = async () => {
-    const response = await fetch("/products");
+    const response = await fetch("/api/products");
     const products: Product[] = await response.json();
     console.log(products);
     return products;

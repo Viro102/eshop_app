@@ -11,8 +11,8 @@ export default function ProductPage() {
   const [product, setProduct] = useState<Product>();
 
   const fetchProduct = async () => {
-    const response = await fetch(window.location.href);
-    console.log(window.location.href);
+    const response = await fetch("/api" + window.location.pathname);
+    console.log("/api" + window.location.pathname);
     const product = await response.json();
     console.log(product[0]);
     return product[0];

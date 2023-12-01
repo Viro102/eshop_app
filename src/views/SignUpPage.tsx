@@ -20,7 +20,7 @@ export default function SignUpPage() {
         console.error("Error: Inputs are empty");
         return;
       }
-      await fetch("/sign-up", {
+      await fetch("/api/sign-up", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
