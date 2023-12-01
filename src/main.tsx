@@ -10,7 +10,9 @@ import ContactPage from "./views/ContactPage";
 import ProductPage from "./views/ProductPage";
 import SignUpPage from "./views/SignUpPage";
 import CartPage from "./views/CartPage";
+import AdminPage from "./views/AdminPage";
 import "./index.css";
+import AboutPage from "./views/AboutPage";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +43,14 @@ const router = createBrowserRouter([
       {
         path: "cart",
         element: <CartPage />,
+      },
+      {
+        path: "admin",
+        element: <AdminPage />,
+      },
+      {
+        path: "about",
+        element: <AboutPage />,
       },
     ],
   },
