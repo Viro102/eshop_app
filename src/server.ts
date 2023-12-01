@@ -10,23 +10,23 @@ const port = 3000;
 
 app.use(express.json());
 
-app.get("/products", (_req, res) => {
+app.get("/api/products", (_req, res) => {
   console.log("GET /products");
   getAllProducts(res);
 });
 
-app.get("/product/:id", (req, res) => {
+app.get("/api/product/:id", (req, res) => {
   console.log("GET /product/" + req.params.id);
   getProductById(req, res);
 });
 
-app.post("/login", (req, res) => {
+app.post("/api/login", (req, res) => {
   console.log("POST /login");
   console.log("Request", req.body);
   loginUser(req, res);
 });
 
-app.post("/sign-up", (req, res) => {
+app.post("/api/sign-up", (req, res) => {
   console.log("POST /sign-up");
   console.log("Request", req.body);
   signUpUser(req, res);
