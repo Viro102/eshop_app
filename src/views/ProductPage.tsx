@@ -41,14 +41,10 @@ export default function ProductPage() {
                     <path
                       fillRule="evenodd"
                       d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
-                    ></path>
+                    />
                   </svg>
                 </a>
-                <img
-                  className="w-full object-contain lg:h-full"
-                  src="https://i.postimg.cc/0jwyVgqz/Microprocessor1-removebg-preview.png"
-                  alt=""
-                />
+                <img className="w-full object-contain lg:h-full" src={product?.image_url} alt="" />
                 <a className="translate-1/2 absolute right-0 top-1/2 transform lg:mr-2" href="#">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -61,7 +57,7 @@ export default function ProductPage() {
                     <path
                       fillRule="evenodd"
                       d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
-                    ></path>
+                    />
                   </svg>
                 </a>
               </div>
@@ -125,7 +121,7 @@ export default function ProductPage() {
                 </h2>
                 <div className="mb-6 flex flex-wrap items-center">
                   <ul className="mb-4 mr-2 flex lg:mb-0">
-                    <Rating count={2} />
+                    <Rating count={product?.rating ?? 0} />
                   </ul>
                   <a
                     className="mb-4 text-xs underline hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-600 lg:mb-0"
@@ -135,7 +131,7 @@ export default function ProductPage() {
                   </a>
                 </div>
                 <p className="inline-block text-2xl font-semibold text-gray-700 dark:text-gray-400 ">
-                  {product?.price}€
+                  {product?.price} €
                 </p>
               </div>
               <div className="mb-6">
