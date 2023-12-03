@@ -3,7 +3,7 @@ import Rating from "./Rating";
 export default function ReviewCard() {
   return (
     <>
-      <div className="mb-2 flex items-center">
+      <div className="my-2 flex items-center">
         <Rating count={4} />
         <p className="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">4.95</p>
         <p className="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">out of</p>
