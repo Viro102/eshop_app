@@ -1,38 +1,34 @@
 import { Link } from "react-router-dom";
 
 import Rating from "./Rating";
-import type { ProductCombined } from "../models/productModel";
+import { Product } from "../models/productModel";
 
-const ProductItem = ({ product }: ProductCombined) => {
+const ProductItem = ({ title, rating, price, image_url, id }: Product) => {
   return (
     <div className="relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg bg-white shadow-md dark:bg-gray-800">
       <Link
         className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
-        to={"/product/" + product["id"]}
+        to={"/product/" + id}
       >
-        <img className="object-cover" src={product["image"]} />
+        <img className="object-cover" src={image_url} />
       </Link>
       <div className="w-full px-5 py-5">
-        <Link to={"/product/" + product["id"]}>
-          <h5 className="text-xl tracking-tight text-slate-900 dark:text-white">
-            {product["title"]}
-          </h5>
+        <Link to={"/product/" + id}>
+          <h5 className="text-xl tracking-tight text-slate-900 dark:text-white">{title}</h5>
         </Link>
         <div className="mb-5 mt-2 flex items-center justify-between">
           <p>
-            <span className="text-3xl font-bold text-slate-900 dark:text-white">
-              {product["price"]}€
-            </span>
+            <span className="text-3xl font-bold text-slate-900 dark:text-white">{price}€</span>
           </p>
           <div className="flex items-center px-1">
-            <Rating count={product["rating"]} />
+            <Rating count={rating} />
             <span className="ml-3 mr-2 hidden rounded bg-yellow-200 px-2.5 py-0.5 text-xs font-semibold text-black sm:block">
-              {product["rating"]}
+              {rating}
             </span>
           </div>
         </div>
         <Link
-          to={"/product/" + product["id"]}
+          to={"/product/" + id}
           className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
         >
           <svg

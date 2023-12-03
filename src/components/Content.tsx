@@ -26,7 +26,15 @@ const Content = () => {
 
 function ProductList({ products }: Readonly<{ products: Product[] }>) {
   const productItems = products.map((product) => (
-    <ProductItem key={product.id} product={product} />
+    // error here FIXME
+    <ProductItem
+      key={product.id}
+      id={product.id}
+      title={product.title}
+      rating={product.rating}
+      price={product.price}
+      image_url={product.image_url}
+    />
   ));
 
   return <div className="flex flex-wrap justify-center">{productItems}</div>;

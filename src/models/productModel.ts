@@ -10,8 +10,4 @@ interface Product extends RowDataPacket {
   rating: number;
 }
 
-type ProductCombined = {
-  product: Product;
-};
-
-export type { Product, ProductCombined };
+export type { Product };
