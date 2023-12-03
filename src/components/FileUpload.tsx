@@ -117,7 +117,7 @@ export default function FileUpload() {
                 <span className="p-1">
                   <i>
                     <svg
-                      className="pt- ml-auto h-4 w-4 fill-current"
+                      className="ml-auto h-4 w-4 fill-current"
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
                       height="24"
