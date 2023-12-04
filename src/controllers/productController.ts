@@ -68,7 +68,15 @@ const updateProduct = async (req: Request, res: Response) => {
     const recordID: string = req.params.id;
     const updatedData = req.body;
 
-    await dbConnection.execute(`UPDATE products SET ? WHERE id = ?`, [updatedData, recordID]);
+    const updateColumns = Object.keys(updatedData)
+      .map((column) => `${column} = ?`)
+      .join(", ");
+
+    const query = `UPDATE products SET ${updateColumns} WHERE id = ?`;
+
+    const values = [...Object.values(updatedData), recordID];
+
+    await dbConnection.execute(query, values);
 
     res.status(200).json({ message: "Record updated successfully", updatedData });
   } catch (error) {
