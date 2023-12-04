@@ -26,6 +26,11 @@ app.post("/api/login", (req, res) => {
   loginUser(req, res);
 });
 
+app.post("/api/logout", (req, res) => {
+  // TODO: implement logout
+  console.log("POST /logout");
+});
+
 app.post("/api/sign-up", (req, res) => {
   console.log("POST /sign-up");
   console.log("Request", req.body);
