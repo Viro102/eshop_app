@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Button from "../components/Button";
 
 export default function LoginPage() {
   const [inputs, setInputs] = useState({});
+  const navigate = useNavigate();
 
   const handleChange = (event: React.SyntheticEvent) => {
     const target = event.target as HTMLInputElement;
@@ -17,13 +18,20 @@ export default function LoginPage() {
     console.log(inputs);
     try {
       event.preventDefault();
-      await fetch("/api/login", {
+      const response = await fetch("/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ ...inputs }),
       });
+      if (response.status === 200) {
+        // TODO: tokens
+        navigate("/account");
+        const data = await response.json();
+        localStorage.setItem("token", data.token);
+        console.log(data.token);
+      }
     } catch (error) {
       console.error("Error:", error);
     }
