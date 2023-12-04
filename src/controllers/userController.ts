@@ -1,7 +1,10 @@
 import { Request, Response } from "express";
 import { dbConnection } from "../server";
+import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { User } from "../models/userModel";
+
+const secretKey = "your_secret_key"; // Replace with a secure secret key
 
 //  TODO: rewrite to use Promise
 const signUpUser = async (req: Request, res: Response) => {
@@ -42,8 +45,9 @@ const loginUser = async (req: Request, res: Response) => {
 
     if (passwordMatch) {
       console.log("Login successful");
+      const token = jwt.sign({ userId: users[0][0].id }, secretKey, { expiresIn: "1h" });
 
-      res.status(200).json({ data: { message: "Login successful", user: users[0][0] } });
+      res.status(200).json({ data: { message: "Login successful", user: users[0][0], token } });
     } else {
       console.error("Invalid email or password");
 
