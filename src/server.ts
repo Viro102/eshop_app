@@ -2,7 +2,13 @@ import express from "express";
 import ViteExpress from "vite-express";
 import mysql from "mysql2/promise";
 
-import { getAllProducts, getProductById } from "./controllers/productController";
+import {
+  createProduct,
+  deleteProduct,
+  getAllProducts,
+  getProductById,
+  updateProduct,
+} from "./controllers/productController";
 import { loginUser, signUpUser } from "./controllers/userController";
 
 const app = express();
@@ -18,6 +24,21 @@ app.get("/api/products", (_req, res) => {
 app.get("/api/product/:id", (req, res) => {
   console.log("GET /product/" + req.params.id);
   getProductById(req, res);
+});
+
+app.post("/api/product", (req, res) => {
+  console.log("POST /product");
+  createProduct(req, res);
+});
+
+app.patch("/api/product/:id", (req, res) => {
+  console.log("PATCH /product/" + req.params.id);
+  updateProduct(req, res);
+});
+
+app.delete("/api/product/:id", (req, res) => {
+  console.log("DELETE /product/" + req.params.id);
+  deleteProduct(req, res);
 });
 
 app.post("/api/login", (req, res) => {
