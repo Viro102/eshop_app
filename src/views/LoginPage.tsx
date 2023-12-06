@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Button from "../components/Button";
 
@@ -94,14 +94,12 @@ export default function LoginPage() {
                     className="w-1/3 justify-center"
                   />
                   <p className="flex items-center">OR</p>
-                  <Link to="/sign-up">
-                    <Button
-                      text={"Sign up"}
-                      alt="Sign up"
-                      onClick={() => {}}
-                      className="w-1/3 justify-center"
-                    />
-                  </Link>
+                  <Button
+                    text={"Sign up"}
+                    alt="Sign up"
+                    onClick={() => navigate("/sign-up")}
+                    className="w-1/3 justify-center"
+                  />
                 </div>
               </form>
             </div>
