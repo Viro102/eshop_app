@@ -3,23 +3,14 @@ version: '3'
 services:
   mysql:
     image: mysql:latest
+    container_name: mysql
     environment:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: eshop
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
     ports:
       - "3306:3306"
     volumes:
-      - ./mysql-data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     restart: always
-  # vite_docker:
-  #   image: node:latest
-  #   container_name: vite_docker
-  #   entrypoint: /bin/sh
-  #   ports:
-  #     - 8000:8000
-  #   working_dir: /srv/app
-  #   volumes:
-  #     - type: bind
-  #       source: ./../.
-  #       target: /srv/app
-  #   tty: true
