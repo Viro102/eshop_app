@@ -9,6 +9,7 @@ import ReviewCard from "../components/ReviewCard";
 
 export default function ProductPage() {
   const [product, setProduct] = useState<Product>();
+  window.scrollTo(0, 0); // scroll to top on page load
 
   const fetchProduct = async () => {
     const response = await fetch("/api" + window.location.pathname);
