@@ -4,10 +4,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "server": "tsx ./src/server.ts",
-    "build": "vite build",
-    "test": "vitest"
+    "client": "vite",
+    "server": "tsx --env-file=./.env ./src/server.ts",
+    "build": "vite build"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
@@ -45,7 +44,6 @@
     "tailwindcss": "^3.3.3",
     "tsx": "^3.14.0",
     "typescript": "^5.2.2",
-    "vite": "^4.4.5",
-    "vitest": "^0.34.6"
+    "vite": "^4.4.5"
   }
 }
