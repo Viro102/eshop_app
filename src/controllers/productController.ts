@@ -24,10 +24,10 @@ const createProduct = async (req: Request, res: Response) => {
       ],
     );
 
-    res.status(201).json({ message: "Record created successfully", product });
+    res.status(201).json({ message: "Product created successfully", product });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Error creating the record", error });
+    res.status(500).json({ message: "Error creating the product", error });
   }
 };
 
@@ -38,7 +38,7 @@ const getAllProducts = async (res: Response) => {
     res.status(200).json(records[0]);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Error fetching records", error });
+    res.status(500).json({ message: "Error fetching products", error });
   }
 };
 
@@ -52,14 +52,14 @@ const getProductById = async (req: Request, res: Response) => {
     ]);
 
     if (!record) {
-      res.status(404).json({ message: "Record not found" });
+      res.status(404).json({ message: "Product not found" });
       return;
     }
 
     res.status(200).json(record[0]);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Error fetching the record", error });
+    res.status(500).json({ message: "Error fetching the product", error });
   }
 };
 
@@ -78,10 +78,10 @@ const updateProduct = async (req: Request, res: Response) => {
 
     await dbConnection.execute(query, values);
 
-    res.status(200).json({ message: "Record updated successfully", updatedData });
+    res.status(200).json({ message: "Product updated successfully", updatedData });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Error updating the record", error });
+    res.status(500).json({ message: "Error updating the product", error });
   }
 };
 
@@ -91,10 +91,10 @@ const deleteProduct = async (req: Request, res: Response) => {
 
     await dbConnection.execute(`DELETE FROM products WHERE id = ?`, [recordID]);
 
-    res.status(200).json({ message: "Record deleted successfully" });
+    res.status(200).json({ message: "Product deleted successfully" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Error deleting the record", error });
+    res.status(500).json({ message: "Error deleting the product", error });
   }
 };
 
