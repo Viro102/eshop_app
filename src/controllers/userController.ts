@@ -4,8 +4,6 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { User } from "../models/userModel";
 
-const secretKey = "your_secret_key"; // Replace with a secure secret key
-
 //  TODO: rewrite to use Promise
 const signUpUser = async (req: Request, res: Response) => {
   try {
@@ -19,11 +17,11 @@ const signUpUser = async (req: Request, res: Response) => {
       hashedPassword,
     ]);
 
-    res.status(201).json({ message: "Record created successfully", record: req.body });
+    res.status(201).json({ message: "User created successfully", record: req.body });
   } catch (error) {
-    console.error("Error creating the record", error);
+    console.error("Error creating the user", error);
 
-    res.status(500).json({ message: "Error creating the record", error });
+    res.status(500).json({ message: "Error creating the user", error });
   }
 };
 
@@ -45,7 +43,15 @@ const loginUser = async (req: Request, res: Response) => {
 
     if (passwordMatch) {
       console.log("Login successful");
-      const token = jwt.sign({ userId: users[0][0].id }, secretKey, { expiresIn: "1h" });
+      const token = jwt.sign(
+        {
+          userId: users[0][0].id,
+        },
+        process.env.JWT_SECRET as jwt.Secret,
+        {
+          expiresIn: "1h",
+        },
+      );
 
       res.status(200).json({ data: { message: "Login successful", user: users[0][0], token } });
     } else {
