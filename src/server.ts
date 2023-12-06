@@ -65,7 +65,7 @@ ViteExpress.listen(app, port, () => {
 // TODO: .env integration
 const dbConnection = mysql.createPool({
   host: "localhost",
-  user: "root",
+  user: "admin",
   password: "admin",
   database: "eshop",
   connectionLimit: 10,
