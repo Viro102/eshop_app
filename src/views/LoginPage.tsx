@@ -18,6 +18,11 @@ export default function LoginPage() {
     console.log(inputs);
     try {
       event.preventDefault();
+      if (Object.keys(inputs).length < 2) {
+        console.error("Error: required inputs are empty");
+        alert("required inputs are empty!");
+        return;
+      }
       const response = await fetch("/api/login", {
         method: "POST",
         headers: {

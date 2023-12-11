@@ -16,8 +16,9 @@ export default function SignUpPage() {
     console.log(inputs);
     try {
       event.preventDefault();
-      if (Object.keys(inputs).length === 0) {
-        console.error("Error: Inputs are empty");
+      if (Object.keys(inputs).length < 2) {
+        console.error("Error: required inputs are empty");
+        alert("Required inputs are empty!");
         return;
       }
       await fetch("/api/sign-up", {
