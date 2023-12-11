@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { User } from "../models/userModel";
 
-//  TODO: rewrite to use Promise
+//  TODO: rewrite to use Promise, form validation, error handling
 const signUpUser = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
