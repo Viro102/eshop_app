@@ -31,5 +31,5 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
             cd /home/viro/repos/eshop_app
-            echo ${{ secrets.SERVER_PASSWORD }} |sudo -S docker compose down
-            echo ${{ secrets.SERVER_PASSWORD }} |sudo -S docker compose up --build -d
+            docker compose down
+            docker compose up --build -d
