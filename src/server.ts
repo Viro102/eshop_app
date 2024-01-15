@@ -1,6 +1,6 @@
 import express from "express";
 import ViteExpress from "vite-express";
-import mysql from "mysql2/promise";
+import mariadb from "mariadb";
 
 import {
   createProduct,
@@ -63,12 +63,12 @@ ViteExpress.listen(app, port, () => {
 });
 
 // TODO: .env integration
-const dbConnection = mysql.createPool({
+const dbConnection = mariadb.createPool({
   host: "localhost",
-  user: "admin",
+  user: "root",
   password: "admin",
   database: "eshop",
-  connectionLimit: 10,
+  connectionLimit: 5,
 });
 
 export { dbConnection, app };

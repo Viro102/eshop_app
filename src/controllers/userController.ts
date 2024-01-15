@@ -4,14 +4,14 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { User } from "../models/userModel";
 
-//  TODO: rewrite to use Promise, form validation, error handling
+//  TODO: form validation, error handling
 const signUpUser = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
     const username = email.split("@")[0];
     const hashedPassword = await bcrypt.hash(password, 10);
-
-    await dbConnection.execute(`INSERT INTO users (username, email, password) VALUES (?, ?, ?)`, [
+    const conn = await dbConnection.getConnection();
+    await conn.execute(`INSERT INTO users (username, email, password) VALUES (?, ?, ?)`, [
       username,
       email,
       hashedPassword,
@@ -28,24 +28,23 @@ const signUpUser = async (req: Request, res: Response) => {
 const loginUser = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
-    const users = await dbConnection.execute<User[]>(`SELECT * FROM users WHERE email = ?`, [
-      email,
-    ]);
+    const conn = await dbConnection.getConnection();
+    const users = await conn.execute<User[]>(`SELECT * FROM users WHERE email = ?`, [email]);
 
-    if (users[0].length === 0) {
+    if (users.length === 0) {
       console.error("User not found");
 
       return res.status(401).json({ error: { message: "Invalid email or password" } });
     }
 
-    const hashedPassword = users[0][0].password;
+    const hashedPassword = users[0].password;
     const passwordMatch = await bcrypt.compare(password, hashedPassword);
 
     if (passwordMatch) {
       console.log("Login successful");
       const token = jwt.sign(
         {
-          userId: users[0][0].id,
+          userId: users[0].id,
         },
         process.env.JWT_SECRET as jwt.Secret,
         {
@@ -53,7 +52,7 @@ const loginUser = async (req: Request, res: Response) => {
         },
       );
 
-      res.status(200).json({ data: { message: "Login successful", user: users[0][0], token } });
+      res.status(200).json({ data: { message: "Login successful", user: users[0], token } });
     } else {
       console.error("Invalid email or password");
 

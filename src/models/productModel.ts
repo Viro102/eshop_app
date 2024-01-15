@@ -1,6 +1,4 @@
-import { RowDataPacket } from "mysql2";
-
-interface Product extends RowDataPacket {
+interface Product {
   id: number;
   title: string;
   category: string;
