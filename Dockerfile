@@ -1,4 +1,4 @@
-FROM nginx:latest
+FROM nginx:stable-perl
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
