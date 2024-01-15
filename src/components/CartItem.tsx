@@ -4,7 +4,7 @@ export default function CartItem() {
       <div className="mb-6 justify-between rounded-lg bg-gray-100 p-6 shadow-md dark:bg-gray-800 sm:flex sm:justify-start">
         <img
           src="https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-          alt="product-image"
+          alt="product"
           className="w-full rounded-lg sm:w-40"
         />
         <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">

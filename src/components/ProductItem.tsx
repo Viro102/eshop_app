@@ -10,7 +10,7 @@ const ProductItem = ({ ...props }: Product) => {
         className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
         to={"/product/" + props.id}
       >
-        <img className="object-cover" src={props.image_url} />
+        <img className="object-cover" src={props.image_url} alt="" />
       </Link>
       <div className="w-full px-5 py-5">
         <Link to={"/product/" + props.id}>

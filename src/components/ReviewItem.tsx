@@ -4,7 +4,7 @@ export default function Review() {
   return (
     <div className="mx-auto my-6 max-w-6xl rounded-lg px-4 py-4 dark:bg-gray-700">
       <div className="mb-4 flex items-center">
-        <img className="me-4 h-10 w-10 rounded-full" src="" />
+        <img className="me-4 h-10 w-10 rounded-full" src="" alt="profile" />
         <div className="font-medium dark:text-white">
           <p>
             Jese Leos
