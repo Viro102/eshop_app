@@ -26,6 +26,13 @@ jobs:
         run: |
           ~/.bun/bin/bun install && ~/.bun/bin/bun run build
 
+      - name: Setup SSH
+        run: |
+          eval "$(ssh-agent -s)"
+          ssh-add <(echo "${{ secrets.SERVER_SSH_KEY }}")
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SERVER_HOST }} ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINPzy2WhfsFmYpQFh55Nlh8q0ywmgT5jWjiIgbwSXyZT adam.virostek@gmail.com" >> ~/.ssh/known_hosts
+
       - name: Copy files
         run: |
           rsync -avz --exclude 'node_modules' -e "ssh -o StrictHostKeyChecking=no" . ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}:/home/viro/web
