@@ -21,7 +21,14 @@ jobs:
       - name: Install bun
         run: |
           curl -fsSL https://bun.sh/install | bash
-          echo "$HOME/.bun" >> $GITHUB_PATH
+
+      - name: Install dependencies
+        run: |
+          ~/.bun/bin/bun install && ~/.bun/bin/bun run build
+
+      - name: Copy files
+        run: |
+          rsync -avz --exclude 'node_modules' -e "ssh -o StrictHostKeyChecking=no" . ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}:/home/viro/web
 
       - name: Deploy to server
         uses: appleboy/ssh-action@master
@@ -30,6 +37,6 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            cd /home/viro/repos/eshop_app
+            cd /home/viro/web/docker
             docker compose down
             docker compose up --build -d
