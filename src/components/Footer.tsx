@@ -55,17 +55,17 @@ export default function Footer() {
 
       <div className="items-center justify-between bg-blue-400 px-4 py-5 dark:bg-gray-700">
         <div className="mt-0 flex justify-center space-x-5 py-1 text-center text-sm text-gray-100">
-          &copy; 2023 Adam Virostek. All Rights Reserved.
+          &copy; {new Date().getFullYear()} Adam Virostek. All Rights Reserved.
         </div>
         <div className="flex items-center justify-center py-1">
           <a href="https://discord.gg/eq9fhgW988" className="px-1">
-            <img src="/discord.svg" alt="Discord community" className="filter-invert h-4 w-4" />
+            <i className="fa-brands fa-discord text-white hover:text-blue-300" />
           </a>
           <a href="https://twitter.com/Viro102" className="px-1">
-            <img src="/X.svg" alt="X page" className="filter-invert h-4 w-4" />
+            <i className="fa-brands fa-x-twitter text-white hover:text-blue-300" />
           </a>
           <a href="https://github.com/Viro102" className="px-1">
-            <img src="/github.svg" alt="Github" className="filter-invert h-4 w-4" />
+            <i className="fa-brands fa-github text-white hover:text-blue-300" />
           </a>
         </div>
       </div>
