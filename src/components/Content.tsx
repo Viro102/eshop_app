@@ -7,7 +7,7 @@ const Content = () => {
   const [products, setProducts] = useState<Product[]>([]);
 
   const fetchProducts = async () => {
-    const response = await fetch("/api/products");
+    const response = await fetch("http://localhost:3000/api/products");
     const products: Product[] = await response.json();
     console.log(products);
     return products;
@@ -26,7 +26,6 @@ const Content = () => {
 
 function ProductList({ products }: Readonly<{ products: Product[] }>) {
   const productItems = products.map((product) => (
-    // error here FIXME
     <ProductItem
       key={product.id}
       id={product.id}
@@ -34,6 +33,8 @@ function ProductList({ products }: Readonly<{ products: Product[] }>) {
       rating={product.rating}
       price={product.price}
       image_url={product.image_url}
+      category=""
+      description=""
     />
   ));
 
