@@ -8,11 +8,32 @@ CREATE TABLE IF NOT EXISTS products (
         rating DECIMAL(2, 1) NOT NULL
 );
 CREATE TABLE IF NOT EXISTS users (
-        email VARCHAR(255) NOT NULL PRIMARY KEY,
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        email VARCHAR(255) NOT NULL UNIQUE,
         username VARCHAR(255) NOT NULL,
         password VARCHAR(255) NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+CREATE TABLE IF NOT EXISTS orders (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        user_id INT NOT NULL,
+        product_id INT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (product_id) REFERENCES products(id)
+);
+CREATE TABLE IF NOT EXISTS reviews (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        user_id INT NOT NULL,
+        product_id INT NOT NULL,
+        rating DECIMAL(2, 1) NOT NULL,
+        comment TEXT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (product_id) REFERENCES products(id)
 );
 -- Insert 15 electronic products
 INSERT INTO products (
@@ -153,121 +174,121 @@ INSERT INTO products (
                 rating
         )
 VALUES (
-                'Men\'s Casual Shirt',
+                'Men Casual Shirt',
                 'Clothes',
-                'mens_casual_shirt.jpg',
+                'men_casual_shirt.jpg',
                 29.99,
                 'Comfortable and stylish casual shirt for men.',
                 4.2
         ),
         (
-                'Women\'s Floral Dress',
+                'Women Floral Dress',
                 'Clothes',
-                'womens_floral_dress.jpg',
+                'women_floral_dress.jpg',
                 49.99,
                 'Elegant floral dress for women for special occasions.',
                 4.6
         ),
         (
-                'Men\'s Slim Fit Jeans',
+                'Men Slim Fit Jeans',
                 'Clothes',
-                'mens_slim_fit_jeans.jpg',
+                'men_slim_fit_jeans.jpg',
                 39.99,
                 'Slim fit jeans for a modern and stylish look.',
                 4.3
         ),
         (
-                'Women\'s Active Leggings',
+                'Women Active Leggings',
                 'Clothes',
-                'womens_active_leggings.jpg',
+                'women_active_leggings.jpg',
                 34.99,
                 'Stretchable and breathable leggings for active women.',
                 4.5
         ),
         (
-                'Men\'s Running Shoes',
+                'Men Running Shoes',
                 'Clothes',
-                'mens_running_shoes.jpg',
+                'men_running_shoes.jpg',
                 69.99,
                 'Comfortable and durable running shoes for men.',
                 4.7
         ),
         (
-                'Women\'s High Heels',
+                'Women High Heels',
                 'Clothes',
-                'womens_high_heels.jpg',
+                'women_high_heels.jpg',
                 59.99,
                 'Stylish high heels for a fashionable look.',
                 4.4
         ),
         (
-                'Men\'s Hooded Jacket',
+                'Men Hooded Jacket',
                 'Clothes',
-                'mens_hooded_jacket.jpg',
+                'men_hooded_jacket.jpg',
                 79.99,
                 'Warm and trendy hooded jacket for men.',
                 4.8
         ),
         (
-                'Women\'s Denim Skirt',
+                'Women Denim Skirt',
                 'Clothes',
-                'womens_denim_skirt.jpg',
+                'women_denim_skirt.jpg',
                 44.99,
                 'Classic denim skirt for a versatile wardrobe.',
                 4.0
         ),
         (
-                'Men\'s Polo Shirt',
+                'Men Polo Shirt',
                 'Clothes',
-                'mens_polo_shirt.jpg',
+                'men_polo_shirt.jpg',
                 24.99,
                 'Casual and timeless polo shirt for men.',
                 4.5
         ),
         (
-                'Women\'s Leather Boots',
+                'Women Leather Boots',
                 'Clothes',
-                'womens_leather_boots.jpg',
+                'women_leather_boots.jpg',
                 89.99,
                 'Fashionable leather boots for women.',
                 4.3
         ),
         (
-                'Men\'s Classic Suit',
+                'Men Classic Suit',
                 'Clothes',
-                'mens_classic_suit.jpg',
+                'men_classic_suit.jpg',
                 149.99,
                 'Classic suit for formal occasions.',
                 4.6
         ),
         (
-                'Women\'s Winter Coat',
+                'Women Winter Coat',
                 'Clothes',
-                'womens_winter_coat.jpg',
+                'women_winter_coat.jpg',
                 129.99,
                 'Stylish and warm winter coat for women.',
                 4.7
         ),
         (
-                'Men\'s Sports Jacket',
+                'Men Sports Jacket',
                 'Clothes',
-                'mens_sports_jacket.jpg',
+                'men_sports_jacket.jpg',
                 59.99,
                 'Sports jacket for an active lifestyle.',
                 4.4
         ),
         (
-                'Women\'s Lounge Set',
+                'Women Lounge Set',
                 'Clothes',
-                'womens_lounge_set.jpg',
+                'women_lounge_set.jpg',
                 39.99,
                 'Comfortable lounge set for women.',
                 4.2
         ),
         (
-                'Men\'s Graphic T-Shirt',
+                'Men Graphic T-Shirt',
                 'Clothes',
-                'mens_graphic_tshirt.jpg',
+                'men_graphic_tshirt.jpg',
                 19.99,
                 'Graphic T-shirt for a trendy casual look.',
                 4.5
