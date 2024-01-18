@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "client": "vite",
-    "server": "nodemon --exec tsx ./src/server.ts",
+    "server": "nodemon --exec tsx --env-file=.env ./src/server.ts",
     "build": "vite build"
   },
   "dependencies": {
