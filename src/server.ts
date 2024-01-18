@@ -1,6 +1,6 @@
 import express from "express";
-import ViteExpress from "vite-express";
 import mariadb from "mariadb";
+import cors from "cors";
 
 import {
   createProduct,
@@ -15,6 +15,7 @@ const app = express();
 const port = 3000;
 
 app.use(express.json());
+app.use(cors({ origin: "http://localhost:5173" }));
 
 app.get("/api/products", (_req, res) => {
   console.log("GET /products");
@@ -58,7 +59,7 @@ app.post("/api/sign-up", (req, res) => {
   signUpUser(req, res);
 });
 
-ViteExpress.listen(app, port, () => {
+app.listen(port, () => {
   console.log(`Server is 🔥 at http://localhost:${port}`);
 });
 
