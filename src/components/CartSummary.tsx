@@ -19,11 +19,11 @@ export default function CartSummary() {
         </div>
       </div>
       <Button
-        text="Checkout"
-        alt="Checkout"
         onClick={() => console.log("clicked checkout")}
         className="mt-2 w-full justify-center"
-      />
+      >
+        Checkout
+      </Button>
     </div>
   );
 }

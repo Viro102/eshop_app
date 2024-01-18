@@ -17,53 +17,50 @@ export default function Sidebar() {
       }`}
     >
       <div className="relative left-full">
-        <Button
-          onClick={handleToggleSidebar}
-          alt="Toggle sidebar"
-          iconSrc={"/menu.svg"}
-          className="absolute top-20"
-        />
+        <Button onClick={handleToggleSidebar} className="absolute top-20">
+          <i className="fa-solid fa-bars"></i>
+        </Button>
       </div>
       <div className={`sidebar-content ${sidebarOpen ? "block" : "hidden"}`}>
         <ul>
           <li>
             <Link to={"/login"}>
-              <Button text={"Login"} alt="Login" onClick={() => {}} />
+              <Button onClick={() => {}}>Login</Button>
             </Link>
           </li>
           <li>
             <Link to={"/sign-up"}>
-              <Button text={"Sign up"} alt="Sign up" onClick={() => {}} />
+              <Button onClick={() => {}}>Sign up</Button>
             </Link>
           </li>
           <li>
             <Link to={"/contact"}>
-              <Button text={"Contact"} alt="Contact" onClick={() => {}} />
+              <Button onClick={() => {}}>Contact</Button>
             </Link>
           </li>
           <li>
-            <Link to={"/testProduct"}>
-              <Button text={"Product page"} alt="Product" onClick={() => {}} />
+            <Link to={"/product/1"}>
+              <Button onClick={() => {}}>Product page</Button>
             </Link>
           </li>
           <li>
             <Link to={"/cart"}>
-              <Button text={"Cart page"} alt="Cart" onClick={() => {}} />
+              <Button onClick={() => {}}>Cart page</Button>
             </Link>
           </li>
           <li>
             <Link to={"/admin"}>
-              <Button text={"Admin page"} alt="Admin" onClick={() => {}} />
+              <Button onClick={() => {}}>Admin page</Button>
             </Link>
           </li>
           <li>
             <Link to={"/about"}>
-              <Button text={"About page"} alt="About" onClick={() => {}} />
+              <Button onClick={() => {}}>About page</Button>
             </Link>
           </li>
           <li>
             <Link to={"/account"}>
-              <Button text={"Account page"} alt="Account" onClick={() => {}} />
+              <Button onClick={() => {}}>Account page</Button>
             </Link>
           </li>
         </ul>

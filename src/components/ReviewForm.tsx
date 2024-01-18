@@ -37,7 +37,9 @@ export default function ReviewForm() {
         <FileUpload />
       </div>
       <div className="flex justify-end">
-        <Button onClick={handleSubmit} text={"Submit Review"} alt="Submit Review" className="p-4" />
+        <Button onClick={handleSubmit} className="p-4">
+          Submit Review
+        </Button>
       </div>
     </form>
   );

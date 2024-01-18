@@ -47,8 +47,8 @@ export default function FileUpload() {
         </section>
 
         <div className="flex justify-center space-x-3 py-4">
-          <Button text="Upload now" alt="Upload now" onClick={handleUpload} />
-          <Button text="Cancel" alt="Cancel" onClick={handleUpload} />
+          <Button onClick={handleUpload}>Upload now</Button>
+          <Button onClick={handleUpload}>Cancel</Button>
         </div>
       </div>
 
