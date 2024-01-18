@@ -9,7 +9,7 @@ import {
   getProductById,
   updateProduct,
 } from "./controllers/productController";
-import { loginUser, signUpUser } from "./controllers/userController";
+import { loginUser, signUpUser, logoutUser } from "./controllers/userController";
 
 const app = express();
 const port = 3000;
@@ -49,7 +49,7 @@ app.post("/api/login", (req, res) => {
 });
 
 app.post("/api/logout", (req, res) => {
-  // TODO: implement logout
+  logoutUser(req, res);
   console.log("POST /logout");
 });
 
