@@ -39,7 +39,7 @@ export default function Sidebar() {
             </Link>
           </li>
           <li>
-            <Link to={"/product/1"}>
+            <Link to={"/products/1"}>
               <Button onClick={() => {}}>Product page</Button>
             </Link>
           </li>

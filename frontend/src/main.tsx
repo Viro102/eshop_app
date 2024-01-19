@@ -38,7 +38,7 @@ const router = createBrowserRouter([
         element: <ContactPage />,
       },
       {
-        path: "product/:id",
+        path: "products/:id",
         element: <ProductPage />,
       },
       {
@@ -64,5 +64,5 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </React.StrictMode>,
 );

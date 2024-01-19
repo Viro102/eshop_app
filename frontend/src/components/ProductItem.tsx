@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 import Rating from "./Rating";
-import { Product } from "../models/productModel";
+import { Product } from "../types";
 import Button from "./Button";
 
 const ProductItem = ({ ...props }: Product) => {
@@ -9,12 +9,12 @@ const ProductItem = ({ ...props }: Product) => {
     <div className="relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg bg-white shadow-md dark:bg-gray-800">
       <Link
         className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
-        to={"/product/" + props.id}
+        to={"/products/" + props.id}
       >
         <img className="object-cover" src={props.image_url} alt="" />
       </Link>
       <div className="w-full px-5 py-5">
-        <Link to={"/product/" + props.id}>
+        <Link to={"/products/" + props.id}>
           <h5 className="text-xl tracking-tight text-slate-900 dark:text-white">{props.title}</h5>
         </Link>
         <div className="mb-5 mt-2 flex items-center justify-between">
@@ -30,7 +30,7 @@ const ProductItem = ({ ...props }: Product) => {
             </span>
           </div>
         </div>
-        <Link to={"/product/" + props.id}>
+        <Link to={"/products/" + props.id}>
           <Button
             onClick={() => {}}
             className="flex h-12 w-full items-center justify-center text-center"
