@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { dbConnection } from "../server";
+import { dbConnection } from "../app";
 import { Connection } from "mariadb";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
@@ -54,7 +54,7 @@ const loginUser = async (req: Request, res: Response) => {
         process.env.JWT_SECRET as jwt.Secret,
         {
           expiresIn: "1h",
-        },
+        }
       );
 
       console.log("Token", token);

@@ -1,4 +1,4 @@
-import { dbConnection } from "../server";
+import { dbConnection } from "../app";
 import { Request, Response } from "express";
 import { Product } from "../models/productModel";
 import { Connection } from "mariadb";
@@ -22,7 +22,7 @@ const createProduct = async (req: Request, res: Response) => {
         product.price,
         product.description,
         product.rating,
-      ],
+      ]
     );
 
     res.status(201).json({ message: "Product created successfully", product });
