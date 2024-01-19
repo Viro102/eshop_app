@@ -12,7 +12,6 @@ services:
       - "3306:3306"
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
-
   # web:
   #   build: ./frontend
   #   container_name: nginx
@@ -21,10 +20,10 @@ services:
   #   depends_on:
   #     - database
 
-  backend:
-    build: ./backend
-    container_name: express
-    ports:
-      - "3000:3000"
-    depends_on:
-      - database
+  # backend:
+  #   build: ./backend
+  #   container_name: express
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - database
