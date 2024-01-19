@@ -40,14 +40,14 @@ export default function Footer() {
           </h2>
           <ul className="font-medium text-gray-500 dark:text-gray-400">
             <li className="mb-4">
-              <a href="/privacy-policy" className="hover:underline">
+              <Link to={"/privacy-policy"} className="hover:underline">
                 Privacy Policy
-              </a>
+              </Link>
             </li>
             <li className="mb-4">
-              <a href="/terms-conditions" className="hover:underline">
+              <Link to={"/terms-conditions"} className="hover:underline">
                 Terms &amp; Conditions
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
