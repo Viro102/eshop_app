@@ -15,11 +15,10 @@ export default function SignUpPage() {
     event.preventDefault();
     try {
       if (Object.keys(inputs).length < 2) {
-        console.error("Error: required inputs are empty");
-        alert("Required inputs are empty!");
+        alert("Error: required inputs are empty");
         return;
       }
-      const response = await fetch("http://localhost:3000/api/sign-up", {
+      const response = await fetch("http://localhost:3000/api/users/sign-up", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -34,7 +33,7 @@ export default function SignUpPage() {
         alert("Sign up failed. Please try again.");
       }
     } catch (error) {
-      console.error("Error:", error);
+      alert("Error " + error);
     }
   };
 

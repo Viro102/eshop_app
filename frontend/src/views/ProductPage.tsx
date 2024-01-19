@@ -12,10 +12,8 @@ export default function ProductPage() {
 
   const fetchProduct = async () => {
     const response = await fetch("http://localhost:3000/api" + window.location.pathname);
-    console.log("http://localhost:3000/api" + window.location.pathname);
     const product = await response.json();
-    console.log(product[0]);
-    return product[0];
+    return product;
   };
 
   useEffect(() => {

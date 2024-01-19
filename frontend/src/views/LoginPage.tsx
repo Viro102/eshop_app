@@ -16,11 +16,10 @@ export default function LoginPage() {
     event.preventDefault();
     try {
       if (Object.keys(inputs).length < 2) {
-        console.error("Error: required inputs are empty");
-        alert("required inputs are empty!");
+        alert("Error: required inputs are empty");
         return;
       }
-      const response = await fetch("http://localhost:3000/api/login", {
+      const response = await fetch("http://localhost:3000/api/users/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -31,12 +30,11 @@ export default function LoginPage() {
         navigate("/account");
         const data = await response.json();
         localStorage.setItem("token", data.token);
-        console.log(data.token);
       } else {
         alert("Login failed. Please try again.");
       }
     } catch (error) {
-      console.error("Error:", error);
+      alert("Error " + error);
     }
   };
 

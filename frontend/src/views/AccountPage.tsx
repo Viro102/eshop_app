@@ -7,9 +7,9 @@ export default function AccountPage() {
     try {
       localStorage.removeItem("token");
       navigate("/");
-      console.log("Logout successful");
+      alert("Logout successful");
     } catch (error) {
-      console.error("Error during logout:", error);
+      alert("Error during logout: " + error);
     }
   };
 

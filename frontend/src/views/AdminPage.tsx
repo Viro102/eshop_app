@@ -46,7 +46,7 @@ export default function AdminPage() {
     event.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/api/product", {
+      const response = await fetch("http://localhost:3000/api/products", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -58,12 +58,10 @@ export default function AdminPage() {
         throw new Error("HTTP error " + response.status);
       }
 
-      const data = await response.json();
       fetchProducts();
-      console.log(data);
       refreshForm();
     } catch (error) {
-      console.error("Error:", error);
+      alert("Error: " + error);
     }
   };
 
@@ -71,7 +69,7 @@ export default function AdminPage() {
     event.preventDefault();
 
     try {
-      const response = await fetch(`http://localhost:3000/api/product/${product.id}`, {
+      const response = await fetch(`http://localhost:3000/api/products/${product.id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -83,18 +81,16 @@ export default function AdminPage() {
         throw new Error("HTTP error " + response.status);
       }
 
-      const data = await response.json();
       fetchProducts();
-      console.log(data);
       refreshForm();
     } catch (error) {
-      console.error("Error:", error);
+      alert("Error: " + error);
     }
   };
 
   const handleDeleteProduct = async (productID: number) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/product/${productID}`, {
+      const response = await fetch(`http://localhost:3000/api/products/${productID}`, {
         method: "DELETE",
       });
 
@@ -103,11 +99,9 @@ export default function AdminPage() {
       }
 
       fetchProducts();
-      const data = await response.json();
-      console.log(data);
       refreshForm();
     } catch (error) {
-      console.error("Error:", error);
+      alert("Error: " + error);
     }
   };
 
