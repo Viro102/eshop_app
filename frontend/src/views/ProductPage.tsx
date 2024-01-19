@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import type { Product } from "../types";
 import Rating from "../components/Rating";
 import Review from "../components/ReviewItem";
 import ReviewForm from "../components/ReviewForm";

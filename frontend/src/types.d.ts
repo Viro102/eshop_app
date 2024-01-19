@@ -17,4 +17,12 @@ interface User {
   updated_at: Date;
 }
 
-export type { Product, User };
+interface AuthContextType {
+  isLoggedIn: boolean;
+  setIsLoggedIn: (loggedIn: boolean) => void;
+}
+
+interface AuthResponse {
+  message: string;
+  isAuthorized: boolean;
+}

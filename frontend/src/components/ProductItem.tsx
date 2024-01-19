@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
 import Rating from "./Rating";
-import { Product } from "../types";
 import Button from "./Button";
 
 const ProductItem = ({ ...props }: Product) => {

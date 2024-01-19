@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Product } from "../types";
 import Button from "../components/Button";
 import InputForm from "../components/InputForm";
 import ListItem from "../components/ListItem";

@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import type { Product } from "../types";
 import ProductItem from "./ProductItem";
 
 const Content = () => {
