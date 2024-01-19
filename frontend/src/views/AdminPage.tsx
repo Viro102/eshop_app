@@ -1,7 +1,7 @@
 import Button from "../components/Button";
 import InputForm from "../components/InputForm";
 import { useEffect, useState } from "react";
-import { Product } from "../models/productModel";
+import { Product } from "../types";
 import ListItem from "../components/ListItem";
 
 export default function AdminPage() {
