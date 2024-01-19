@@ -1,16 +1,6 @@
 import { Connection } from "mariadb";
 import dbConnection from "../dbConnection";
 
-interface Product {
-  id: number;
-  title: string;
-  category: string;
-  image_url: string;
-  price: number;
-  description: string;
-  rating: number;
-}
-
 class ProductModel {
   static async create(product: Product): Promise<void> {
     let conn: Connection | null = null;
