@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
+import { AuthProvider } from "./auth/AuthContext";
 import "./index.css";
 import Layout from "./components/Layout";
 import HomePage from "./views/HomePage";
@@ -14,7 +15,9 @@ import CartPage from "./views/CartPage";
 import AdminPage from "./views/AdminPage";
 import AboutPage from "./views/AboutPage";
 import AccountPage from "./views/AccountPage";
-import { AuthProvider } from "./auth/AuthContext";
+import JobsPage from "./views/JobsPage";
+import PrivacyPolicyPage from "./views/PrivacyPolicyPage";
+import TermsPage from "./views/TermsPage";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +56,18 @@ const router = createBrowserRouter([
       {
         path: "about",
         element: <AboutPage />,
+      },
+      {
+        path: "jobs",
+        element: <JobsPage />,
+      },
+      {
+        path: "privacy-policy",
+        element: <PrivacyPolicyPage />,
+      },
+      {
+        path: "terms-conditions",
+        element: <TermsPage />,
       },
       {
         path: "account",
