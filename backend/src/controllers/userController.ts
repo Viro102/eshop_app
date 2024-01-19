@@ -50,13 +50,14 @@ const logoutUser = async (_req: Request, res: Response) => {
 const statusUser = async (req: Request, res: Response) => {
   try {
     const token = req.cookies.token;
+    console.log("Token:", token);
     if (!token) {
       return res.status(401).json({ error: { message: "Unauthorized" }, isAuthorized: false });
     }
     const decoded = jwt.verify(token, process.env.JWT_SECRET as jwt.Secret);
-    console.log("decoded:", decoded);
-    const user = await UserModel.findById((decoded as DecodedToken).userId);
-    console.log("user:", user);
+    console.log("Decoded token:", decoded);
+    const user: User | null = await UserModel.findById((decoded as DecodedToken).userId);
+    console.log("User:", user);
     if (!user) {
       return res.status(401).json({ error: { message: "Unauthorized", isAuthorized: false } });
     }
