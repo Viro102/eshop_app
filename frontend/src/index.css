@@ -73,8 +73,13 @@ button:focus-visible {
 }
 
 .sidebar-content {
-  padding-left: 0.5rem;
-  padding-top: 0.5rem;
+  padding-left: 0.75rem;
+  padding-top: 0.25rem;
+}
+
+.sidebar-item {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
 }
 
 /* hide arrows in input number */
