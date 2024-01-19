@@ -2,9 +2,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import InputForm from "../components/InputForm";
+import { useAuth } from "../auth/useAuth";
 
 export default function LoginPage() {
   const [inputs, setInputs] = useState({ email: "", password: "" });
+  const { setIsLoggedIn } = useAuth();
   const navigate = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,6 +29,7 @@ export default function LoginPage() {
       });
       if (response.ok) {
         navigate("/account");
+        setIsLoggedIn(true);
       } else {
         alert("Login failed. Please try again.");
       }

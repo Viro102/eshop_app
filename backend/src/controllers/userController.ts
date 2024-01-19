@@ -27,7 +27,13 @@ const loginUser = async (req: Request, res: Response) => {
       const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET as jwt.Secret, {
         expiresIn: "1h",
       });
-      res.status(200).json({ message: "Login successful", token });
+      res.cookie("token", token, {
+        httpOnly: true,
+        maxAge: 3600000,
+        sameSite: "strict",
+        secure: true,
+      });
+      res.status(200).json({ message: "Login successful" });
     } else {
       res.status(401).json({ error: { message: "Invalid email or password" } });
     }
@@ -38,8 +44,27 @@ const loginUser = async (req: Request, res: Response) => {
 };
 
 const logoutUser = async (_req: Request, res: Response) => {
-  // Since JWTs are stateless, logout is handled client-side by deleting the token
   res.status(200).json({ message: "Logout successful" });
 };
 
-export { loginUser, signUpUser, logoutUser };
+const statusUser = async (req: Request, res: Response) => {
+  try {
+    const token = req.cookies.token;
+    if (!token) {
+      return res.status(401).json({ error: { message: "Unauthorized" }, isAuthorized: false });
+    }
+    const decoded = jwt.verify(token, process.env.JWT_SECRET as jwt.Secret);
+    console.log("decoded:", decoded);
+    const user = await UserModel.findById((decoded as DecodedToken).userId);
+    console.log("user:", user);
+    if (!user) {
+      return res.status(401).json({ error: { message: "Unauthorized", isAuthorized: false } });
+    }
+    res.status(200).json({ user });
+  } catch (error) {
+    console.error("Error during status:", error);
+    res.status(500).json({ error: { message: "Error during status", details: error } });
+  }
+};
+
+export { loginUser, logoutUser, signUpUser, statusUser };

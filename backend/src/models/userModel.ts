@@ -2,15 +2,6 @@ import { Connection } from "mariadb";
 import dbConnection from "../dbConnection";
 import bcrypt from "bcrypt";
 
-interface User {
-  id: number;
-  username: string;
-  email: string;
-  password: string;
-  created_at: Date;
-  updated_at: Date;
-}
-
 class UserModel {
   static async create(email: string, password: string): Promise<void> {
     let conn: Connection | null = null;
@@ -33,6 +24,17 @@ class UserModel {
     try {
       conn = await dbConnection.getConnection();
       const [user] = await conn.execute<User[]>(`SELECT * FROM users WHERE email = ?`, [email]);
+      return user || null;
+    } finally {
+      if (conn) conn.end();
+    }
+  }
+
+  static async findById(userId: any): Promise<User | null> {
+    let conn: Connection | null = null;
+    try {
+      conn = await dbConnection.getConnection();
+      const [user] = await conn.execute<User[]>(`SELECT * FROM users WHERE id = ?`, [userId]);
       return user || null;
     } finally {
       if (conn) conn.end();

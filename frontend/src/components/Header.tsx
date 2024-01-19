@@ -3,13 +3,12 @@ import { Link } from "react-router-dom";
 import ThemeSwitch from "./ThemeSwitch";
 import Button from "./Button";
 import InputForm from "./InputForm";
+import { useAuth } from "../auth/useAuth";
 
 export default function Header() {
-  const isLoggedIn = () => {
-    return localStorage.getItem("token") !== null; // or any other logic you use to determine login status
-  };
+  const { isLoggedIn } = useAuth();
 
-  const accountLinkDestination = isLoggedIn() ? "/account" : "/login";
+  const accountLinkDestination = isLoggedIn ? "/account" : "/login";
 
   return (
     <header className="sticky top-0 z-10">

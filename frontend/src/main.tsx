@@ -14,6 +14,7 @@ import CartPage from "./views/CartPage";
 import AdminPage from "./views/AdminPage";
 import AboutPage from "./views/AboutPage";
 import AccountPage from "./views/AccountPage";
+import { AuthProvider } from "./auth/AuthContext";
 
 const router = createBrowserRouter([
   {
@@ -63,6 +64,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>,
 );
