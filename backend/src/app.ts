@@ -3,6 +3,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import productRouter from "./routes/productRouter";
 import userRouter from "./routes/userRouter";
+import reviewRouter from "./routes/reviewRouter";
 import upload from "./upload";
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 
 app.use("/api/products", productRouter);
 app.use("/api/users", userRouter);
+app.use("/api/reviews", reviewRouter);
 app.post("/api/upload", upload.array("files"), (_req, res) => {
   res.status(200).json({ message: "Upload successful" });
 });
