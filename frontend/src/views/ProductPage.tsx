@@ -134,12 +134,6 @@ export default function ProductPage() {
         </div>
       </div>
       <div className="mx-auto max-w-6xl">
-        <p
-          className="rounded-lg bg-blue-400 p-3 text-center text-xl text-white  dark:bg-gray-900"
-          id="reviews"
-        >
-          Reviews
-        </p>
         <ReviewCard />
         <ReviewForm />
         <Review />

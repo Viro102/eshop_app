@@ -26,7 +26,7 @@ export default function Header() {
               E-SHOP
             </span>
           </div>
-          <form>
+          <form className="w-2/3">
             <div className="flex-1 px-1 sm:px-4 lg:px-20">
               <InputForm
                 label=""
