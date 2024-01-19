@@ -3,10 +3,13 @@ import { createContext, useState, useEffect } from "react";
 const AuthContext = createContext<AuthContextType>({
   isLoggedIn: false,
   setIsLoggedIn: () => {},
+  user: null,
+  setUser: () => {},
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const checkAuthStatus = async () => {
@@ -25,7 +28,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, user, setUser }}>
+      {children}
+    </AuthContext.Provider>
   );
 };
 
