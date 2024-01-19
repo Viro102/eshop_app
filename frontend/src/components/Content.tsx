@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-
-import type { Product } from "../models/productModel";
+import type { Product } from "../types";
 import ProductItem from "./ProductItem";
 
 const Content = () => {
@@ -9,7 +8,6 @@ const Content = () => {
   const fetchProducts = async () => {
     const response = await fetch("http://localhost:3000/api/products");
     const products: Product[] = await response.json();
-    console.log(products);
     return products;
   };
 
