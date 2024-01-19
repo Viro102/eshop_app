@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import Button from "../components/Button";
 import InputForm from "../components/InputForm";
 
@@ -28,8 +27,6 @@ export default function LoginPage() {
       });
       if (response.ok) {
         navigate("/account");
-        const data = await response.json();
-        localStorage.setItem("token", data.token);
       } else {
         alert("Login failed. Please try again.");
       }
