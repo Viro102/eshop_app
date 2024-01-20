@@ -19,7 +19,7 @@ const loginUser = async (req: Request, res: Response) => {
     const user = await UserModel.findByEmail(email);
 
     if (!user) {
-      return res.status(401).json({ error: { message: "Invalid email or password" } });
+      return res.status(401).json({ message: "Invalid email or password" });
     }
 
     const passwordMatch = await bcrypt.compare(password, user.password);
@@ -33,39 +33,41 @@ const loginUser = async (req: Request, res: Response) => {
         sameSite: "strict",
         secure: true,
       });
-      res.status(200).json({ message: "Login successful" });
+      res.status(200).json({ message: "Login successful", data: user });
     } else {
-      res.status(401).json({ error: { message: "Invalid email or password" } });
+      res.status(401).json({ message: "Invalid email or password" });
     }
   } catch (error) {
     console.error("Error during login:", error);
-    res.status(500).json({ error: { message: "Error during login", details: error } });
+    res.status(500).json({ message: "Error during login", error });
   }
 };
 
-const logoutUser = async (_req: Request, res: Response) => {
-  res.status(200).json({ message: "Logout successful" });
+const getUserById = async (req: Request, res: Response) => {
+  try {
+    const user = await UserModel.findById(parseInt(req.params.id));
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.status(200).json({ message: "User found!", data: user });
+  } catch (error) {
+    console.error("Error fetching the user", error);
+    res.status(500).json({ message: "Error fetching the user", error });
+  }
 };
 
 const statusUser = async (req: Request, res: Response) => {
   try {
     const token = req.cookies.token;
-    console.log("Token:", token);
     if (!token) {
-      return res.status(401).json({ error: { message: "Unauthorized" }, isAuthorized: false });
+      return res.status(401).json({ message: "Unauthorized" });
     }
     const decoded = jwt.verify(token, process.env.JWT_SECRET as jwt.Secret);
-    console.log("Decoded token:", decoded);
-    const user: User | null = await UserModel.findById((decoded as DecodedToken).userId);
-    console.log("User:", user);
-    if (!user) {
-      return res.status(401).json({ error: { message: "Unauthorized", isAuthorized: false } });
-    }
-    res.status(200).json({ user });
+    const user = await UserModel.findById((decoded as DecodedToken).userId);
+    res.status(200).json({ message: "Authorized!", data: user });
   } catch (error) {
-    console.error("Error during status:", error);
-    res.status(500).json({ error: { message: "Error during status", details: error } });
+    res.status(500).json({ message: "Auth check failed" });
   }
 };
 
-export { loginUser, logoutUser, signUpUser, statusUser };
+export { loginUser, getUserById, signUpUser, statusUser };

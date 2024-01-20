@@ -14,7 +14,7 @@ const createReview = async (req: Request, res: Response) => {
 const getAllReviews = async (_req: Request, res: Response) => {
   try {
     const reviews = await ReviewModel.getAll();
-    res.status(200).json(reviews);
+    res.status(200).json({ message: "Reviews found!", data: reviews });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error fetching reviews", error });
@@ -28,7 +28,7 @@ const getReviewById = async (req: Request, res: Response) => {
       res.status(404).json({ message: "Review not found" });
       return;
     }
-    res.status(200).json(review);
+    res.status(200).json({ message: "Review found!", data: review });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error fetching the review", error });
