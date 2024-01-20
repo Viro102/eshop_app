@@ -29,21 +29,6 @@ export default function Sidebar() {
       <div className={`sidebar-content ${sidebarOpen ? "block" : "hidden"}`}>
         <ul>
           <li className="sidebar-item">
-            <Link to={"/login"}>
-              <Button onClick={() => {}}>Login</Button>
-            </Link>
-          </li>
-          <li className="sidebar-item">
-            <Link to={"/sign-up"}>
-              <Button onClick={() => {}}>Sign up</Button>
-            </Link>
-          </li>
-          <li className="sidebar-item">
-            <Link to={"/contact"}>
-              <Button onClick={() => {}}>Contact</Button>
-            </Link>
-          </li>
-          <li className="sidebar-item">
             <Link to={"/cart"}>
               <Button onClick={() => {}}>Cart page</Button>
             </Link>
@@ -51,16 +36,6 @@ export default function Sidebar() {
           <li className="sidebar-item">
             <Link to={"/admin"}>
               <Button onClick={() => {}}>Admin page</Button>
-            </Link>
-          </li>
-          <li className="sidebar-item">
-            <Link to={"/about"}>
-              <Button onClick={() => {}}>About page</Button>
-            </Link>
-          </li>
-          <li className="sidebar-item">
-            <Link to={"/account"}>
-              <Button onClick={() => {}}>Account page</Button>
             </Link>
           </li>
         </ul>
