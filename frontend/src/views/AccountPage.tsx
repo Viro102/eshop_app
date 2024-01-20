@@ -1,10 +1,22 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/useAuth";
+import { fetchReviewsUserId } from "../api";
+import Review from "../components/Review";
 import Button from "../components/Button";
 
 export default function AccountPage() {
   const { isLoggedIn, setIsLoggedIn, user, setUser } = useAuth();
+  const [reviews, setReviews] = useState<Review[]>([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      fetchReviewsUserId(user!.id).then(setReviews);
+    };
+
+    fetchReviews();
+  }, [user]);
 
   const handleLogout = () => {
     setIsLoggedIn(false);
@@ -18,7 +30,7 @@ export default function AccountPage() {
   }
 
   return (
-    <div className="container mx-auto my-8 p-4">
+    <div className="container mx-auto my-8 p-4 text-black dark:text-white">
       <div className="flex flex-col items-center">
         <img src={"/my-logo2.svg"} alt="Profile" className="mb-4 h-32 w-32 rounded-full" />
         <h2 className="mb-2 text-2xl font-semibold">{user?.username}</h2>
@@ -42,11 +54,9 @@ export default function AccountPage() {
 
       <div className="mt-8">
         <h3 className="mb-2 text-xl font-semibold">Reviews History</h3>
-        <ul>
-          {/* {user?.reviews.map((review) => (
-            <li key={review.id}>{review.content}</li>
-          ))} */}
-        </ul>
+        {reviews.map((review) => (
+          <Review key={review.id} {...review} />
+        ))}
       </div>
     </div>
   );
