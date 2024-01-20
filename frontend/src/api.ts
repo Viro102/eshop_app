@@ -5,6 +5,7 @@ async function fetchData(endpoint: string, options = {}): Promise<CustomResponse
     const response = await fetch(`${BASE_URL}/${endpoint}`, options);
     if (!response.ok) {
       console.error(`API call failed with status ${response.status}`);
+      return { message: "API call failed " + response.statusText };
     }
     return await response.json();
   } catch (error) {
@@ -14,23 +15,28 @@ async function fetchData(endpoint: string, options = {}): Promise<CustomResponse
 }
 
 async function upload(data: FormData): Promise<void> {
-  fetchData(`upload`, { method: "POST", body: data });
+  await fetchData(`upload`, { method: "POST", body: data });
 }
 
 async function postReview(review: Review): Promise<void> {
-  fetchData(`reviews`, {
+  await fetchData(`reviews`, {
     method: "POST",
     credentials: "include",
+    headers: { "Content-type": "application/json" },
     body: JSON.stringify(review),
   });
 }
 
+async function deleteReview(reviewId: number): Promise<void> {
+  await fetchData(`reviews/${reviewId}`, { method: "DELETE" });
+}
+
 async function deleteProduct(productId: number): Promise<void> {
-  fetchData(`products/${productId}`, { method: "DELETE" });
+  await fetchData(`products/${productId}`, { method: "DELETE" });
 }
 
 async function patchProduct(productId: number, product: Partial<Product>): Promise<void> {
-  fetchData(`products/${productId}`, {
+  await fetchData(`products/${productId}`, {
     method: "PATCH",
     headers: { "Content-type": "application/json" },
     body: JSON.stringify(product),
@@ -38,7 +44,7 @@ async function patchProduct(productId: number, product: Partial<Product>): Promi
 }
 
 async function postProduct(product: Product): Promise<void> {
-  fetchData(`products`, {
+  await fetchData(`products`, {
     method: "POST",
     headers: { "Content-type": "application/json" },
     body: JSON.stringify(product),
@@ -55,18 +61,28 @@ async function fetchProducts(options = {}): Promise<Product[]> {
   return responseJson.data as Product[];
 }
 
-async function fetchReviews(productId: number, options = {}): Promise<Review[]> {
-  const responseJson = await fetchData(`reviews/${productId}`, options);
+async function fetchReviewsProductId(productId: number, options = {}): Promise<Review[]> {
+  const responseJson = await fetchData(`reviews/product/${productId}`, options);
+  return responseJson.data as Review[];
+}
+
+async function fetchReviewsUserId(userId: number, options = {}): Promise<Review[]> {
+  const responseJson = await fetchData(`reviews/user/${userId}`, options);
   return responseJson.data as Review[];
 }
 
 async function checkAuth(options = {}): Promise<CustomResponse> {
-  return fetchData(`users/`, options);
+  return fetchData(`users/auth`, options);
 }
 
-async function fetchUserData(userId: number, options = {}): Promise<User> {
+async function fetchUserDataId(userId: number, options = {}): Promise<User> {
   const responseJson = await fetchData(`users/${userId}`, options);
   return responseJson.data as User;
+}
+
+async function fetchAllUsersData(options = {}): Promise<User[]> {
+  const responseJson = await fetchData(`users`, options);
+  return responseJson.data as User[];
 }
 
 async function loginUser(inputs: { email: string; password: string }): Promise<User> {
@@ -80,11 +96,22 @@ async function loginUser(inputs: { email: string; password: string }): Promise<U
 }
 
 async function signUpUser(inputs: { email: string; password: string }): Promise<void> {
-  fetchData(`users/sign-up`, {
+  await fetchData(`users/sign-up`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ ...inputs }),
   });
+}
+
+async function patchUser(userId: number, user: User): Promise<void> {
+  await fetchData(`users/${userId}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(user),
+  });
+}
+async function deleteUser(userId: number): Promise<void> {
+  await fetchData(`users/${userId}`, { method: "DELETE" });
 }
 
 export {
@@ -93,11 +120,16 @@ export {
   postProduct,
   fetchProduct,
   fetchProducts,
-  fetchReviews,
-  fetchUserData,
+  deleteReview,
+  postReview,
+  fetchReviewsProductId,
+  fetchReviewsUserId,
+  fetchUserDataId,
+  fetchAllUsersData,
+  patchUser,
+  deleteUser,
   loginUser,
   signUpUser,
   checkAuth,
   upload,
-  postReview,
 };
