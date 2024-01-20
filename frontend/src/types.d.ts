@@ -34,7 +34,7 @@ interface AuthContextType {
   setUser: (user: User | null) => void;
 }
 
-interface AuthResponse {
+interface CustomResponse {
   message: string;
-  isAuthorized: boolean;
+  data?: User | Product | Review | User[] | Product[] | Review[];
 }
