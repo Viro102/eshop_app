@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import { fetchUserData } from "../api";
+import { useAuth } from "../auth/useAuth";
+import { deleteReview, fetchUserDataId } from "../api";
 import Rating from "./Rating";
 
 export default function Review(review: Readonly<Review>) {
-  const [user, setUser] = useState<User | null>(null);
+  const [userLocal, setUserLocal] = useState<User>();
+  const { user } = useAuth();
 
   useEffect(() => {
-    fetchUserData(review.user_id).then(setUser);
+    fetchUserDataId(review.user_id).then(setUserLocal);
   }, [review]);
 
   const reviewDate = review.created_at
@@ -16,8 +18,8 @@ export default function Review(review: Readonly<Review>) {
         day: "numeric",
       })
     : "";
-  const userJoinedDate = user
-    ? new Date(user.created_at).toLocaleDateString("default", {
+  const userJoinedDate = userLocal
+    ? new Date(userLocal.created_at).toLocaleDateString("default", {
         year: "numeric",
         month: "long",
         day: "numeric",
@@ -25,13 +27,13 @@ export default function Review(review: Readonly<Review>) {
     : "";
 
   return (
-    <div className="mx-auto my-6 max-w-6xl rounded-lg px-4 py-4 dark:bg-gray-700">
+    <div className="my-2 rounded-lg bg-white p-3.5 dark:bg-gray-700">
       <div className="mb-4 flex items-center">
-        {/* Here, you'd also display the user's profile picture if available */}
+        {/* TODO: custom profile pictures */}
         <img className="me-4 h-10 w-10 rounded-full" src={"/my-logo2.svg"} alt="profile" />
-        <div className="font-medium dark:text-white">
+        <div className="font-medium text-black dark:text-white">
           <p>
-            {user?.username}
+            {userLocal?.username}
             <time
               dateTime={userJoinedDate}
               className="block text-sm text-gray-500 dark:text-gray-400"
@@ -43,10 +45,6 @@ export default function Review(review: Readonly<Review>) {
       </div>
       <div className="mb-1 flex items-center space-x-1 rtl:space-x-reverse">
         <Rating count={review.rating} />
-        {/* You can add dynamic review title here if available */}
-        <h3 className="ms-2 text-sm font-semibold text-gray-900 dark:text-white">
-          Thinking to buy another one!
-        </h3>
       </div>
       <footer className="mb-5 text-sm text-gray-500 dark:text-gray-400">
         <p>
@@ -54,6 +52,24 @@ export default function Review(review: Readonly<Review>) {
         </p>
       </footer>
       <p className="mb-2 text-gray-500 dark:text-gray-400">{review.comment}</p>
+      {user?.id === review.user_id && (
+        <div className="flex space-x-2">
+          <button
+            onClick={() => {
+              // TODO: edit review
+            }}
+          >
+            <i className="fa-solid fa-gear"></i>
+          </button>
+          <button
+            onClick={() => {
+              deleteReview(review.id!);
+            }}
+          >
+            <i className="fa-solid fa-trash"></i>
+          </button>
+        </div>
+      )}
     </div>
   );
 }
