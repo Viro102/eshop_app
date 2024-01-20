@@ -21,9 +21,23 @@ const getAllReviews = async (_req: Request, res: Response) => {
   }
 };
 
-const getReviewById = async (req: Request, res: Response) => {
+const getAllReviewsByProductId = async (req: Request, res: Response) => {
   try {
-    const review = await ReviewModel.getById(parseInt(req.params.id));
+    const review = await ReviewModel.getAllByProductId(parseInt(req.params.id));
+    if (!review) {
+      res.status(404).json({ message: "Review not found" });
+      return;
+    }
+    res.status(200).json({ message: "Review found!", data: review });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error fetching the review", error });
+  }
+};
+
+const getAllReviewsByUserId = async (req: Request, res: Response) => {
+  try {
+    const review = await ReviewModel.getAllByUserId(parseInt(req.params.id));
     if (!review) {
       res.status(404).json({ message: "Review not found" });
       return;
@@ -55,4 +69,11 @@ const deleteReview = async (req: Request, res: Response) => {
   }
 };
 
-export { createReview, getAllReviews, getReviewById, updateReview, deleteReview };
+export {
+  createReview,
+  getAllReviews,
+  getAllReviewsByProductId,
+  getAllReviewsByUserId,
+  updateReview,
+  deleteReview,
+};
