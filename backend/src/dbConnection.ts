@@ -5,7 +5,7 @@ const dbConnection = mariadb.createPool({
   user: "root",
   password: "admin",
   database: "eshop",
-  connectionLimit: 5,
+  connectionLimit: 10,
 });
 
 export default dbConnection;
