@@ -1,21 +1,30 @@
-import { useEffect, useState } from "react";
-import { fetchProduct, fetchReviews } from "../api";
+import { useCallback, useEffect, useState } from "react";
+import { fetchProduct, fetchReviewsProductId } from "../api";
 import Rating from "../components/Rating";
 import Review from "../components/Review";
 import ReviewForm from "../components/ReviewForm";
 import Button from "../components/Button";
 import ReviewCard from "../components/ReviewCard";
+import Carousel from "../components/Carousel";
 
 export default function ProductPage() {
   const [product, setProduct] = useState<Product>();
   const [reviews, setReviews] = useState<Review[]>([]);
   const productId = parseInt(window.location.pathname.split("/")[2]);
 
+  const updateReviews = useCallback(async () => {
+    fetchReviewsProductId(productId).then(setReviews);
+  }, [productId]);
+
+  const getProduct = useCallback(async () => {
+    fetchProduct(productId).then(setProduct);
+  }, [productId]);
+
   useEffect(() => {
     window.scrollTo(0, 0); // scroll to top on page load
-    fetchProduct(productId).then(setProduct);
-    fetchReviews(productId).then(setReviews);
-  }, [productId]);
+    getProduct();
+    updateReviews();
+  }, [getProduct, updateReviews]);
 
   return (
     <section className="py-20 dark:bg-gray-800">
@@ -23,65 +32,7 @@ export default function ProductPage() {
         <div className="-mx-4 mb-24 flex flex-wrap">
           <div className="mb-8 w-full px-4 md:mb-0 md:w-1/2">
             <div className="sticky top-0 overflow-hidden ">
-              <div className="relative mb-6 lg:mb-10 lg:h-96">
-                <a className="translate-1/2 absolute left-0 top-1/2 transform lg:ml-2" href="#">
-                  <i className="fa-solid fa-arrow-left text-white"></i>
-                </a>
-                <img className="w-full object-contain lg:h-full" src={product?.image_url} alt="" />
-                <a className="translate-1/2 absolute right-0 top-1/2 transform lg:mr-2" href="#">
-                  <i className="fa-solid fa-arrow-right text-white"></i>
-                </a>
-              </div>
-              <div className="-mx-2 hidden flex-wrap md:flex">
-                <div className="w-1/2 p-2 sm:w-1/4">
-                  <a
-                    className="block border border-gray-200 hover:border-blue-400 dark:border-gray-700 dark:hover:border-blue-300"
-                    href="#"
-                  >
-                    <img
-                      className="w-full object-contain lg:h-28"
-                      src="https://i.postimg.cc/Z5KhRkD6/download-1-removebg-preview.png"
-                      alt=""
-                    />
-                  </a>
-                </div>
-                <div className="w-1/2 p-2 sm:w-1/4">
-                  <a
-                    className="block border border-gray-200 hover:border-blue-400 dark:border-gray-700 dark:hover:border-blue-300"
-                    href="#"
-                  >
-                    <img
-                      className="w-full object-contain lg:h-28"
-                      src="https://i.postimg.cc/8kJBrw03/download-removebg-preview.png"
-                      alt=""
-                    />
-                  </a>
-                </div>
-                <div className="w-1/2 p-2 sm:w-1/4">
-                  <a
-                    className="block border border-gray-200 hover:border-blue-400 dark:border-gray-700 dark:hover:border-blue-300"
-                    href="#"
-                  >
-                    <img
-                      className="w-full object-contain lg:h-28"
-                      src="https://i.postimg.cc/0jwyVgqz/Microprocessor1-removebg-preview.png"
-                      alt=""
-                    />
-                  </a>
-                </div>
-                <div className="w-1/2 p-2 sm:w-1/4">
-                  <a
-                    className="block border border-gray-200 hover:border-blue-400 dark:border-gray-700 dark:hover:border-blue-300"
-                    href="#"
-                  >
-                    <img
-                      className="w-full object-contain lg:h-28"
-                      src="https://i.postimg.cc/0N4Kk1PN/black-microprocessors-removebg-preview.png"
-                      alt=""
-                    />
-                  </a>
-                </div>
-              </div>
+              <Carousel images={JSON.parse(product ? product.image_urls : "[]")} />
             </div>
           </div>
           <div className="w-full px-4 md:w-1/2">
@@ -120,10 +71,10 @@ export default function ProductPage() {
                     console.log("Clicked addToFavorites");
                   }}
                 >
-                  <i className="fa-solid fa-heart"></i>
+                  <i className="fa-solid fa-heart fa-xl"></i>
                 </Button>
                 <Button
-                  className="w-full items-center rounded-xl p-4"
+                  className="w-full items-center p-4"
                   onClick={() => {
                     console.log("Clicked addToCart");
                   }}
@@ -135,21 +86,12 @@ export default function ProductPage() {
           </div>
         </div>
       </div>
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-6xl" id="reviews">
         <ReviewCard />
-        <ReviewForm productId={productId} />
+        <ReviewForm productId={productId} onReviewSubmit={updateReviews} />
 
         {reviews.map((review) => (
-          <Review
-            key={review.id}
-            id={review.id}
-            user_id={review.user_id}
-            product_id={review.product_id}
-            comment={review.comment}
-            rating={review.rating}
-            created_at={review.created_at}
-            updated_at={review.updated_at}
-          />
+          <Review key={review.id} {...review} />
         ))}
       </div>
     </section>
