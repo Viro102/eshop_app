@@ -11,7 +11,12 @@ export default function LoginPage() {
   const navigate = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
     setInputs({ ...inputs, [event.target.name]: event.target.value });
+  };
+
+  const clearForm = () => {
+    setInputs({ email: "", password: "" });
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -22,9 +27,14 @@ export default function LoginPage() {
         return;
       }
       const user = await loginUser(inputs);
-      navigate("/account");
-      setIsLoggedIn(true);
-      setUser(user);
+      if (user) {
+        navigate("/account");
+        setIsLoggedIn(true);
+        setUser(user);
+      } else {
+        alert("Error: invalid credentials");
+        clearForm();
+      }
     } catch (error) {
       alert("Error " + error);
     }
