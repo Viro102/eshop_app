@@ -27,11 +27,13 @@ class ReviewModel {
     }
   }
 
-  static async getById(id: number): Promise<Review | null> {
+  static async getById(id: number): Promise<Review[] | null> {
     let conn: Connection | null = null;
     try {
       conn = await dbConnection.getConnection();
-      const [results] = await conn.execute<Review[]>(`SELECT * FROM reviews WHERE id = ?`, [id]);
+      const results = await conn.execute<Review[]>(`SELECT * FROM reviews WHERE product_id = ?`, [
+        id,
+      ]);
       return results || null;
     } finally {
       if (conn) conn.end();
