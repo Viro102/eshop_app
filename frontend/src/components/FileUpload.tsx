@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import { upload } from "../api";
 import Button from "./Button";
 import Label from "./Label";
-import { upload } from "../api";
 
 type FileWithPreview = {
   file: File;
@@ -77,7 +77,6 @@ export default function FileUpload() {
         onDragOver={handleDragOver}
       >
         <div className="flex flex-col items-center justify-center border-2 border-dashed border-gray-400 py-12">
-          {/* Conditionally render text and label */}
           {selectedFiles.length === 0 && (
             <>
               <p className="mb-3 flex flex-wrap justify-center font-semibold text-gray-900">
@@ -109,7 +108,6 @@ export default function FileUpload() {
             ))}
           </ul>
         </div>
-        {/* Render label below the div if there are selected files */}
         {selectedFiles.length > 0 && (
           <Label htmlFor="fileInput" className="mt-2 text-center">
             Upload more pictures
