@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { deleteProduct, fetchProducts, patchProduct, postProduct } from "../api";
 import Button from "../components/Button";
 import InputForm from "../components/InputForm";
 import ListItem from "../components/ListItem";
@@ -16,14 +17,8 @@ export default function AdminPage() {
   });
 
   useEffect(() => {
-    fetchProducts();
+    fetchProducts().then((data) => setProducts(data));
   }, []);
-
-  const fetchProducts = async () => {
-    fetch("http://localhost:3000/api/products")
-      .then((response) => response.json())
-      .then((data) => setProducts(data));
-  };
 
   const refreshForm = () => {
     setProduct({
@@ -38,6 +33,8 @@ export default function AdminPage() {
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
+
     setProduct({ ...product, [event.target.name]: event.target.value });
   };
 
@@ -45,19 +42,8 @@ export default function AdminPage() {
     event.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/api/products", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(product),
-      });
-
-      if (!response.ok) {
-        throw new Error("HTTP error " + response.status);
-      }
-
-      fetchProducts();
+      await postProduct(product);
+      await fetchProducts();
       refreshForm();
     } catch (error) {
       alert("Error: " + error);
@@ -68,19 +54,8 @@ export default function AdminPage() {
     event.preventDefault();
 
     try {
-      const response = await fetch(`http://localhost:3000/api/products/${product.id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(product),
-      });
-
-      if (!response.ok) {
-        throw new Error("HTTP error " + response.status);
-      }
-
-      fetchProducts();
+      await patchProduct(product.id, product);
+      await fetchProducts();
       refreshForm();
     } catch (error) {
       alert("Error: " + error);
@@ -89,15 +64,8 @@ export default function AdminPage() {
 
   const handleDeleteProduct = async (productID: number) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/products/${productID}`, {
-        method: "DELETE",
-      });
-
-      if (!response.ok) {
-        throw new Error("HTTP error " + response.status);
-      }
-
-      fetchProducts();
+      await deleteProduct(productID);
+      await fetchProducts();
       refreshForm();
     } catch (error) {
       alert("Error: " + error);

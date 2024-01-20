@@ -1,17 +1,12 @@
 import { useState, useEffect } from "react";
 import ProductItem from "./ProductItem";
+import { fetchProducts } from "../api";
 
 const Content = () => {
   const [products, setProducts] = useState<Product[]>([]);
 
-  const fetchProducts = async () => {
-    const response = await fetch("http://localhost:3000/api/products");
-    const products: Product[] = await response.json();
-    return products;
-  };
-
   useEffect(() => {
-    fetchProducts().then(setProducts);
+    fetchProducts().then((products) => setProducts(products));
   }, []);
 
   return (

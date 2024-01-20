@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Button from "./Button";
 import Label from "./Label";
+import { upload } from "../api";
 
 type FileWithPreview = {
   file: File;
@@ -58,13 +59,7 @@ export default function FileUpload() {
     });
 
     try {
-      const response = await fetch("http://localhost:3000/api/upload", {
-        method: "POST",
-        body: formData,
-      });
-      if (!response.ok) {
-        throw new Error("Failed to upload files");
-      }
+      await upload(formData);
       alert("Files uploaded successfully");
       refreshFiles();
     } catch (error) {
@@ -80,8 +75,6 @@ export default function FileUpload() {
         className="flex h-full w-full flex-col p-4"
         onDrop={handleDrop}
         onDragOver={handleDragOver}
-        onDragLeave={() => console.log("dragLeave")}
-        onDragEnter={() => console.log("dragEnter")}
       >
         <div className="flex flex-col items-center justify-center border-2 border-dashed border-gray-400 py-12">
           {/* Conditionally render text and label */}

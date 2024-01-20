@@ -1,4 +1,5 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useMemo } from "react";
+import { checkAuth } from "../api";
 
 const AuthContext = createContext<AuthContextType>({
   isLoggedIn: false,
@@ -14,24 +15,30 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const checkAuthStatus = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/users", {
-          credentials: "include",
-        });
-        const data: AuthResponse = await response.json();
-        setIsLoggedIn(data.isAuthorized);
+        const response = await checkAuth();
+
+        if (response.message === "Authorized!") {
+          setIsLoggedIn(true);
+          setUser(response.data as User);
+        } else {
+          setIsLoggedIn(false);
+          setUser(null);
+        }
       } catch (error) {
         console.error("Error checking auth status", error);
+        setIsLoggedIn(false);
+        setUser(null);
       }
     };
 
     checkAuthStatus();
   }, []);
 
-  return (
-    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, user, setUser }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  const value = useMemo(() => {
+    return { isLoggedIn, setIsLoggedIn, user, setUser };
+  }, [isLoggedIn, setIsLoggedIn, user, setUser]);
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 export default AuthContext;

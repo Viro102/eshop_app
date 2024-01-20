@@ -1,23 +1,21 @@
 import { useEffect, useState } from "react";
+import { fetchProduct, fetchReviews } from "../api";
 import Rating from "../components/Rating";
-import Review from "../components/ReviewItem";
+import Review from "../components/Review";
 import ReviewForm from "../components/ReviewForm";
 import Button from "../components/Button";
 import ReviewCard from "../components/ReviewCard";
 
 export default function ProductPage() {
   const [product, setProduct] = useState<Product>();
-  window.scrollTo(0, 0); // scroll to top on page load
-
-  const fetchProduct = async () => {
-    const response = await fetch("http://localhost:3000/api" + window.location.pathname);
-    const product = await response.json();
-    return product;
-  };
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const productId = parseInt(window.location.pathname.split("/")[2]);
 
   useEffect(() => {
-    fetchProduct().then(setProduct);
-  }, []);
+    window.scrollTo(0, 0); // scroll to top on page load
+    fetchProduct(productId).then(setProduct);
+    fetchReviews(productId).then(setReviews);
+  }, [productId]);
 
   return (
     <section className="py-20 dark:bg-gray-800">
@@ -117,7 +115,11 @@ export default function ProductPage() {
                 <p className="text-base text-green-300 dark:text-green-300">In Stock</p>
               </div>
               <div className="mb-6 flex gap-4">
-                <Button onClick={() => {}}>
+                <Button
+                  onClick={() => {
+                    console.log("Clicked addToFavorites");
+                  }}
+                >
                   <i className="fa-solid fa-heart"></i>
                 </Button>
                 <Button
@@ -135,9 +137,20 @@ export default function ProductPage() {
       </div>
       <div className="mx-auto max-w-6xl">
         <ReviewCard />
-        <ReviewForm />
-        <Review />
-        <Review />
+        <ReviewForm productId={productId} />
+
+        {reviews.map((review) => (
+          <Review
+            key={review.id}
+            id={review.id}
+            user_id={review.user_id}
+            product_id={review.product_id}
+            comment={review.comment}
+            rating={review.rating}
+            created_at={review.created_at}
+            updated_at={review.updated_at}
+          />
+        ))}
       </div>
     </section>
   );

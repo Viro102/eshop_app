@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { signUpUser } from "../api";
 import Button from "../components/Button";
 import InputForm from "../components/InputForm";
 
@@ -18,20 +19,9 @@ export default function SignUpPage() {
         alert("Error: required inputs are empty");
         return;
       }
-      const response = await fetch("http://localhost:3000/api/users/sign-up", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ...inputs }),
-      });
-
-      if (response.ok) {
-        alert("Sign up successful! Redirecting to login page.");
-        navigate("/login");
-      } else {
-        alert("Sign up failed. Please try again.");
-      }
+      await signUpUser(inputs);
+      alert("Sign up successful! Redirecting to login page.");
+      navigate("/login");
     } catch (error) {
       alert("Error " + error);
     }

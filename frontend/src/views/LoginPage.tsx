@@ -3,10 +3,11 @@ import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import InputForm from "../components/InputForm";
 import { useAuth } from "../auth/useAuth";
+import { loginUser } from "../api";
 
 export default function LoginPage() {
   const [inputs, setInputs] = useState({ email: "", password: "" });
-  const { setIsLoggedIn } = useAuth();
+  const { setIsLoggedIn, setUser } = useAuth();
   const navigate = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,19 +21,10 @@ export default function LoginPage() {
         alert("Error: required inputs are empty");
         return;
       }
-      const response = await fetch("http://localhost:3000/api/users/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ...inputs }),
-      });
-      if (response.ok) {
-        navigate("/account");
-        setIsLoggedIn(true);
-      } else {
-        alert("Login failed. Please try again.");
-      }
+      const user = await loginUser(inputs);
+      navigate("/account");
+      setIsLoggedIn(true);
+      setUser(user);
     } catch (error) {
       alert("Error " + error);
     }
