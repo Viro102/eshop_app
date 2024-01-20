@@ -9,12 +9,12 @@ interface Product {
 }
 
 interface User {
-  id: number;
+  id?: number;
   username: string;
   email: string;
   password: string;
-  created_at: Date;
-  updated_at: Date;
+  created_at?: Date;
+  updated_at?: Date;
 }
 
 interface Review {
