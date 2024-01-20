@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
-
+import { useAuth } from "../auth/useAuth";
 import ThemeSwitch from "./ThemeSwitch";
 import Button from "./Button";
 import InputForm from "./InputForm";
-import { useAuth } from "../auth/useAuth";
 
 export default function Header() {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, user } = useAuth();
 
   const accountLinkDestination = isLoggedIn ? "/account" : "/login";
 
@@ -17,7 +16,7 @@ export default function Header() {
           <div className="flex items-center">
             <Link to="/">
               <img
-                className="mr-4 w-16 origin-center hover:animate-spin"
+                className="mr-4 w-9 origin-center hover:animate-spin lg:w-16"
                 src="/my-logo2.svg"
                 alt="website logo"
               />
@@ -27,7 +26,7 @@ export default function Header() {
             </span>
           </div>
           <form className="w-2/3">
-            <div className="flex-1 px-1 sm:px-4 lg:px-20">
+            <div className="flex-1 px-1 sm:px-3.5 lg:px-20">
               <InputForm
                 label=""
                 name="search"
@@ -54,7 +53,7 @@ export default function Header() {
               to={accountLinkDestination}
               className="mr-5 hidden rounded-lg px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-800 sm:flex"
             >
-              Account
+              {isLoggedIn ? user?.username : "Login"}
             </Link>
             <ThemeSwitch />
           </div>
