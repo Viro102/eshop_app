@@ -2,7 +2,7 @@ interface Product {
   id: number;
   title: string;
   category: string;
-  image_url: string;
+  image_urls: string;
   price: number;
   description: string;
   rating: number;
@@ -36,5 +36,5 @@ interface AuthContextType {
 
 interface CustomResponse {
   message: string;
-  data?: User | Product | Review | User[] | Product[] | Review[];
+  data?: User | User | Review | User[] | User[] | Review[];
 }
