@@ -27,7 +27,7 @@ class ReviewModel {
     }
   }
 
-  static async getById(id: number): Promise<Review[] | null> {
+  static async getAllByProductId(id: number): Promise<Review[] | null> {
     let conn: Connection | null = null;
     try {
       conn = await dbConnection.getConnection();
@@ -35,6 +35,19 @@ class ReviewModel {
         id,
       ]);
       return results || null;
+    } finally {
+      if (conn) conn.end();
+    }
+  }
+
+  static async getAllByUserId(userId: number): Promise<Review[] | null> {
+    let conn: Connection | null = null;
+    try {
+      conn = await dbConnection.getConnection();
+      const results = await conn.query<Review[]>(`SELECT * FROM reviews WHERE user_id = ?`, [
+        userId,
+      ]);
+      return results;
     } finally {
       if (conn) conn.end();
     }

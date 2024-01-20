@@ -40,6 +40,45 @@ class UserModel {
       if (conn) conn.end();
     }
   }
+
+  static async getAll(): Promise<User[] | null> {
+    let conn: Connection | null = null;
+    try {
+      conn = await dbConnection.getConnection();
+      const user = await conn.execute<User[]>(`SELECT * FROM users`);
+      return user || null;
+    } finally {
+      if (conn) conn.end();
+    }
+  }
+
+  static async update(id: number, updatedData: Partial<User>): Promise<void> {
+    let conn: Connection | null = null;
+    try {
+      const updateColumns = Object.keys(updatedData)
+        .map((column) => `${column} = ?`)
+        .join(", ");
+
+      const query = `UPDATE users SET ${updateColumns} WHERE id = ?`;
+
+      const values = [...Object.values(updatedData), id];
+
+      conn = await dbConnection.getConnection();
+      await conn.execute(query, values);
+    } finally {
+      if (conn) conn.end();
+    }
+  }
+
+  static async delete(id: number): Promise<void> {
+    let conn: Connection | null = null;
+    try {
+      conn = await dbConnection.getConnection();
+      await conn.execute(`DELETE FROM users WHERE id = ?`, [id]);
+    } finally {
+      if (conn) conn.end();
+    }
+  }
 }
 
 export { UserModel };
