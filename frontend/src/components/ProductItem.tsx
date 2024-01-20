@@ -6,8 +6,8 @@ import Button from "./Button";
 const ProductItem = ({ ...props }: Product) => {
   return (
     <div className="m-10 flex w-full max-w-xs flex-col rounded-lg bg-white shadow-md dark:bg-gray-800">
-      <Link className="m-3 flex h-60 rounded-xl" to={"/products/" + props.id}>
-        <img className="object-cover" src={props.image_url} alt="" />
+      <Link className="m-3 flex h-60 flex-grow rounded-xl" to={"/products/" + props.id}>
+        <img className="object-cover" src={JSON.parse(props.image_urls)[0]} alt="" />
       </Link>
       <div className="bottom-0 w-full p-4">
         <Link to={"/products/" + props.id}>
