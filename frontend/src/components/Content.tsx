@@ -24,7 +24,7 @@ function ProductList({ products }: Readonly<{ products: Product[] }>) {
       title={product.title}
       rating={product.rating}
       price={product.price}
-      image_url={product.image_url}
+      image_urls={product.image_urls}
       category=""
       description=""
     />
