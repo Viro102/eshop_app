@@ -36,5 +36,5 @@ interface AuthContextType {
 
 interface CustomResponse {
   message: string;
-  data?: User | User | Review | User[] | User[] | Review[];
+  data?: Product | User | Review | Product[] | User[] | Review[];
 }
