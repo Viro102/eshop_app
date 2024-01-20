@@ -12,7 +12,7 @@ export default function Sidebar() {
 
   return (
     <div
-      className={`sidebar fixed left-0 top-0 h-screen w-72 bg-gray-800 text-white transition-transform ${
+      className={`sidebar fixed left-0 top-0 h-screen w-72 bg-white text-white transition-transform dark:bg-gray-800 ${
         sidebarOpen ? "sidebar-open" : "sidebar-close"
       }`}
     >
