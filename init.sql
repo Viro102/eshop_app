@@ -47,41 +47,41 @@ INSERT INTO products (
 VALUES (
                 'G.SKILL 32GB KIT DDR5 6000MHz CL30 Trident Z5 NEO RGB',
                 'RAM',
-                '/images/ram.webp',
+                '/images/g_skill_32gb_trident_z5_neo.webp',
                 142.90,
                 'Trident Z5 Neo RGB DDR5 memory is designed for ultra-high overclocked performance on DDR5-enabled AMD platforms. Featuring AMD EXPO overclocking technology for easy memory overclocking on supported AMD platforms, the Trident Z5 Neo RGB series is the ideal choice for building high-performance systems.',
                 4.8
         ),
         (
-                'Laptop Pro',
-                'Electronics',
-                'laptop_pro.jpg',
-                1299.99,
-                'Powerful laptop for professional use.',
+                'MSI GeForce RTX 4080 SUPRIM X 16G',
+                'GPU',
+                '/images/msi_rtx_4080_suprim.png',
+                1599.90,
+                'The Ultimate Platform for Gamers and Creators. Powered by GeForce RTX 40 Series and DLSS 3. New Streaming Multiprocessors Up to 2x performance and power efficiency. Fourth-Gen Tensor Cores Up to 4x performance with DLSS 3 vs. brute-force rendering. Third-Gen RT Cores Up to 2x ray tracing performance',
                 4.5
         ),
         (
-                'Wireless Earbuds',
-                'Electronics',
-                'wireless_earbuds.jpg',
-                129.99,
-                'High-quality wireless earbuds with noise cancellation.',
-                4.2
+                'MSI GeForce RTX 4060 GAMING X 8G',
+                'GPU',
+                '/images/msi_rtx_4060.png',
+                372.90,
+                'Game, stream, create. The GeForce RTX™ 4060 lets you take on the latest games and apps with the ultra-efficient NVIDIA Ada Lovelace architecture. Experience immersive, AI-accelerated gaming with ray tracing and DLSS 3, and supercharge your creative process and productivity with NVIDIA Studio.',
+                4.0
         ),
         (
-                'Smart Watch 3',
-                'Electronics',
-                'smart_watch_3.jpg',
-                199.99,
-                'Fitness tracker and smartwatch with health features.',
-                4.7
+                'Sony Alpha A7 III',
+                'Digital Camera',
+                '/images/sony_alpha_a7_iii.png',
+                1609,
+                '24.2MP back-illuminated CMOS sensor and upgraded image processor help depict sharp images, maximize sensitivity, and extend dynamic range. Improved AF and tracking plus up to 10 fps continuous shooting capture decisive moments. Reliable operability ensures confident shooting. A light, compact body enhances mobility.',
+                5
         ),
         (
-                '4K Smart TV',
-                'Electronics',
-                '4k_smart_tv.jpg',
-                899.99,
-                'Ultra HD Smart TV with a large display.',
+                'AMD Ryzen 7 7800X3D',
+                'CPU',
+                '/images/amd_ryzen_7800x3d.png',
+                400.90,
+                'The Dominant Gaming Processor, with AMD 3D V-Cache Technology for Even More Game Performance. Whatever the setting, whatever the resolution, lead your team to victory with this incredible gaming processor. Plus, enjoy the benefits of next-gen AMD 3D V-Cache technology for low latency and even more game performance.',
                 4.6
         ),
         (
@@ -292,4 +292,44 @@ VALUES (
                 19.99,
                 'Graphic T-shirt for a trendy casual look.',
                 4.5
+        );
+-- Insert placeholder users
+-- user1, password: password123
+-- user2, password: helloWorld2024
+-- user3, password: mySecurePass!
+INSERT INTO users (email, username, password)
+VALUES (
+                'user1@example.com',
+                'user1',
+                '$2b$12$09675jxDLpGdTT0cqO3m2.WtMRZo2./ASFGpN6KQ0VtDP7R54sn7G'
+        ),
+        (
+                'user2@example.com',
+                'user2',
+                '$2b$12$kDF23UGkWVhlTvADA7I/Hu9n3vRQ9JfpqsvvLT.YojX5TfzF7o7IC'
+        ),
+        (
+                'user3@example.com',
+                'user3',
+                '$2b$12$aK4zj2zJJu21dBtyy2RUceo.uP7xTv5Wqs2i38Zumenr7257Ln5Rq'
+        );
+-- Insert placeholder reviews
+INSERT INTO reviews (user_id, product_id, rating, comment)
+VALUES (
+                1,
+                1,
+                4.5,
+                'Great product, really enjoyed using it!'
+        ),
+        (
+                2,
+                1,
+                3.7,
+                'Decent quality, but could be better.'
+        ),
+        (
+                3,
+                1,
+                4.0,
+                'Good value for the price, recommended.'
         );
