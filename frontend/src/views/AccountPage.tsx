@@ -64,8 +64,8 @@ export default function AccountPage() {
 
       <div className="mt-8">
         <h3 className="mb-2 text-xl font-semibold">Orders History</h3>
-        {/* TODO! order details */}
-        {orders?.map((order) => <Order key={order.id} {...order} />)}
+        {/* TODO! order details
+        {orders?.map((order) => <Order key={order.id} {...order} />)} */}
       </div>
 
       <div className="mt-8">
