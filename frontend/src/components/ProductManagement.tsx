@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { postProduct, fetchProducts, patchProduct, deleteProduct } from "../api";
+import { postProduct, fetchProducts, patchProduct, deleteProduct } from "../api/productService";
 import Button from "./Button";
 import FileUpload from "./FileUpload";
 import InputForm from "./InputForm";

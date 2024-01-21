@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { upload } from "../api";
+import { upload } from "../api/fileService";
 import Button from "./Button";
 import Label from "./Label";
 

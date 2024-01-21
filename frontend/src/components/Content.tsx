@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import ProductItem from "./ProductItem";
-import { fetchProducts } from "../api";
+import { fetchProducts } from "../api/productService";
 
 const Content = () => {
   const [products, setProducts] = useState<Product[]>([]);

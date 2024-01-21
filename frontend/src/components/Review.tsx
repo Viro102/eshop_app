@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../auth/useAuth";
-import { deleteReview, fetchUserDataId } from "../api";
+import { deleteReview } from "../api/reviewService";
+import { fetchUserDataId } from "../api/userService";
 import Rating from "./Rating";
 
 export default function Review(review: Readonly<Review>) {
@@ -19,7 +20,7 @@ export default function Review(review: Readonly<Review>) {
       })
     : "";
   const userJoinedDate = userLocal
-    ? new Date(userLocal.created_at).toLocaleDateString("default", {
+    ? new Date(userLocal.created_at!).toLocaleDateString("default", {
         year: "numeric",
         month: "long",
         day: "numeric",

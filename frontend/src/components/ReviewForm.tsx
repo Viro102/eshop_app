@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../auth/useAuth";
-import { postReview } from "../api";
+import { postReview } from "../api/reviewService";
 import Button from "./Button";
 import FileUpload from "./FileUpload";
 import Rating from "./Rating";
