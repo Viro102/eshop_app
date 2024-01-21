@@ -1,12 +1,33 @@
-import { Connection } from "mariadb";
+import { Connection, UpsertResult } from "mariadb";
 import dbConnection from "../dbConnection";
 
 class OrderModel {
-  static async create(userId: number): Promise<void> {
+  static async create(userId: number, body: { total: number }): Promise<number> {
     let conn: Connection | null = null;
     try {
       conn = await dbConnection.getConnection();
-      await conn.execute(`INSERT INTO orders (user_id) VALUES (?)`, [userId]);
+      const result: UpsertResult = await conn.execute(
+        `INSERT INTO orders (user_id, total) VALUES (?, ?)`,
+        [userId, body.total]
+      );
+      const orderId = result.insertId;
+      return orderId as number;
+    } finally {
+      if (conn) conn.end();
+    }
+  }
+
+  static async addOrderDetails(
+    orderId: number,
+    product: { id: number; quantity: number; price: number }
+  ): Promise<void> {
+    let conn: Connection | null = null;
+    try {
+      conn = await dbConnection.getConnection();
+      await conn.execute(
+        `INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)`,
+        [orderId, product.id, product.quantity, product.price]
+      );
     } finally {
       if (conn) conn.end();
     }
@@ -23,12 +44,12 @@ class OrderModel {
     }
   }
 
-  static async getOrderDetails(orderId: number): Promise<Order[]> {
+  static async getOrderDetails(orderId: number): Promise<OrderItem[]> {
     let conn: Connection | null = null;
     try {
       conn = await dbConnection.getConnection();
       const orderItems = await conn.execute(
-        `SELECT order_items.* FROM order_items
+        `SELECT * FROM order_items
         JOIN orders ON order_items.order_id = orders.id
         WHERE orders.id = ?`,
         [orderId]

@@ -3,7 +3,17 @@ import { OrderModel } from "../models/orderModel";
 
 const createOrder = async (req: Request, res: Response) => {
   try {
-    await OrderModel.create(parseInt(req.params.id));
+    const orderId = await OrderModel.create(parseInt(req.params.id), req.body);
+    res.status(201).json({ message: "Order created successfully", data: Number(orderId) });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error creating the order " + error });
+  }
+};
+
+const addOrderDetails = async (req: Request, res: Response) => {
+  try {
+    await OrderModel.addOrderDetails(parseInt(req.params.id), req.body);
     res.status(201).json({ message: "Order created successfully" });
   } catch (error) {
     console.error(error);
@@ -39,4 +49,4 @@ const getOrderDetails = async (req: Request, res: Response) => {
   }
 };
 
-export { createOrder, getAllUserOrders, getOrderDetails };
+export { createOrder, getAllUserOrders, getOrderDetails, addOrderDetails };
