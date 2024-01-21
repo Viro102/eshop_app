@@ -3,7 +3,7 @@ import { postProduct, fetchProducts, patchProduct, deleteProduct } from "../api/
 import Button from "./Button";
 import FileUpload from "./FileUpload";
 import InputForm from "./InputForm";
-import ListProduct from "./ListProduct";
+import ListEntity from "./ListEntity";
 
 export default function ProductManagement() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -18,7 +18,7 @@ export default function ProductManagement() {
   });
 
   useEffect(() => {
-    fetchProducts().then((data) => setProducts(data));
+    fetchProducts().then(setProducts);
   }, []);
   const refreshForm = () => {
     setProduct({
@@ -30,6 +30,7 @@ export default function ProductManagement() {
       description: "",
       rating: 0,
     });
+    fetchProducts().then(setProducts);
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,7 +43,6 @@ export default function ProductManagement() {
 
     try {
       await postProduct(product);
-      await fetchProducts();
       refreshForm();
     } catch (error) {
       alert("Error: " + error);
@@ -54,7 +54,6 @@ export default function ProductManagement() {
 
     try {
       await patchProduct(product.id, product);
-      await fetchProducts();
       refreshForm();
     } catch (error) {
       alert("Error: " + error);
@@ -64,7 +63,6 @@ export default function ProductManagement() {
   const handleDeleteProduct = async (productID: number) => {
     try {
       await deleteProduct(productID);
-      await fetchProducts();
       refreshForm();
     } catch (error) {
       alert("Error: " + error);
@@ -73,16 +71,20 @@ export default function ProductManagement() {
 
   return (
     <div className="mx-auto my-5 flex w-4/5 flex-col items-center justify-center self-center">
-      <Button className="my-2" onClick={handleCreateProduct}>
-        Add product
-      </Button>
       <ul>
-        {products.map((productItem) => (
-          <ListProduct
-            key={productItem.id}
-            product={productItem}
-            onClick={() => setProduct(productItem)}
-            onDelete={() => handleDeleteProduct(productItem.id)}
+        {products?.map((product) => (
+          <ListEntity
+            key={product.id}
+            entity={product}
+            onClick={() => setProduct(product)}
+            onDelete={() => handleDeleteProduct(product.id)}
+            getThumbnailUrl={(product) => {
+              const imageUrls = product.image_urls ? JSON.parse(product.image_urls) : [];
+              return imageUrls.length > 0 ? imageUrls[0] : "/default_thumbnail.webp";
+            }}
+            getTitle={(product) => product.title}
+            getSubtitle1={(product) => product.category}
+            getSubtitle2={(product) => `${product.price}€`}
           />
         ))}
       </ul>
@@ -143,7 +145,10 @@ export default function ProductManagement() {
         />
         <FileUpload />
 
-        <Button onClick={handleUpdateProduct}>Update product</Button>
+        <div className="my-3 flex justify-center gap-3">
+          <Button onClick={handleCreateProduct}>Add product</Button>
+          <Button onClick={handleUpdateProduct}>Update product</Button>
+        </div>
       </form>
     </div>
   );

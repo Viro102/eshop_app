@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 import { fetchAllUsersData, signUpUser, patchUser, deleteUser } from "../api/userService";
 import Button from "./Button";
 import InputForm from "./InputForm";
-import ListUser from "./ListUser";
+import ListEntity from "./ListEntity";
 
 export default function UserManagement() {
-  // TODO: Update user fix
   const [users, setUsers] = useState<User[]>([]);
   const [user, setUser] = useState<User>({
+    id: 0,
     email: "",
     password: "",
     username: "",
@@ -15,16 +15,18 @@ export default function UserManagement() {
   });
 
   useEffect(() => {
-    fetchAllUsersData().then((data) => setUsers(data));
+    fetchAllUsersData().then(setUsers);
   }, []);
 
   const refreshForm = () => {
     setUser({
+      id: 0,
       email: "",
       password: "",
       username: "",
       role: "user",
     });
+    fetchAllUsersData().then(setUsers);
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,7 +39,6 @@ export default function UserManagement() {
 
     try {
       await signUpUser({ email: user.email, password: user.password });
-      await fetchAllUsersData();
       refreshForm();
     } catch (error) {
       alert("Error: " + error);
@@ -48,8 +49,10 @@ export default function UserManagement() {
     event.preventDefault();
 
     try {
-      await patchUser(user.id!, user);
-      await fetchAllUsersData();
+      await patchUser(user.id, {
+        email: user.email,
+        username: user.username,
+      });
       refreshForm();
     } catch (error) {
       alert("Error: " + error);
@@ -68,16 +71,17 @@ export default function UserManagement() {
 
   return (
     <div className="mx-auto my-5 flex w-4/5 flex-col items-center justify-center self-center">
-      <Button className="my-2" onClick={handleCreateUser}>
-        Add user
-      </Button>
       <ul>
-        {users.map((user) => (
-          <ListUser
+        {users?.map((user) => (
+          <ListEntity
             key={user.id}
-            user={user}
+            entity={user}
             onClick={() => setUser(user)}
-            onDelete={() => handleDeleteUser(user.id!)}
+            onDelete={() => handleDeleteUser(user.id)}
+            getThumbnailUrl={(user) => user.profile_picture_url ?? "/default_thumbnail.webp"}
+            getTitle={(user) => user.username}
+            getSubtitle1={(user) => user.email}
+            getSubtitle2={(user) => user.role}
           />
         ))}
       </ul>
@@ -100,8 +104,10 @@ export default function UserManagement() {
           onChange={handleInputChange}
           value={user.email}
         />
-
-        <Button onClick={handleUpdateUser}>Update user</Button>
+        <div className="my-3 flex justify-center gap-3">
+          <Button onClick={handleCreateUser}>Add user</Button>
+          <Button onClick={handleUpdateUser}>Update user</Button>
+        </div>
       </form>
     </div>
   );

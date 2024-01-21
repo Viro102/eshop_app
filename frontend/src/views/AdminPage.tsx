@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useAuth } from "../auth/useAuth";
 import ProductManagement from "../components/ProductManagement";
 import UserManagement from "../components/UserManagement";
+import ReviewManagement from "../components/ReviewManagement";
+import Button from "../components/Button";
 
 export default function AdminPage() {
   const { isLoggedIn, user } = useAuth();
@@ -15,26 +17,26 @@ export default function AdminPage() {
 
   return (
     <section>
-      <h1 className="my-4 text-center text-3xl font-bold">Admin page</h1>
+      <h1 className="my-4 text-center text-3xl font-bold text-black dark:text-white">Admin page</h1>
       <div className="flex justify-center gap-4 p-4">
-        <button
+        <Button
           onClick={() => setActiveTab("products")}
           className={activeTab === "products" ? "font-bold" : ""}
         >
           Products
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={() => setActiveTab("users")}
           className={activeTab === "users" ? "font-bold" : ""}
         >
           Users
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={() => setActiveTab("reviews")}
           className={activeTab === "reviews" ? "font-bold" : ""}
         >
           Reviews
-        </button>
+        </Button>
       </div>
       <div className="mx-auto my-5 w-4/5 self-center">
         {activeTab === "products" && (
@@ -49,7 +51,11 @@ export default function AdminPage() {
           </div>
         )}
 
-        {activeTab === "reviews" && <div>{/* TODO: reviews management */}</div>}
+        {activeTab === "reviews" && (
+          <div>
+            <ReviewManagement />
+          </div>
+        )}
       </div>
     </section>
   );
