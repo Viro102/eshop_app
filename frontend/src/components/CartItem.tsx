@@ -1,3 +1,4 @@
+// TODO! Implement CartItem component
 export default function CartItem() {
   return (
     <div className="rounded-lg md:w-2/3">
@@ -20,7 +21,7 @@ export default function CartItem() {
               <input
                 className="h-8 w-7 bg-white text-center text-xs outline-none dark:bg-gray-700"
                 type="number"
-                defaultValue="1" // TODO!
+                defaultValue="1"
                 min="1"
               />
               <span className="h-8 cursor-pointer rounded-r bg-gray-100 px-3 py-1 duration-100 hover:bg-blue-500 hover:text-blue-50 dark:bg-gray-700">

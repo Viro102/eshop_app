@@ -1,5 +1,6 @@
 import Rating from "./Rating";
 
+// TODO: make this a real component
 export default function ReviewCard() {
   return (
     <>
