@@ -3,7 +3,7 @@ import { OrderModel } from "../models/orderModel";
 
 const createOrder = async (req: Request, res: Response) => {
   try {
-    await OrderModel.create(req.body);
+    await OrderModel.create(parseInt(req.params.id));
     res.status(201).json({ message: "Order created successfully" });
   } catch (error) {
     console.error(error);
@@ -25,14 +25,18 @@ const getAllUserOrders = async (req: Request, res: Response) => {
   }
 };
 
-const addProductsToOrder = async (req: Request, res: Response) => {
+const getOrderDetails = async (req: Request, res: Response) => {
   try {
-    await OrderModel.insertOrderItems(parseInt(req.params.id), req.body);
-    res.status(201).json({ message: "Order items added successfully" });
+    const orderItems = await OrderModel.getOrderDetails(parseInt(req.params.id));
+    if (orderItems.length <= 0) {
+      res.status(404).json({ message: "Order items not found" });
+      return;
+    }
+    res.status(200).json({ message: "Order items found!", data: orderItems });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Error adding the order items " + error });
+    res.status(500).json({ message: "Error fetching order items " + error });
   }
 };
 
-export { createOrder, getAllUserOrders, addProductsToOrder };
+export { createOrder, getAllUserOrders, getOrderDetails };

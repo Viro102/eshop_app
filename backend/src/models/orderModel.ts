@@ -2,11 +2,11 @@ import { Connection } from "mariadb";
 import dbConnection from "../dbConnection";
 
 class OrderModel {
-  static async create(order: Order): Promise<void> {
+  static async create(userId: number): Promise<void> {
     let conn: Connection | null = null;
     try {
       conn = await dbConnection.getConnection();
-      await conn.execute(`INSERT INTO orders (user_id) VALUES (?)`, [order.user_id]);
+      await conn.execute(`INSERT INTO orders (user_id) VALUES (?)`, [userId]);
     } finally {
       if (conn) conn.end();
     }
@@ -23,18 +23,18 @@ class OrderModel {
     }
   }
 
-  static async insertOrderItems(orderId: number, orderItems: OrderItem[]): Promise<void> {
+  static async getOrderDetails(orderId: number): Promise<Order[]> {
     let conn: Connection | null = null;
     try {
       conn = await dbConnection.getConnection();
-      const query = `INSERT INTO order_items (order_id, product_id, quantity, price) VALUES ?`;
-      const values = orderItems.map((item) => [
-        orderId,
-        item.product_id,
-        item.quantity,
-        item.price,
-      ]);
-      await conn.execute(query, [values]);
+      const orderItems = await conn.execute(
+        `SELECT order_items.* FROM order_items
+        JOIN orders ON order_items.order_id = orders.id
+        WHERE orders.id = ?`,
+        [orderId]
+      );
+
+      return orderItems || [];
     } finally {
       if (conn) conn.end();
     }
