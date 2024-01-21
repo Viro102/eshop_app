@@ -13,16 +13,25 @@ CREATE TABLE IF NOT EXISTS users (
         email VARCHAR(255) NOT NULL UNIQUE,
         username VARCHAR(255) NOT NULL,
         password VARCHAR(255) NOT NULL,
+        profile_picture_url VARCHAR(255),
+        role ENUM('admin', 'user') DEFAULT 'user',
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 CREATE TABLE IF NOT EXISTS orders (
         id INT AUTO_INCREMENT PRIMARY KEY,
         user_id INT NOT NULL,
-        product_id INT NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (user_id) REFERENCES users(id)
+);
+CREATE TABLE IF NOT EXISTS order_items (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        order_id INT NOT NULL,
+        product_id INT,
+        quantity INT,
+        price DECIMAL(10, 2),
+        FOREIGN KEY (order_id) REFERENCES orders(id),
         FOREIGN KEY (product_id) REFERENCES products(id)
 );
 CREATE TABLE IF NOT EXISTS reviews (
@@ -85,25 +94,37 @@ VALUES (
                 'The Dominant Gaming Processor, with AMD 3D V-Cache Technology for Even More Game Performance. Whatever the setting, whatever the resolution, lead your team to victory with this incredible gaming processor. Plus, enjoy the benefits of next-gen AMD 3D V-Cache technology for low latency and even more game performance.',
                 4.6
         );
--- Insert placeholder users
--- user1, password: password123
--- user2, password: helloWorld2024
--- user3, password: mySecurePass!
-INSERT INTO users (email, username, password)
+-- Insert admin
+-- admin, password: admin
+INSERT INTO users (
+                email,
+                username,
+                password,
+                profile_picture_url,
+                role
+        )
 VALUES (
-                'user1@example.com',
-                'user1',
-                '$2b$12$09675jxDLpGdTT0cqO3m2.WtMRZo2./ASFGpN6KQ0VtDP7R54sn7G'
+                'admin@example.com',
+                'admin',
+                '$2b$10$3c7nG5iEoDoqKm7t/38hs.kocnTTBPVJXu6IV9xMlyNJXGv9da3DO',
+                '/images/my-logo2.svg',
+                'admin'
+        );
+-- Insert placeholder users
+-- viro, password: helloWorld2024
+-- Jozo Mrkva, password: mySecurePass!
+INSERT INTO users (email, username, password, profile_picture_url)
+VALUES (
+                'adam.virostek@example.com',
+                'viro',
+                '$2b$12$kDF23UGkWVhlTvADA7I/Hu9n3vRQ9JfpqsvvLT.YojX5TfzF7o7IC',
+                '/images/my-logo2.svg'
         ),
         (
-                'user2@example.com',
-                'user2',
-                '$2b$12$kDF23UGkWVhlTvADA7I/Hu9n3vRQ9JfpqsvvLT.YojX5TfzF7o7IC'
-        ),
-        (
-                'user3@example.com',
-                'user3',
-                '$2b$12$aK4zj2zJJu21dBtyy2RUceo.uP7xTv5Wqs2i38Zumenr7257Ln5Rq'
+                'jozko.mrkvicka@example.com',
+                'JozoMrkva',
+                '$2b$12$aK4zj2zJJu21dBtyy2RUceo.uP7xTv5Wqs2i38Zumenr7257Ln5Rq',
+                NULL
         );
 -- Insert placeholder reviews
 INSERT INTO reviews (user_id, product_id, rating, comment)
