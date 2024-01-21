@@ -32,7 +32,7 @@ async function fetchAllUsersData(options = {}): Promise<User[]> {
   return responseJson.data as User[];
 }
 
-async function patchUser(userId: number, user: User): Promise<void> {
+async function patchUser(userId: number, user: Partial<User>): Promise<void> {
   await fetchData(`users/${userId}`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },

@@ -19,8 +19,28 @@ async function fetchReviewsUserId(userId: number, options = {}): Promise<Review[
   return responseJson.data as Review[];
 }
 
+async function fetchAllReviews(): Promise<Review[]> {
+  const responseJson = await fetchData(`reviews`);
+  return responseJson.data as Review[];
+}
+
+async function patchReview(reviewId: number, review: Partial<Review>): Promise<void> {
+  await fetchData(`reviews/${reviewId}`, {
+    method: "PATCH",
+    headers: { "Content-type": "application/json" },
+    body: JSON.stringify(review),
+  });
+}
+
 async function deleteReview(reviewId: number): Promise<void> {
   await fetchData(`reviews/${reviewId}`, { method: "DELETE" });
 }
 
-export { postReview, fetchReviewsProductId, fetchReviewsUserId, deleteReview };
+export {
+  postReview,
+  fetchReviewsProductId,
+  fetchReviewsUserId,
+  fetchAllReviews,
+  patchReview,
+  deleteReview,
+};
