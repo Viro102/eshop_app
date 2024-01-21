@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchAllUsersData, signUpUser, patchUser, deleteUser } from "../api";
+import { fetchAllUsersData, signUpUser, patchUser, deleteUser } from "../api/userService";
 import Button from "./Button";
 import InputForm from "./InputForm";
 import ListUser from "./ListUser";
@@ -11,6 +11,7 @@ export default function UserManagement() {
     email: "",
     password: "",
     username: "",
+    role: "user",
   });
 
   useEffect(() => {
@@ -22,6 +23,7 @@ export default function UserManagement() {
       email: "",
       password: "",
       username: "",
+      role: "user",
     });
   };
 
