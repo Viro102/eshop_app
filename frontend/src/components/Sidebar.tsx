@@ -33,11 +33,6 @@ export default function Sidebar() {
               <Button onClick={() => {}}>Cart page</Button>
             </Link>
           </li>
-          <li className="sidebar-item">
-            <Link to={"/admin"}>
-              <Button onClick={() => {}}>Admin page</Button>
-            </Link>
-          </li>
         </ul>
       </div>
     </div>
