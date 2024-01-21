@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { fetchProduct } from "../api/productService";
 import { fetchReviewsProductId } from "../api/reviewService";
 import Rating from "../components/Rating";
@@ -7,10 +7,12 @@ import ReviewForm from "../components/ReviewForm";
 import Button from "../components/Button";
 import ReviewCard from "../components/ReviewCard";
 import Carousel from "../components/Carousel";
+import CartContext from "../context/CartContext";
 
 export default function ProductPage() {
   const [product, setProduct] = useState<Product>();
   const [reviews, setReviews] = useState<Review[]>([]);
+  const { addToCart } = useContext(CartContext);
   const productId = parseInt(window.location.pathname.split("/")[2]);
 
   const updateReviews = useCallback(async () => {
@@ -77,7 +79,7 @@ export default function ProductPage() {
                 <Button
                   className="w-full items-center p-4"
                   onClick={() => {
-                    console.log("Clicked addToCart");
+                    addToCart(product!);
                   }}
                 >
                   Add to Cart
