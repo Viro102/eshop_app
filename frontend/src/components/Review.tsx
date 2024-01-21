@@ -30,8 +30,11 @@ export default function Review(review: Readonly<Review>) {
   return (
     <div className="my-2 rounded-lg bg-white p-3.5 dark:bg-gray-700">
       <div className="mb-4 flex items-center">
-        {/* TODO: custom profile pictures */}
-        <img className="me-4 h-10 w-10 rounded-full" src={"/my-logo2.svg"} alt="profile" />
+        <img
+          className="me-4 h-10 w-10 rounded-full"
+          src={userLocal?.profile_picture_url ?? "/default_thumbnail.webp"}
+          alt="profile"
+        />
         <div className="font-medium text-black dark:text-white">
           <p>
             {userLocal?.username}

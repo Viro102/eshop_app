@@ -19,7 +19,7 @@ export default function Carousel({ images }: Readonly<CarouselProps>) {
   };
 
   return (
-    <div className="relative w-full overflow-hidden">
+    <div className="carousel-container">
       <div className="relative h-56 rounded-lg md:h-96">
         {images.map((src, index) => {
           let positionStyle;
@@ -53,14 +53,11 @@ export default function Carousel({ images }: Readonly<CarouselProps>) {
       </div>
       <Button
         onClick={goToPrevious}
-        className="group absolute start-0 top-0 z-30 h-full bg-transparent shadow-none dark:bg-transparent"
+        className="carousel-arrow-left shadow-none dark:bg-transparent"
       >
         <i className="fa-solid fa-arrow-left fa-xl text-black dark:text-white"></i>
       </Button>
-      <Button
-        onClick={goToNext}
-        className="group absolute end-0 top-0 z-30 h-full bg-transparent shadow-none dark:bg-transparent"
-      >
+      <Button onClick={goToNext} className="carousel-arrow-right shadow-none dark:bg-transparent">
         <i className="fa-solid fa-arrow-right fa-xl text-black dark:text-white"></i>
       </Button>
     </div>

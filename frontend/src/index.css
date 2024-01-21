@@ -37,6 +37,11 @@ h1 {
   line-height: 1.1;
 }
 
+h2 {
+  font-size: 2.4em;
+  line-height: 1.1;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -48,16 +53,16 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
 
-.filter-invert {
-  filter: invert(1);
+input:focus,
+textarea:focus {
+  outline: #535bf2;
+  outline-style: solid;
+  outline-width: 2px;
 }
 
 .sidebar-open {
@@ -68,8 +73,59 @@ button:focus-visible {
   transform: translateX(-100%);
 }
 
+.product-card {
+  margin: 2.5rem;
+  display: flex;
+  width: 100%;
+  max-width: 20rem;
+  flex-direction: column;
+  border-radius: 0.5rem;
+  background-color: #fff;
+}
+
+.home-page {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
 .sidebar {
   z-index: 10;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  height: 100vh;
+  width: 18rem;
+  background-color: #fff;
+  color: #fff;
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-arrow-left {
+  position: absolute;
+  inset-inline-start: 0px;
+  top: 0;
+  z-index: 30;
+  height: 100%;
+  background-color: transparent;
+}
+
+.carousel-arrow-right {
+  position: absolute;
+  inset-inline-end: 0px;
+  top: 0;
+  z-index: 30;
+  height: 100%;
+  background-color: transparent;
 }
 
 .sidebar-content {

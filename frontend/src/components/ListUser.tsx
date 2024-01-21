@@ -8,7 +8,7 @@ export default function ListProduct({ user, onClick, onDelete }: Readonly<ListUs
   return (
     <li onClick={onClick} className="my-1 flex rounded-lg bg-gray-800 p-4 hover:bg-blue-600">
       <img
-        src={user.profile_picture_url}
+        src={user.profile_picture_url ?? "/default_thumbnail.webp"}
         alt={user.username}
         className="mr-4 h-16 w-16 flex-none rounded object-cover"
       />
