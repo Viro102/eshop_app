@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
-import { fetchProduct, fetchReviewsProductId } from "../api";
+import { fetchProduct } from "../api/productService";
+import { fetchReviewsProductId } from "../api/reviewService";
 import Rating from "../components/Rating";
 import Review from "../components/Review";
 import ReviewForm from "../components/ReviewForm";
@@ -90,9 +91,7 @@ export default function ProductPage() {
         <ReviewCard />
         <ReviewForm productId={productId} onReviewSubmit={updateReviews} />
 
-        {reviews.map((review) => (
-          <Review key={review.id} {...review} />
-        ))}
+        {reviews?.map((review) => <Review key={review.id} {...review} />)}
       </div>
     </section>
   );

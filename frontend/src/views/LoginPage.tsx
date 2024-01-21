@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import InputForm from "../components/InputForm";
 import { useAuth } from "../auth/useAuth";
-import { loginUser } from "../api";
+import { loginUser } from "../api/userService";
 
 export default function LoginPage() {
   const [inputs, setInputs] = useState({ email: "", password: "" });

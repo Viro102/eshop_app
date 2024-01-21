@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { signUpUser } from "../api";
+import { signUpUser } from "../api/userService";
 import Button from "../components/Button";
 import InputForm from "../components/InputForm";
 

@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useMemo } from "react";
-import { checkAuth } from "../api";
+import { checkAuth } from "../api/userService";
 
 const AuthContext = createContext<AuthContextType>({
   isLoggedIn: false,
