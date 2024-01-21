@@ -13,6 +13,8 @@ interface User {
   username: string;
   email: string;
   password: string;
+  role: "admin" | "user";
+  profile_picture_url?: string;
   created_at?: Date;
   updated_at?: Date;
 }
@@ -25,6 +27,21 @@ interface Review {
   comment: string;
   created_at?: Date;
   updated_at?: Date;
+}
+
+interface Order {
+  id: number;
+  user_id: number;
+  created_at: Date;
+  updated_at: Date;
+}
+
+interface OrderItem {
+  id: number;
+  order_id: number;
+  product_id: number;
+  quantity: number;
+  price: number;
 }
 
 interface AuthContextType {

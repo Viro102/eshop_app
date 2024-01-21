@@ -27,6 +27,21 @@ interface Review {
   updated_at: Date;
 }
 
+interface Order {
+  id: number;
+  user_id: number;
+  created_at: Date;
+  updated_at: Date;
+}
+
+interface OrderItem {
+  id: number;
+  order_id: number;
+  product_id: number;
+  quantity: number;
+  price: number;
+}
+
 interface DecodedToken {
   userId: number;
   iat: number;
