@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
-
+import { useContext } from "react";
 import Rating from "./Rating";
 import Button from "./Button";
+import CartContext from "../context/CartContext";
 
 type ProductItemProps = {
-  onAddToCart: (product: Product) => void;
   product: Product;
 };
 
-const ProductItem = ({ onAddToCart, product }: ProductItemProps) => {
+export default function ProductItem({ product }: Readonly<ProductItemProps>) {
+  const { addToCart } = useContext(CartContext);
+
   return (
     <div className="product-card shadow-md dark:bg-gray-800">
       <Link className="m-3 flex h-60 flex-grow rounded-xl" to={"/products/" + product.id}>
@@ -31,18 +33,14 @@ const ProductItem = ({ onAddToCart, product }: ProductItemProps) => {
             </span>
           </div>
         </div>
-        <Link to={"/products/" + product.id}>
-          <Button
-            onClick={() => onAddToCart(product)}
-            className="flex h-12 w-full items-center justify-center text-center"
-          >
-            <i className="fa-solid fa-cart-shopping px-2"></i>
-            <p>Add to cart</p>
-          </Button>
-        </Link>
+        <Button
+          onClick={() => addToCart(product)}
+          className="flex h-12 w-full items-center justify-center text-center"
+        >
+          <i className="fa-solid fa-cart-shopping px-2"></i>
+          <p>Add to cart</p>
+        </Button>
       </div>
     </div>
   );
-};
-
-export default ProductItem;
+}
