@@ -15,8 +15,8 @@ interface User {
   password: string;
   role: "admin" | "user";
   profile_picture_url?: string;
-  created_at?: Date;
-  updated_at?: Date;
+  created_at?: string;
+  updated_at?: string;
 }
 
 interface Review {
@@ -25,23 +25,29 @@ interface Review {
   product_id: number;
   rating: number;
   comment: string;
-  created_at?: Date;
-  updated_at?: Date;
+  created_at?: string;
+  updated_at?: string;
 }
 
 interface Order {
   id: number;
   user_id: number;
-  created_at: Date;
-  updated_at: Date;
+  created_at: string;
+  updated_at: string;
 }
 
-interface OrderItem {
-  id: number;
+interface OrderDetails {
   order_id: number;
-  product_id: number;
-  quantity: number;
-  price: number;
+  products: Product[];
+  total: number;
+  created_at: string;
+  updated_at: string;
+}
+
+interface CartContextType {
+  cart: Product[];
+  removeFromCart: (id: number) => void;
+  addToCart: (product: Product) => void;
 }
 
 interface AuthContextType {
