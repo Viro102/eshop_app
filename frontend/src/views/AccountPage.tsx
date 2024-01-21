@@ -5,7 +5,6 @@ import { fetchReviewsUserId } from "../api/reviewService";
 import { fetchAllUserOrders } from "../api/orderService";
 import Review from "../components/Review";
 import Button from "../components/Button";
-import Order from "../components/Order";
 
 export default function AccountPage() {
   const { isLoggedIn, setIsLoggedIn, user, setUser } = useAuth();
@@ -15,10 +14,10 @@ export default function AccountPage() {
 
   useEffect(() => {
     const fetchOrders = async () => {
-      fetchAllUserOrders(user!.id!).then(setOrders);
+      fetchAllUserOrders(user!.id).then(setOrders);
     };
     const fetchReviews = async () => {
-      fetchReviewsUserId(user!.id!).then(setReviews);
+      fetchReviewsUserId(user!.id).then(setReviews);
     };
     fetchOrders();
     fetchReviews();
@@ -64,8 +63,14 @@ export default function AccountPage() {
 
       <div className="mt-8">
         <h3 className="mb-2 text-xl font-semibold">Orders History</h3>
-        {/* TODO! order details
-        {orders?.map((order) => <Order key={order.id} {...order} />)} */}
+        <ul>
+          {orders?.map((order) => (
+            <li key={order.id}>
+              ORDER ID: {order.id} USER ID: {order.user_id} TOTAL: {order.total}€ DATE:
+              {order.created_at}
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div className="mt-8">
