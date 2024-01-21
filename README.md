@@ -1,3 +1,4 @@
+# !OUTDATED!
 # Introduction
 ### Link: <a href="http://89.58.18.3:80" >89.58.18.3</a>
 
@@ -23,10 +24,9 @@ This app follows **MVC** and **SPA** architecture, which means delegating routin
 
 # WIP Features
 
-* User dashboard
-* Product catalogue
+* Better rating system
+* Implement yup and formik for form validation
 * Search function
-* Better navigation
 * Product categories
 
 # To run it yourself
