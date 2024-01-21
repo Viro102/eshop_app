@@ -7,7 +7,6 @@ CREATE TABLE IF NOT EXISTS products (
         description TEXT NOT NULL,
         rating DECIMAL(2, 1) NOT NULL
 );
--- TODO: add profile picture url column
 CREATE TABLE IF NOT EXISTS users (
         id INT AUTO_INCREMENT PRIMARY KEY,
         email VARCHAR(255) NOT NULL UNIQUE,
@@ -21,6 +20,7 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS orders (
         id INT AUTO_INCREMENT PRIMARY KEY,
         user_id INT NOT NULL,
+        total DECIMAL(10, 2) NOT NULL DEFAULT 0,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         FOREIGN KEY (user_id) REFERENCES users(id)
@@ -146,9 +146,3 @@ VALUES (
                 4.0,
                 'Good value for the price, recommended.'
         );
-INSERT INTO orders (user_id)
-VALUES (1);
-INSERT INTO order_items (order_id, product_id, quantity, price)
-VALUES (1, 1, 2, 285.80),
-        (1, 2, 1, 1599.90),
-        (1, 3, 1, 372.90);
