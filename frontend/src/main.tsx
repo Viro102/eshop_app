@@ -2,8 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import { AuthProvider } from "./auth/AuthContext";
 import "./index.css";
+import { AuthProvider } from "./auth/AuthContext";
+import { CartProvider } from "./context/CartContext";
 import Layout from "./components/Layout";
 import HomePage from "./views/HomePage";
 import ErrorPage from "./views/ErrorPage";
@@ -80,7 +81,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      <CartProvider>
+        <RouterProvider router={router} />
+      </CartProvider>
     </AuthProvider>
   </React.StrictMode>,
 );
