@@ -27,8 +27,7 @@ class ProductModel {
     let conn: Connection | null = null;
     try {
       conn = await dbConnection.getConnection();
-      const results = await conn.execute<Product[]>(`SELECT * FROM products`);
-      return results;
+      return await conn.execute<Product[]>(`SELECT * FROM products`);
     } finally {
       if (conn) conn.end();
     }

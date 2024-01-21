@@ -20,34 +20,33 @@ class ReviewModel {
     let conn: Connection | null = null;
     try {
       conn = await dbConnection.getConnection();
-      const results = await conn.execute<Review[]>(`SELECT * FROM reviews`);
-      return results;
+      return await conn.execute<Review[]>(`SELECT * FROM reviews`);
     } finally {
       if (conn) conn.end();
     }
   }
 
-  static async getAllByProductId(id: number): Promise<Review[] | null> {
+  static async getAllByProductId(productId: number): Promise<Review[]> {
     let conn: Connection | null = null;
     try {
       conn = await dbConnection.getConnection();
       const results = await conn.execute<Review[]>(`SELECT * FROM reviews WHERE product_id = ?`, [
-        id,
+        productId,
       ]);
-      return results || null;
+      return results || [];
     } finally {
       if (conn) conn.end();
     }
   }
 
-  static async getAllByUserId(userId: number): Promise<Review[] | null> {
+  static async getAllByUserId(userId: number): Promise<Review[]> {
     let conn: Connection | null = null;
     try {
       conn = await dbConnection.getConnection();
       const results = await conn.query<Review[]>(`SELECT * FROM reviews WHERE user_id = ?`, [
         userId,
       ]);
-      return results;
+      return results || [];
     } finally {
       if (conn) conn.end();
     }

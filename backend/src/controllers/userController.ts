@@ -9,7 +9,7 @@ const signUpUser = async (req: Request, res: Response) => {
     res.status(201).json({ message: "User created successfully" });
   } catch (error) {
     console.error("Error creating the user", error);
-    res.status(500).json({ message: "Error creating the user", error });
+    res.status(500).json({ message: "Error creating the user " + error });
   }
 };
 
@@ -39,7 +39,7 @@ const loginUser = async (req: Request, res: Response) => {
     }
   } catch (error) {
     console.error("Error during login:", error);
-    res.status(500).json({ message: "Error during login", error });
+    res.status(500).json({ message: "Error during login " + error });
   }
 };
 
@@ -52,20 +52,20 @@ const getUserById = async (req: Request, res: Response) => {
     res.status(200).json({ message: "User found!", data: user });
   } catch (error) {
     console.error("Error fetching the user", error);
-    res.status(500).json({ message: "Error fetching the user", error });
+    res.status(500).json({ message: "Error fetching the user " + error });
   }
 };
 
 const getUsers = async (_req: Request, res: Response) => {
   try {
     const user = await UserModel.getAll();
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
+    if (user.length <= 0) {
+      return res.status(404).json({ message: "Users not found" });
     }
     res.status(200).json({ message: "User found!", data: user });
   } catch (error) {
     console.error("Error fetching the user", error);
-    res.status(500).json({ message: "Error fetching the user", error });
+    res.status(500).json({ message: "Error fetching the user " + error });
   }
 };
 
@@ -75,7 +75,7 @@ const updateUser = async (req: Request, res: Response) => {
     res.status(200).json({ message: "User updated successfully" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Error updating the user", error });
+    res.status(500).json({ message: "Error updating the user " + error });
   }
 };
 
@@ -85,7 +85,7 @@ const deleteUser = async (req: Request, res: Response) => {
     res.status(200).json({ message: "User deleted successfully" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Error deleting the user", error });
+    res.status(500).json({ message: "Error deleting the user " + error });
   }
 };
 

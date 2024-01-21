@@ -41,12 +41,12 @@ class UserModel {
     }
   }
 
-  static async getAll(): Promise<User[] | null> {
+  static async getAll(): Promise<User[]> {
     let conn: Connection | null = null;
     try {
       conn = await dbConnection.getConnection();
       const user = await conn.execute<User[]>(`SELECT * FROM users`);
-      return user || null;
+      return user || [];
     } finally {
       if (conn) conn.end();
     }

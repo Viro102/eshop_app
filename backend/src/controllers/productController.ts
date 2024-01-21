@@ -7,17 +7,21 @@ const createProduct = async (req: Request, res: Response) => {
     res.status(201).json({ message: "Product created successfully" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Error creating the product", error });
+    res.status(500).json({ message: "Error creating the product " + error });
   }
 };
 
 const getAllProducts = async (_req: Request, res: Response) => {
   try {
     const products = await ProductModel.getAll();
+    if (products.length <= 0) {
+      res.status(404).json({ message: "Products not found" });
+      return;
+    }
     res.status(200).json({ message: "Products found!", data: products });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Error fetching products", error });
+    res.status(500).json({ message: "Error fetching products " + error });
   }
 };
 
@@ -31,7 +35,7 @@ const getProductById = async (req: Request, res: Response) => {
     res.status(200).json({ message: "Product found!", data: product });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Error fetching the product", error });
+    res.status(500).json({ message: "Error fetching the product " + error });
   }
 };
 
@@ -41,7 +45,7 @@ const updateProduct = async (req: Request, res: Response) => {
     res.status(200).json({ message: "Product updated successfully" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Error updating the product", error });
+    res.status(500).json({ message: "Error updating the product " + error });
   }
 };
 
@@ -51,7 +55,7 @@ const deleteProduct = async (req: Request, res: Response) => {
     res.status(200).json({ message: "Product deleted successfully" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Error deleting the product", error });
+    res.status(500).json({ message: "Error deleting the product " + error });
   }
 };
 
