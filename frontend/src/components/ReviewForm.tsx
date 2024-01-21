@@ -37,7 +37,7 @@ export default function ReviewForm({ productId, onReviewSubmit }: Readonly<Revie
         return;
       }
       const review: Review = {
-        user_id: user.id!,
+        user_id: user.id,
         comment: reviewText,
         product_id: productId,
         rating,
