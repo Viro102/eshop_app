@@ -9,7 +9,7 @@ interface Product {
 }
 
 interface User {
-  id?: number;
+  id: number;
   username: string;
   email: string;
   password: string;
@@ -32,22 +32,22 @@ interface Review {
 interface Order {
   id: number;
   user_id: number;
-  created_at: string;
-  updated_at: string;
-}
-
-interface OrderDetails {
-  order_id: number;
-  products: Product[];
   total: number;
   created_at: string;
   updated_at: string;
 }
 
+interface CartItem {
+  product: Product;
+  quantity: number;
+}
+
 interface CartContextType {
-  cart: Product[];
-  removeFromCart: (id: number) => void;
-  addToCart: (product: Product) => void;
+  cart: CartItem[];
+  addToCart: (product: Product, quantity: number = 1) => void;
+  removeFromCart: (productId: number) => void;
+  updateQuantity: (productId: number, quantity: number) => void;
+  clearCart: () => void;
 }
 
 interface AuthContextType {
@@ -59,5 +59,5 @@ interface AuthContextType {
 
 interface CustomResponse {
   message: string;
-  data?: Product | User | Review | Product[] | User[] | Review[];
+  data?: Product | User | Review | Order | Product[] | User[] | Review[] | Order[] | number;
 }
