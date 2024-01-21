@@ -107,23 +107,23 @@ VALUES (
                 'admin@example.com',
                 'admin',
                 '$2b$10$3c7nG5iEoDoqKm7t/38hs.kocnTTBPVJXu6IV9xMlyNJXGv9da3DO',
-                '/images/my-logo2.svg',
+                '/my-logo2.svg',
                 'admin'
         );
 -- Insert placeholder users
--- viro, password: helloWorld2024
--- Jozo Mrkva, password: mySecurePass!
+-- viro, password: 12345
+-- Jozo Mrkva, password: 12345
 INSERT INTO users (email, username, password, profile_picture_url)
 VALUES (
                 'adam.virostek@example.com',
                 'viro',
-                '$2b$12$kDF23UGkWVhlTvADA7I/Hu9n3vRQ9JfpqsvvLT.YojX5TfzF7o7IC',
-                '/images/my-logo2.svg'
+                '$2b$10$TdlVg2m7S0WQeIehu4eBh.3T2XR47BBSJdkfv5JGIRhTYcQingmqq',
+                '/my-logo2.svg'
         ),
         (
                 'jozko.mrkvicka@example.com',
                 'JozoMrkva',
-                '$2b$12$aK4zj2zJJu21dBtyy2RUceo.uP7xTv5Wqs2i38Zumenr7257Ln5Rq',
+                '$2b$10$TdlVg2m7S0WQeIehu4eBh.3T2XR47BBSJdkfv5JGIRhTYcQingmqq',
                 NULL
         );
 -- Insert placeholder reviews
@@ -146,3 +146,9 @@ VALUES (
                 4.0,
                 'Good value for the price, recommended.'
         );
+INSERT INTO orders (user_id)
+VALUES (1);
+INSERT INTO order_items (order_id, product_id, quantity, price)
+VALUES (1, 1, 2, 285.80),
+        (1, 2, 1, 1599.90),
+        (1, 3, 1, 372.90);
