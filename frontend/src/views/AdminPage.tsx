@@ -1,11 +1,17 @@
 import { useState } from "react";
+import { useAuth } from "../auth/useAuth";
 import ProductManagement from "../components/ProductManagement";
 import UserManagement from "../components/UserManagement";
 
 export default function AdminPage() {
+  const { isLoggedIn, user } = useAuth();
   const [activeTab, setActiveTab] = useState<"products" | "orders" | "users" | "reviews">(
     "products",
   );
+
+  if (!isLoggedIn && user?.role !== "admin") {
+    return <div>Please login as admin to see this page</div>;
+  }
 
   return (
     <section>
