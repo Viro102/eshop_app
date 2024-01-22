@@ -7,7 +7,7 @@ class ProductModel {
     try {
       conn = await dbConnection.getConnection();
       await conn.execute(
-        `INSERT INTO products (title, category, image_url, price, description, rating) 
+        `INSERT INTO products (title, category, image_urls, price, description, rating) 
         VALUES (?, ?, ?, ?, ?, ?)`,
         [
           product.title,
