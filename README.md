@@ -1,6 +1,4 @@
-# !OUTDATED!
 # Introduction
-### Link: <a href="http://89.58.18.3:80" >89.58.18.3</a>
 
 This is a full-stack e-commerce web app, utilizing ReactJS FE and ExpressJS BE with MariaDB
 
@@ -37,18 +35,12 @@ git clone https://github.com/Viro102/eshop_app.git
 ```
 To install:
 ```
-cd your/dir/eshop_app
+cd ./backend
+npm ci
+cd ./frontend
 npm ci
 ```
 And to run the dev server do:
 ```
-npm run dev
-```
-
-**All in one**
-```
-git clone https://github.com/Viro102/eshop_app.git
-cd ./eshop_app
-npm ci
 npm run dev
 ```
