@@ -11,7 +11,7 @@ export default function ProductManagement() {
     id: 0,
     title: "",
     category: "",
-    image_urls: "[]",
+    image_urls: "",
     price: 0,
     description: "",
     rating: 0,
@@ -25,7 +25,7 @@ export default function ProductManagement() {
       id: 0,
       title: "",
       category: "",
-      image_urls: "[]",
+      image_urls: "",
       price: 0,
       description: "",
       rating: 0,
@@ -148,6 +148,7 @@ export default function ProductManagement() {
         <div className="my-3 flex justify-center gap-3">
           <Button onClick={handleCreateProduct}>Add product</Button>
           <Button onClick={handleUpdateProduct}>Update product</Button>
+          <Button onClick={refreshForm}>Clear Selection</Button>
         </div>
       </form>
     </div>
