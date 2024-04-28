@@ -1,9 +1,11 @@
-FROM nginx:stable-perl
+FROM node:21-slim
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+WORKDIR /frontend
 
-COPY dist /usr/share/nginx/html
+COPY . .
 
-EXPOSE 80
+RUN npm i -g bun
 
-CMD ["nginx", "-g", "daemon off;"]
+RUN bun i
+
+CMD ["npm", "run", "dev"]

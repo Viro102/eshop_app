@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   database:
     image: mariadb:latest
@@ -14,20 +12,20 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
   web:
     build: ./frontend
-    container_name: nginx
+    container_name: frontend
     ports:
-      - "80:80"
+      - "5173:5173"
     depends_on:
       - database
 
   backend:
     build: ./backend
-    container_name: express
+    container_name: backend
     ports:
       - "3000:3000"
     environment:
-      - DB_HOST=database
-    env_file:
-      - /backend/.env
+      DB_HOST: database
+      # PLACEHOLDER JWT SECRET
+      JWT_SECRET: secret
     depends_on:
       - database

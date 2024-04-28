@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "nodemon --exec tsx --env-file=.env ./src/app.ts",
-    "start": "tsx ./app.ts"
+    "dev": "nodemon --exec bun ./src/app.ts",
+    "start": "bun ./src/app.ts"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

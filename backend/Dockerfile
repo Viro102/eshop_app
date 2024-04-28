@@ -1,13 +1,13 @@
-FROM node:21
+FROM node:21-slim
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-COPY package*.json .
+COPY package*.json /app
 
-RUN npm i
+COPY ./src /app/src
 
-COPY ./src .
+RUN npm i -g bun
 
-EXPOSE 3000
+RUN bun i
 
 CMD [ "npm", "run", "start" ]
