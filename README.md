@@ -14,16 +14,20 @@ This app follows **MVC** and **SPA** architecture, which means delegating routin
 
 * Front page with products
   * Product details page
-* Log in page
+  * Rating of products
+* User management pages
+  * Log in page
   * Sign up page
-* Contact page
+  * Account summary page
 * Scuffed sidebar
 * Theme switch
+* Simple order tracking system
+  * Checkout page
+  * Cart contents
 
 # WIP Features
 
-* Better rating system
-* Implement yup and formik for form validation
+* Improve form validation
 * Search function
 * Product categories
 
@@ -33,14 +37,11 @@ Clone the repo:
 ```
 git clone https://github.com/Viro102/eshop_app.git
 ```
-To install:
+To run you need to have docker installed:
+
 ```
-cd ./backend
-npm ci
-cd ./frontend
-npm ci
+cd ./eshop_app
+docker-compose up --build -d
 ```
-And to run the dev server do:
-```
-npm run dev
-```
+
+Then the website should be up on http://localhost:5173
